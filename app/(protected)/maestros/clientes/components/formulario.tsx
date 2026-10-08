@@ -1,5 +1,4 @@
 "use client";
-
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { ICustomerCreateRequest, ICustomerResponse } from "../types";
 import { DialogAddElement } from "@/app/components/ui/dialoga-add-element";
@@ -296,6 +295,7 @@ export function DialogAddCliente({
       return;
     }
 
+    // Se compara el id para traer solo los nombres
     const depObj = departamentos.find(
       (d) => d.id_depart === values.id_departamento,
     );
@@ -304,6 +304,7 @@ export function DialogAddCliente({
     );
     const distObj = distritos.find((d) => d.id_distrito === values.ubigeo);
 
+    // Se reforma del extend al payload
     const payload: ICustomerCreateRequest = {
       des_aux: values.des_aux,
       tipo_pers: values.tipo_pers,

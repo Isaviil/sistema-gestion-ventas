@@ -1,7 +1,6 @@
 "use client";
-
 import { useMemo, useState } from "react";
-import { ICustomerResponse } from "./types";
+import { IChofer } from "./types";
 import { DataTable } from "@/app/components/ui/datatable/virtual-data-table";
 import { columns } from "./components/columns";
 import Input from "@/app/components/ui/input";
@@ -9,58 +8,54 @@ import Button from "@/app/components/ui/button";
 import ConfirmDialog from "@/app/components/ui/confirm-dialog";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Spinner } from "@/app/components/loading/Spinner";
-import { useDeleteCliente } from "./api/[id]/delete-clientes";
-import { DialogAddCliente } from "./components/formulario";
-import { useListClientes } from "./api/list-clientes";
+import { DialogAddTransportista } from "./components/formulario";
+import { useTransportistas } from "./api/list-transportistas";
+import { useDeleteTransportista } from "./api/[id]/delete-transportista";
 
-const filterClientes = (
-  data: ICustomerResponse[],
-  filtro: string,
-): ICustomerResponse[] => {
+const filterTransportistas = (data: IChofer[], filtro: string): IChofer[] => {
   if (!filtro.trim()) return data;
 
   const terms = filtro.toLowerCase().trim().split(/\s+/).filter(Boolean);
 
   return data.filter((item) => {
-    const desAux = item.des_aux?.toLowerCase() ?? "";
-    const rucAux = item.ruc_aux?.toLowerCase() ?? "";
-    const telefono = item.telefono?.toLowerCase() ?? "";
+    const brevete = item.brevete?.toLowerCase() ?? "";
+    const dni = item.dni?.toLowerCase() ?? "";
+    const nombre = item.nombre?.toLowerCase() ?? "";
 
     return terms.every(
       (term) =>
-        desAux.includes(term) ||
-        rucAux.includes(term) ||
-        telefono.includes(term),
+        brevete.includes(term) || dni.includes(term) || nombre.includes(term),
     );
   });
 };
 
-export default function Clientes() {
+export default function Transportistas() {
   // Estados
-  const [selectedCliente, setSelectedCliente] = useState<ICustomerResponse[]>(
+  const [selectedTransportista, setSelectedTransportista] = useState<IChofer[]>(
     [],
   );
   const [clearSelectionCounter, setClearSelectionCounter] = useState(0);
   const [filtro, setFiltro] = useState("");
-  const [openClienteModal, setOpenClienteModal] = useState<boolean>(false);
-  const [openConfirmDelete, setOpenConfirmDelete] = useState<boolean>(false);
+  const [openTransportistaModal, setOpenTransportistaModal] = useState(false);
+  const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
 
   // Query
-  const { data: dataClientes = [], isLoading } = useListClientes();
+  const { data: dataTransportistas = [], isLoading } = useTransportistas();
 
-  // Filtro
-  const clientesFiltrados = useMemo(
-    () => filterClientes(dataClientes, filtro),
-    [dataClientes, filtro],
+  // Filtrado
+  const transportistasFiltrados = useMemo(
+    () => filterTransportistas(dataTransportistas, filtro),
+    [dataTransportistas, filtro],
   );
 
-  const deleteMutation = useDeleteCliente();
+  // Mutación
+  const deleteMutation = useDeleteTransportista();
 
   // Eliminar
   const handleDelete = async () => {
-    if (!selectedCliente[0]) return;
+    if (!selectedTransportista[0]) return;
 
-    await deleteMutation.mutateAsync(selectedCliente[0].id_aux);
+    await deleteMutation.mutateAsync(selectedTransportista[0].id_chof);
     setClearSelectionCounter((prev) => prev + 1);
   };
 
@@ -86,11 +81,11 @@ export default function Clientes() {
         borderColor: "var(--color-border)",
       }}
     >
-      <DialogAddCliente
-        open={openClienteModal}
-        setOpen={setOpenClienteModal}
+      <DialogAddTransportista
+        open={openTransportistaModal}
+        setOpen={setOpenTransportistaModal}
         setClearSelectionCounter={setClearSelectionCounter}
-        data={selectedCliente[0] ?? null}
+        data={selectedTransportista[0] ?? null}
       />
 
       <ConfirmDialog
@@ -99,12 +94,12 @@ export default function Clientes() {
         onConfirm={() => {
           void handleDelete();
         }}
-        title="Eliminar cliente"
+        title="Eliminar transportista"
         description={
           <>
             ¿Estás seguro de que deseas eliminar{" "}
             <strong className="font-semibold text-red-600 dark:text-red-400">
-              {selectedCliente[0]?.des_aux ?? "este cliente"}
+              {selectedTransportista[0]?.nombre ?? "este transportista"}
             </strong>
             ? Esta acción no se puede deshacer.
           </>
@@ -115,7 +110,7 @@ export default function Clientes() {
 
       <div className="space-y-1">
         <h1 className="text-base sm:text-xl font-bold">
-          Administración de Clientes
+          Administración de Transportistas
         </h1>
       </div>
 
@@ -124,7 +119,7 @@ export default function Clientes() {
           <Input
             value={filtro}
             onChange={(e) => setFiltro(e.target.value)}
-            placeholder="Filtrar por RUC, razón social..."
+            placeholder="Filtrar por brevete, DNI, nombre..."
           />
         </div>
 
@@ -133,7 +128,7 @@ export default function Clientes() {
             variant="danger"
             size="xs"
             className="sm:text-sm sm:px-3 sm:py-1.5"
-            disabled={!selectedCliente || selectedCliente.length === 0}
+            disabled={selectedTransportista.length === 0}
             startIcon={<Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             onClick={() => setOpenConfirmDelete(true)}
             title="Eliminar seleccionado"
@@ -145,9 +140,9 @@ export default function Clientes() {
             variant="secondary"
             size="xs"
             className="sm:text-sm sm:px-3 sm:py-1.5"
-            disabled={!selectedCliente || selectedCliente.length === 0}
+            disabled={selectedTransportista.length === 0}
             startIcon={<Pencil className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
-            onClick={() => setOpenClienteModal(true)}
+            onClick={() => setOpenTransportistaModal(true)}
             title="Editar seleccionado"
           >
             Editar
@@ -159,8 +154,8 @@ export default function Clientes() {
             className="sm:text-sm sm:px-3 sm:py-1.5"
             startIcon={<Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             onClick={() => {
-              setSelectedCliente([]);
-              setOpenClienteModal(true);
+              setSelectedTransportista([]);
+              setOpenTransportistaModal(true);
             }}
           >
             Agregar
@@ -169,11 +164,11 @@ export default function Clientes() {
       </div>
 
       <div className="w-full">
-        {clientesFiltrados.length > 0 ? (
+        {transportistasFiltrados.length > 0 ? (
           <DataTable
-            data={clientesFiltrados}
+            data={transportistasFiltrados}
             columns={columns}
-            onRowsSelected={setSelectedCliente}
+            onRowsSelected={setSelectedTransportista}
             clearSelectionTrigger={clearSelectionCounter}
           />
         ) : (
@@ -188,7 +183,7 @@ export default function Clientes() {
               className="text-xs font-medium opacity-60"
               style={{ color: "var(--color-regular-text)" }}
             >
-              No se encontraron clientes.
+              No se encontraron transportistas.
             </p>
           </div>
         )}

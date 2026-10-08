@@ -210,6 +210,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           },
                           { href: "/maestros/almacenes", label: "Almacenes" },
                           { href: "/maestros/vehiculos", label: "Vehículos" },
+                          {
+                            href: "/maestros/transportistas",
+                            label: "Transportistas",
+                          },
                         ].map((item) => (
                           <Link
                             key={item.href}

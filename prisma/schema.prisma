@@ -178,3 +178,29 @@ model Vehicle {
   certificado  String?
 }
 
+model Almacen {
+  codalm      Int      @id @default(autoincrement())
+  aliasalm    String
+  desalm      String
+  diralm      String?
+  departam    String
+  provincia   String
+  distrito    String
+  ubigeo      String
+  kanexo      String
+  telefalm    String?
+  logoalm     String?
+  flg_stock   Boolean  @default(false)
+  flg_acu     Boolean  @default(false)
+  usuario     Int
+  fch_reg     DateTime @default(now())
+  flg_ok      Boolean  @default(true)
+  reservado   Boolean  @default(false)
+}
+
+model Chofer {
+  id_chof  Int    @id @default(autoincrement())
+  brevete  String @unique
+  dni      String @unique
+  nombre   String
+}

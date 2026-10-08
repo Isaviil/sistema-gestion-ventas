@@ -2,33 +2,31 @@ import { queryClient } from "@/app/lib/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { axios } from "@/app/lib/axios";
 import { toast } from "react-toastify";
-import { CreateVehiculoRequest, Vehiculo } from "../types";
+import { CreateChoferRequest, IChofer } from "../types";
 import { AxiosError } from "axios";
 
-interface CreateVehiculoResponse {
+interface CreateTransportistaResponse {
   message: string;
-  data: Vehiculo;
+  data: IChofer;
 }
 
-export const createVehiculo = async (
-  data: CreateVehiculoRequest,
-): Promise<CreateVehiculoResponse> => {
-  const { data: response } = await axios.post<CreateVehiculoResponse>(
-    "/vehiculos",
-    {
-      cabecera: data,
-    },
+export const createTransportista = async (
+  data: CreateChoferRequest,
+): Promise<CreateTransportistaResponse> => {
+  const { data: response } = await axios.post<CreateTransportistaResponse>(
+    "/transportistas",
+    data,
   );
 
   return response;
 };
 
-export const useCreateVehiculo = () => {
+export const useCreateTransportista = () => {
   return useMutation({
-    mutationFn: createVehiculo,
+    mutationFn: createTransportista,
     onSuccess: (response) => {
       void queryClient.invalidateQueries({
-        queryKey: ["vehiculos"],
+        queryKey: ["transportistas"],
       });
 
       toast.success(response.message, {
@@ -37,7 +35,7 @@ export const useCreateVehiculo = () => {
     },
     onError: (error: AxiosError<{ message: string }>) => {
       const message =
-        error.response?.data?.message ?? "Error al crear el vehículo";
+        error.response?.data?.message ?? "Error al crear el transportista";
 
       toast.error(message, {
         autoClose: 1600,

@@ -15,7 +15,6 @@ export async function GET() {
 export async function POST(request: Request) {
   const body = await request.json();
   const cabecera = body.cabecera;
-
   const placa = cabecera?.placa?.trim().toUpperCase();
 
   if (!placa) {
@@ -52,16 +51,34 @@ export async function POST(request: Request) {
     );
   }
 
+  const certificado = cabecera?.certificado?.trim();
+
+  if (certificado) {
+    const existingCertificate = await prisma.vehicle.findFirst({
+      where: {
+        certificado,
+      },
+    });
+
+    if (existingCertificate) {
+      return Response.json(
+        { message: "El certificado del vehículo ya existe" },
+        { status: 400 },
+      );
+    }
+  }
+
   const vehiculo = await prisma.vehicle.create({
     data: {
       placa,
       marca: cabecera.marca.trim(),
-      certificado: cabecera.certificado ?? null,
+      certificado: certificado || null,
     },
   });
 
   return Response.json(
     {
+      message: "Vehículo creado correctamente",
       data: vehiculo,
     },
     { status: 201 },

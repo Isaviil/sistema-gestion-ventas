@@ -97,3 +97,13 @@ export type ProductSize = Prisma.ProductSizeModel
  * 
  */
 export type Vehicle = Prisma.VehicleModel
+/**
+ * Model Almacen
+ * 
+ */
+export type Almacen = Prisma.AlmacenModel
+/**
+ * Model Chofer
+ * 
+ */
+export type Chofer = Prisma.ChoferModel

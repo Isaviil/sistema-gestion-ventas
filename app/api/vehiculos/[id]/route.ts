@@ -80,6 +80,26 @@ export async function PUT(request: Request, { params }: RouteParams) {
     );
   }
 
+  const certificado = cabecera?.certificado?.trim();
+
+  if (certificado) {
+    const existingCertificate = await prisma.vehicle.findFirst({
+      where: {
+        certificado,
+        NOT: {
+          id_vehi: Number(id),
+        },
+      },
+    });
+
+    if (existingCertificate) {
+      return Response.json(
+        { message: "El certificado del vehículo ya existe" },
+        { status: 400 },
+      );
+    }
+  }
+
   const updatedVehicle = await prisma.vehicle.update({
     where: {
       id_vehi: Number(id),
@@ -87,13 +107,13 @@ export async function PUT(request: Request, { params }: RouteParams) {
     data: {
       placa,
       marca: cabecera.marca.trim(),
-      certificado: cabecera.certificado ?? " ",
+      certificado: certificado || null,
     },
   });
 
   return Response.json({
     message: "Vehículo actualizado correctamente",
-    vehicle: updatedVehicle,
+    data: updatedVehicle,
   });
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ICustomerResponse } from "./types";
+import { IAlmacenList } from "./types";
 import { DataTable } from "@/app/components/ui/datatable/virtual-data-table";
 import { columns } from "./components/columns";
 import Input from "@/app/components/ui/input";
@@ -9,58 +9,65 @@ import Button from "@/app/components/ui/button";
 import ConfirmDialog from "@/app/components/ui/confirm-dialog";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { Spinner } from "@/app/components/loading/Spinner";
-import { useDeleteCliente } from "./api/[id]/delete-clientes";
-import { DialogAddCliente } from "./components/formulario";
-import { useListClientes } from "./api/list-clientes";
+import { useDeleteAlmacen } from "./api/[id]/delete-almacen";
+import { DialogAddAlmacen } from "./components/formulario";
+import { useAlmacenes } from "./api/list-almacenes";
 
-const filterClientes = (
-  data: ICustomerResponse[],
+const filterAlmacenes = (
+  data: IAlmacenList[],
   filtro: string,
-): ICustomerResponse[] => {
+): IAlmacenList[] => {
   if (!filtro.trim()) return data;
 
   const terms = filtro.toLowerCase().trim().split(/\s+/).filter(Boolean);
 
   return data.filter((item) => {
-    const desAux = item.des_aux?.toLowerCase() ?? "";
-    const rucAux = item.ruc_aux?.toLowerCase() ?? "";
-    const telefono = item.telefono?.toLowerCase() ?? "";
+    const aliasalm = item.aliasalm?.toLowerCase() ?? "";
+    const desalm = item.desalm?.toLowerCase() ?? "";
+    const distrito = item.distrito?.toLowerCase() ?? "";
+    const diralm = item.diralm?.toLowerCase() ?? "";
 
     return terms.every(
       (term) =>
-        desAux.includes(term) ||
-        rucAux.includes(term) ||
-        telefono.includes(term),
+        aliasalm.includes(term) ||
+        desalm.includes(term) ||
+        distrito.includes(term) ||
+        diralm.includes(term),
     );
   });
 };
 
-export default function Clientes() {
+export default function Almacenes() {
   // Estados
-  const [selectedCliente, setSelectedCliente] = useState<ICustomerResponse[]>(
-    [],
-  );
+  const [selectedAlmacen, setSelectedAlmacen] = useState<IAlmacenList[]>([]);
   const [clearSelectionCounter, setClearSelectionCounter] = useState(0);
   const [filtro, setFiltro] = useState("");
-  const [openClienteModal, setOpenClienteModal] = useState<boolean>(false);
+  const [openAlmacenModal, setOpenAlmacenModal] = useState<boolean>(false);
   const [openConfirmDelete, setOpenConfirmDelete] = useState<boolean>(false);
 
   // Query
-  const { data: dataClientes = [], isLoading } = useListClientes();
+  const { data: dataAlmacenes = [], isLoading } = useAlmacenes();
 
-  // Filtro
-  const clientesFiltrados = useMemo(
-    () => filterClientes(dataClientes, filtro),
-    [dataClientes, filtro],
+  // Convierte "2026-10-08T21:38:03.756Z" en "2026-10-08"
+  const dataAlmacenesFechaFix = dataAlmacenes.map((item) => ({
+    ...item,
+    fch_reg: item.fch_reg.split("T")[0],
+  }));
+
+  // Recibe la data con el fix en la fecha
+  const almacenesFiltrados = useMemo(
+    () => filterAlmacenes(dataAlmacenesFechaFix, filtro),
+    [dataAlmacenesFechaFix, filtro],
   );
 
-  const deleteMutation = useDeleteCliente();
+  // Mutación
+  const deleteMutation = useDeleteAlmacen();
 
   // Eliminar
   const handleDelete = async () => {
-    if (!selectedCliente[0]) return;
+    if (!selectedAlmacen[0]) return;
 
-    await deleteMutation.mutateAsync(selectedCliente[0].id_aux);
+    await deleteMutation.mutateAsync(selectedAlmacen[0].codalm);
     setClearSelectionCounter((prev) => prev + 1);
   };
 
@@ -86,11 +93,11 @@ export default function Clientes() {
         borderColor: "var(--color-border)",
       }}
     >
-      <DialogAddCliente
-        open={openClienteModal}
-        setOpen={setOpenClienteModal}
+      <DialogAddAlmacen
+        open={openAlmacenModal}
+        setOpen={setOpenAlmacenModal}
         setClearSelectionCounter={setClearSelectionCounter}
-        data={selectedCliente[0] ?? null}
+        data={selectedAlmacen[0] ?? null}
       />
 
       <ConfirmDialog
@@ -99,12 +106,12 @@ export default function Clientes() {
         onConfirm={() => {
           void handleDelete();
         }}
-        title="Eliminar cliente"
+        title="Eliminar almacén"
         description={
           <>
             ¿Estás seguro de que deseas eliminar{" "}
             <strong className="font-semibold text-red-600 dark:text-red-400">
-              {selectedCliente[0]?.des_aux ?? "este cliente"}
+              {selectedAlmacen[0]?.desalm ?? "este almacén"}
             </strong>
             ? Esta acción no se puede deshacer.
           </>
@@ -115,7 +122,7 @@ export default function Clientes() {
 
       <div className="space-y-1">
         <h1 className="text-base sm:text-xl font-bold">
-          Administración de Clientes
+          Administración de Almacenes
         </h1>
       </div>
 
@@ -124,7 +131,7 @@ export default function Clientes() {
           <Input
             value={filtro}
             onChange={(e) => setFiltro(e.target.value)}
-            placeholder="Filtrar por RUC, razón social..."
+            placeholder="Filtrar por alias, descripción, distrito..."
           />
         </div>
 
@@ -133,7 +140,7 @@ export default function Clientes() {
             variant="danger"
             size="xs"
             className="sm:text-sm sm:px-3 sm:py-1.5"
-            disabled={!selectedCliente || selectedCliente.length === 0}
+            disabled={!selectedAlmacen || selectedAlmacen.length === 0}
             startIcon={<Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             onClick={() => setOpenConfirmDelete(true)}
             title="Eliminar seleccionado"
@@ -145,9 +152,9 @@ export default function Clientes() {
             variant="secondary"
             size="xs"
             className="sm:text-sm sm:px-3 sm:py-1.5"
-            disabled={!selectedCliente || selectedCliente.length === 0}
+            disabled={!selectedAlmacen || selectedAlmacen.length === 0}
             startIcon={<Pencil className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
-            onClick={() => setOpenClienteModal(true)}
+            onClick={() => setOpenAlmacenModal(true)}
             title="Editar seleccionado"
           >
             Editar
@@ -159,8 +166,8 @@ export default function Clientes() {
             className="sm:text-sm sm:px-3 sm:py-1.5"
             startIcon={<Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             onClick={() => {
-              setSelectedCliente([]);
-              setOpenClienteModal(true);
+              setSelectedAlmacen([]);
+              setOpenAlmacenModal(true);
             }}
           >
             Agregar
@@ -169,11 +176,11 @@ export default function Clientes() {
       </div>
 
       <div className="w-full">
-        {clientesFiltrados.length > 0 ? (
+        {almacenesFiltrados.length > 0 ? (
           <DataTable
-            data={clientesFiltrados}
+            data={almacenesFiltrados}
             columns={columns}
-            onRowsSelected={setSelectedCliente}
+            onRowsSelected={setSelectedAlmacen}
             clearSelectionTrigger={clearSelectionCounter}
           />
         ) : (
@@ -188,7 +195,7 @@ export default function Clientes() {
               className="text-xs font-medium opacity-60"
               style={{ color: "var(--color-regular-text)" }}
             >
-              No se encontraron clientes.
+              No se encontraron almacenes.
             </p>
           </div>
         )}

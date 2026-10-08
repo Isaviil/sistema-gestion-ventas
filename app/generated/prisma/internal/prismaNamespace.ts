@@ -412,7 +412,9 @@ export const ModelName = {
   Brand: 'Brand',
   ProductColor: 'ProductColor',
   ProductSize: 'ProductSize',
-  Vehicle: 'Vehicle'
+  Vehicle: 'Vehicle',
+  Almacen: 'Almacen',
+  Chofer: 'Chofer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -428,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "paymentMethod" | "customer" | "vendor" | "ubigeo" | "product" | "currency" | "exchangeRate" | "documentType" | "unitOfMeasure" | "productFamily" | "productCut" | "brand" | "productColor" | "productSize" | "vehicle"
+    modelProps: "user" | "paymentMethod" | "customer" | "vendor" | "ubigeo" | "product" | "currency" | "exchangeRate" | "documentType" | "unitOfMeasure" | "productFamily" | "productCut" | "brand" | "productColor" | "productSize" | "vehicle" | "almacen" | "chofer"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1616,6 +1618,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Almacen: {
+      payload: Prisma.$AlmacenPayload<ExtArgs>
+      fields: Prisma.AlmacenFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AlmacenFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AlmacenFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        findFirst: {
+          args: Prisma.AlmacenFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AlmacenFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        findMany: {
+          args: Prisma.AlmacenFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>[]
+        }
+        create: {
+          args: Prisma.AlmacenCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        createMany: {
+          args: Prisma.AlmacenCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AlmacenCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>[]
+        }
+        delete: {
+          args: Prisma.AlmacenDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        update: {
+          args: Prisma.AlmacenUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        deleteMany: {
+          args: Prisma.AlmacenDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AlmacenUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AlmacenUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>[]
+        }
+        upsert: {
+          args: Prisma.AlmacenUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AlmacenPayload>
+        }
+        aggregate: {
+          args: Prisma.AlmacenAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAlmacen>
+        }
+        groupBy: {
+          args: Prisma.AlmacenGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlmacenGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AlmacenCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AlmacenCountAggregateOutputType> | number
+        }
+      }
+    }
+    Chofer: {
+      payload: Prisma.$ChoferPayload<ExtArgs>
+      fields: Prisma.ChoferFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChoferFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChoferFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        findFirst: {
+          args: Prisma.ChoferFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChoferFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        findMany: {
+          args: Prisma.ChoferFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>[]
+        }
+        create: {
+          args: Prisma.ChoferCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        createMany: {
+          args: Prisma.ChoferCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChoferCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>[]
+        }
+        delete: {
+          args: Prisma.ChoferDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        update: {
+          args: Prisma.ChoferUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChoferDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChoferUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChoferUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChoferUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChoferPayload>
+        }
+        aggregate: {
+          args: Prisma.ChoferAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChofer>
+        }
+        groupBy: {
+          args: Prisma.ChoferGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChoferGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChoferCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChoferCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1855,6 +2005,39 @@ export const VehicleScalarFieldEnum = {
 } as const
 
 export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
+
+
+export const AlmacenScalarFieldEnum = {
+  codalm: 'codalm',
+  aliasalm: 'aliasalm',
+  desalm: 'desalm',
+  diralm: 'diralm',
+  departam: 'departam',
+  provincia: 'provincia',
+  distrito: 'distrito',
+  ubigeo: 'ubigeo',
+  kanexo: 'kanexo',
+  telefalm: 'telefalm',
+  logoalm: 'logoalm',
+  flg_stock: 'flg_stock',
+  flg_acu: 'flg_acu',
+  usuario: 'usuario',
+  fch_reg: 'fch_reg',
+  flg_ok: 'flg_ok',
+  reservado: 'reservado'
+} as const
+
+export type AlmacenScalarFieldEnum = (typeof AlmacenScalarFieldEnum)[keyof typeof AlmacenScalarFieldEnum]
+
+
+export const ChoferScalarFieldEnum = {
+  id_chof: 'id_chof',
+  brevete: 'brevete',
+  dni: 'dni',
+  nombre: 'nombre'
+} as const
+
+export type ChoferScalarFieldEnum = (typeof ChoferScalarFieldEnum)[keyof typeof ChoferScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2144,6 +2327,8 @@ export type GlobalOmitConfig = {
   productColor?: Prisma.ProductColorOmit
   productSize?: Prisma.ProductSizeOmit
   vehicle?: Prisma.VehicleOmit
+  almacen?: Prisma.AlmacenOmit
+  chofer?: Prisma.ChoferOmit
 }
 
 /* Types for Logging */

@@ -66,7 +66,9 @@ export const ModelName = {
   Brand: 'Brand',
   ProductColor: 'ProductColor',
   ProductSize: 'ProductSize',
-  Vehicle: 'Vehicle'
+  Vehicle: 'Vehicle',
+  Almacen: 'Almacen',
+  Chofer: 'Chofer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -285,6 +287,39 @@ export const VehicleScalarFieldEnum = {
 } as const
 
 export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
+
+
+export const AlmacenScalarFieldEnum = {
+  codalm: 'codalm',
+  aliasalm: 'aliasalm',
+  desalm: 'desalm',
+  diralm: 'diralm',
+  departam: 'departam',
+  provincia: 'provincia',
+  distrito: 'distrito',
+  ubigeo: 'ubigeo',
+  kanexo: 'kanexo',
+  telefalm: 'telefalm',
+  logoalm: 'logoalm',
+  flg_stock: 'flg_stock',
+  flg_acu: 'flg_acu',
+  usuario: 'usuario',
+  fch_reg: 'fch_reg',
+  flg_ok: 'flg_ok',
+  reservado: 'reservado'
+} as const
+
+export type AlmacenScalarFieldEnum = (typeof AlmacenScalarFieldEnum)[keyof typeof AlmacenScalarFieldEnum]
+
+
+export const ChoferScalarFieldEnum = {
+  id_chof: 'id_chof',
+  brevete: 'brevete',
+  dni: 'dni',
+  nombre: 'nombre'
+} as const
+
+export type ChoferScalarFieldEnum = (typeof ChoferScalarFieldEnum)[keyof typeof ChoferScalarFieldEnum]
 
 
 export const SortOrder = {
