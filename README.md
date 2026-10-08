@@ -6,14 +6,11 @@
 Sistema web para la gestión de clientes, productos, pedidos y procesos relacionados con la venta.
 </p>
 
-<h2>Descripción</h2>
-
 <p>
 Proyecto desarrollado con <strong>Next.js</strong>, <strong>TypeScript</strong>, <strong>Prisma</strong> y <strong>PostgreSQL</strong>, con una interfaz enfocada en mantener la gestión simple y organizada.
 </p>
 
 <h2>Tecnologías</h2>
-
 <p>
 <strong>Frontend:</strong> Next.js, React, TypeScript, SCSS<br>
 <strong>Backend:</strong> Next.js API Routes, Prisma<br>
