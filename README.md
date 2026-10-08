@@ -13,7 +13,7 @@ Interfaz enfocada en mantener la gestión simple y organizada.
 
 <h2>Tecnologías</h2>
 <p>
-<strong>Frontend:</strong> Next.js, React, TypeScript, SCSS<br>
+<strong>Frontend:</strong> Next.js, React, TypeScript, Tailwind<br>
 <strong>Backend:</strong> Next.js API Routes, Prisma<br>
 <strong>Base de datos:</strong> PostgreSQL<br>
 <strong>Autenticación:</strong> NextAuth
