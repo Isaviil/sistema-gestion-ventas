@@ -15,3 +15,14 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const EstadoPedido = {
+  INGRESADO: 'INGRESADO',
+  APROBADO: 'APROBADO',
+  PARCIAL: 'PARCIAL',
+  ATENDIDO: 'ATENDIDO',
+  ANULADO: 'ANULADO'
+} as const
+
+export type EstadoPedido = (typeof EstadoPedido)[keyof typeof EstadoPedido]

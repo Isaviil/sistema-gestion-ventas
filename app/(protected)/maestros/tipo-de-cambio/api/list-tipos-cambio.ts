@@ -6,7 +6,7 @@ export interface ApiResponse<T> {
   data: T;
 }
 
-export const getTipoCambio = async (): Promise<TipoCambio[]> => {
+const getTipoCambio = async (): Promise<TipoCambio[]> => {
   const { data } =
     await axios.get<ApiResponse<TipoCambio[]>>("/tipo-de-cambio");
 

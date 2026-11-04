@@ -256,6 +256,10 @@ export type UserWhereInput = {
   flg_activo?: Prisma.BoolFilter<"User"> | boolean
   fec_reg?: Prisma.DateTimeFilter<"User"> | Date | string
   fec_ult_login?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosAnulados?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosAprobados?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosCerrados?: Prisma.PedidoCabeceraListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -269,6 +273,10 @@ export type UserOrderByWithRelationInput = {
   flg_activo?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   fec_ult_login?: Prisma.SortOrderInput | Prisma.SortOrder
+  pedidos?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
+  pedidosAnulados?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
+  pedidosAprobados?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
+  pedidosCerrados?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +293,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   flg_activo?: Prisma.BoolFilter<"User"> | boolean
   fec_reg?: Prisma.DateTimeFilter<"User"> | Date | string
   fec_ult_login?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosAnulados?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosAprobados?: Prisma.PedidoCabeceraListRelationFilter
+  pedidosCerrados?: Prisma.PedidoCabeceraListRelationFilter
 }, "id_usu" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -331,6 +343,10 @@ export type UserCreateInput = {
   flg_activo?: boolean
   fec_reg?: Date | string
   fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioCierraInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -344,6 +360,10 @@ export type UserUncheckedCreateInput = {
   flg_activo?: boolean
   fec_reg?: Date | string
   fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioCierraInput
 }
 
 export type UserUpdateInput = {
@@ -356,6 +376,10 @@ export type UserUpdateInput = {
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioCierraNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -369,6 +393,10 @@ export type UserUncheckedUpdateInput = {
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -456,6 +484,16 @@ export type UserSumOrderByAggregateInput = {
   id_usu?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -488,6 +526,436 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutPedidosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosInput, Prisma.UserUncheckedCreateWithoutPedidosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutPedidosAnuladosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosAnuladosInput, Prisma.UserUncheckedCreateWithoutPedidosAnuladosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosAnuladosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutPedidosAprobadosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosAprobadosInput, Prisma.UserUncheckedCreateWithoutPedidosAprobadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosAprobadosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutPedidosCerradosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosCerradosInput, Prisma.UserUncheckedCreateWithoutPedidosCerradosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosCerradosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPedidosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosInput, Prisma.UserUncheckedCreateWithoutPedidosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosInput
+  upsert?: Prisma.UserUpsertWithoutPedidosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPedidosInput, Prisma.UserUpdateWithoutPedidosInput>, Prisma.UserUncheckedUpdateWithoutPedidosInput>
+}
+
+export type UserUpdateOneWithoutPedidosAnuladosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosAnuladosInput, Prisma.UserUncheckedCreateWithoutPedidosAnuladosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosAnuladosInput
+  upsert?: Prisma.UserUpsertWithoutPedidosAnuladosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPedidosAnuladosInput, Prisma.UserUpdateWithoutPedidosAnuladosInput>, Prisma.UserUncheckedUpdateWithoutPedidosAnuladosInput>
+}
+
+export type UserUpdateOneWithoutPedidosAprobadosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosAprobadosInput, Prisma.UserUncheckedCreateWithoutPedidosAprobadosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosAprobadosInput
+  upsert?: Prisma.UserUpsertWithoutPedidosAprobadosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPedidosAprobadosInput, Prisma.UserUpdateWithoutPedidosAprobadosInput>, Prisma.UserUncheckedUpdateWithoutPedidosAprobadosInput>
+}
+
+export type UserUpdateOneWithoutPedidosCerradosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPedidosCerradosInput, Prisma.UserUncheckedCreateWithoutPedidosCerradosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPedidosCerradosInput
+  upsert?: Prisma.UserUpsertWithoutPedidosCerradosInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPedidosCerradosInput, Prisma.UserUpdateWithoutPedidosCerradosInput>, Prisma.UserUncheckedUpdateWithoutPedidosCerradosInput>
+}
+
+export type UserCreateWithoutPedidosInput = {
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidosAnulados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserUncheckedCreateWithoutPedidosInput = {
+  id_usu?: number
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserCreateOrConnectWithoutPedidosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosInput, Prisma.UserUncheckedCreateWithoutPedidosInput>
+}
+
+export type UserCreateWithoutPedidosAnuladosInput = {
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput
+  pedidosAprobados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserUncheckedCreateWithoutPedidosAnuladosInput = {
+  id_usu?: number
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioApruebaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserCreateOrConnectWithoutPedidosAnuladosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosAnuladosInput, Prisma.UserUncheckedCreateWithoutPedidosAnuladosInput>
+}
+
+export type UserCreateWithoutPedidosAprobadosInput = {
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserUncheckedCreateWithoutPedidosAprobadosInput = {
+  id_usu?: number
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioCierraInput
+}
+
+export type UserCreateOrConnectWithoutPedidosAprobadosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosAprobadosInput, Prisma.UserUncheckedCreateWithoutPedidosAprobadosInput>
+}
+
+export type UserCreateWithoutPedidosCerradosInput = {
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraCreateNestedManyWithoutUsuarioApruebaInput
+}
+
+export type UserUncheckedCreateWithoutPedidosCerradosInput = {
+  id_usu?: number
+  username: string
+  password: string
+  nombres: string
+  apellidos: string
+  email?: string | null
+  rol?: $Enums.Role
+  flg_activo?: boolean
+  fec_reg?: Date | string
+  fec_ult_login?: Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioAnulaInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioApruebaInput
+}
+
+export type UserCreateOrConnectWithoutPedidosCerradosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosCerradosInput, Prisma.UserUncheckedCreateWithoutPedidosCerradosInput>
+}
+
+export type UserUpsertWithoutPedidosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPedidosInput, Prisma.UserUncheckedUpdateWithoutPedidosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosInput, Prisma.UserUncheckedCreateWithoutPedidosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPedidosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPedidosInput, Prisma.UserUncheckedUpdateWithoutPedidosInput>
+}
+
+export type UserUpdateWithoutPedidosInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidosAnulados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPedidosInput = {
+  id_usu?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUpsertWithoutPedidosAnuladosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPedidosAnuladosInput, Prisma.UserUncheckedUpdateWithoutPedidosAnuladosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosAnuladosInput, Prisma.UserUncheckedCreateWithoutPedidosAnuladosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPedidosAnuladosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPedidosAnuladosInput, Prisma.UserUncheckedUpdateWithoutPedidosAnuladosInput>
+}
+
+export type UserUpdateWithoutPedidosAnuladosInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPedidosAnuladosInput = {
+  id_usu?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioApruebaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUpsertWithoutPedidosAprobadosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPedidosAprobadosInput, Prisma.UserUncheckedUpdateWithoutPedidosAprobadosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosAprobadosInput, Prisma.UserUncheckedCreateWithoutPedidosAprobadosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPedidosAprobadosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPedidosAprobadosInput, Prisma.UserUncheckedUpdateWithoutPedidosAprobadosInput>
+}
+
+export type UserUpdateWithoutPedidosAprobadosInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPedidosAprobadosInput = {
+  id_usu?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosCerrados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraNestedInput
+}
+
+export type UserUpsertWithoutPedidosCerradosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPedidosCerradosInput, Prisma.UserUncheckedUpdateWithoutPedidosCerradosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPedidosCerradosInput, Prisma.UserUncheckedCreateWithoutPedidosCerradosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPedidosCerradosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPedidosCerradosInput, Prisma.UserUncheckedUpdateWithoutPedidosCerradosInput>
+}
+
+export type UserUpdateWithoutPedidosCerradosInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUpdateManyWithoutUsuarioApruebaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPedidosCerradosInput = {
+  id_usu?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  nombres?: Prisma.StringFieldUpdateOperationsInput | string
+  apellidos?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rol?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fec_ult_login?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput
+  pedidosAnulados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaNestedInput
+  pedidosAprobados?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioApruebaNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  pedidos: number
+  pedidosAnulados: number
+  pedidosAprobados: number
+  pedidosCerrados: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pedidos?: boolean | UserCountOutputTypeCountPedidosArgs
+  pedidosAnulados?: boolean | UserCountOutputTypeCountPedidosAnuladosArgs
+  pedidosAprobados?: boolean | UserCountOutputTypeCountPedidosAprobadosArgs
+  pedidosCerrados?: boolean | UserCountOutputTypeCountPedidosCerradosArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PedidoCabeceraWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPedidosAnuladosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PedidoCabeceraWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPedidosAprobadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PedidoCabeceraWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPedidosCerradosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PedidoCabeceraWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -501,6 +969,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   flg_activo?: boolean
   fec_reg?: boolean
   fec_ult_login?: boolean
+  pedidos?: boolean | Prisma.User$pedidosArgs<ExtArgs>
+  pedidosAnulados?: boolean | Prisma.User$pedidosAnuladosArgs<ExtArgs>
+  pedidosAprobados?: boolean | Prisma.User$pedidosAprobadosArgs<ExtArgs>
+  pedidosCerrados?: boolean | Prisma.User$pedidosCerradosArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -543,10 +1016,24 @@ export type UserSelectScalar = {
 }
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usu" | "username" | "password" | "nombres" | "apellidos" | "email" | "rol" | "flg_activo" | "fec_reg" | "fec_ult_login", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pedidos?: boolean | Prisma.User$pedidosArgs<ExtArgs>
+  pedidosAnulados?: boolean | Prisma.User$pedidosAnuladosArgs<ExtArgs>
+  pedidosAprobados?: boolean | Prisma.User$pedidosAprobadosArgs<ExtArgs>
+  pedidosCerrados?: boolean | Prisma.User$pedidosCerradosArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    pedidos: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
+    pedidosAnulados: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
+    pedidosAprobados: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
+    pedidosCerrados: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_usu: number
     username: string
@@ -952,6 +1439,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  pedidos<T extends Prisma.User$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pedidosAnulados<T extends Prisma.User$pedidosAnuladosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pedidosAnuladosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pedidosAprobados<T extends Prisma.User$pedidosAprobadosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pedidosAprobadosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pedidosCerrados<T extends Prisma.User$pedidosCerradosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pedidosCerradosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1008,6 +1499,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1026,6 +1521,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1043,6 +1542,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -1092,6 +1595,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -1139,6 +1646,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -1188,6 +1699,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The data needed to create a User.
    */
   data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
@@ -1235,6 +1750,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1302,6 +1821,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1328,6 +1851,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1348,6 +1875,102 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.pedidos
+ */
+export type User$pedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCabecera
+   */
+  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PedidoCabecera
+   */
+  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
+  where?: Prisma.PedidoCabeceraWhereInput
+  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
+}
+
+/**
+ * User.pedidosAnulados
+ */
+export type User$pedidosAnuladosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCabecera
+   */
+  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PedidoCabecera
+   */
+  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
+  where?: Prisma.PedidoCabeceraWhereInput
+  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
+}
+
+/**
+ * User.pedidosAprobados
+ */
+export type User$pedidosAprobadosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCabecera
+   */
+  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PedidoCabecera
+   */
+  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
+  where?: Prisma.PedidoCabeceraWhereInput
+  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
+}
+
+/**
+ * User.pedidosCerrados
+ */
+export type User$pedidosCerradosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCabecera
+   */
+  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PedidoCabecera
+   */
+  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
+  where?: Prisma.PedidoCabeceraWhereInput
+  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1359,4 +1982,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

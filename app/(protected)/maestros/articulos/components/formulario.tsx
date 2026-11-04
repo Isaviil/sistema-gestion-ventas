@@ -104,7 +104,7 @@ export function DialogAddArticulo({
     id_color: null,
     id_talla: null,
   });
-  console.log(data);
+
   /*
    * =========================
    *       MUTACIONES Y HOOKS

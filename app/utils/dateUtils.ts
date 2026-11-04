@@ -132,10 +132,6 @@ export const formatDateString = (
     format,
   );
 };
-/* formatDateString("2025-05-22T20:46:43.977Z", "DD-MM-YYYY"); // "22/05/2025"
-formatDateString("2025-05-22T20:46:43.977Z", "hh:mm:ss");    // "20:46:43"
-formatDateString("2025-05-22T20:46:43.977Z", "YYYY-MM");     // "2025/05"
-formatDateString("2025-05-22T20:46:43.977Z", "YYYY");        // "2025" */
 
 type DateType = "now" | "start" | "end";
 
@@ -183,9 +179,3 @@ export const getLimaDate = (
     .replace(/mm/g, mm)
     .replace(/ss/g, ss);
 };
-
-/* getLimaDate(); // "2025-05-27 09:53:00"
-getLimaDate('DD/MM/YYYY'); // "27/05/2025"
-getLimaDate('YYYY-MM-DD', 'start'); // "2025-05-01"
-getLimaDate('YYYY-MM-DD', 'end'); // "2025-05-31"
-getLimaDate(undefined, 'now', true); // Devuelve objeto Date con hora de Lima */

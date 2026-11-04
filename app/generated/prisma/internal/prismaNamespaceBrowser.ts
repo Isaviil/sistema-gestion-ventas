@@ -68,7 +68,9 @@ export const ModelName = {
   ProductSize: 'ProductSize',
   Vehicle: 'Vehicle',
   Almacen: 'Almacen',
-  Chofer: 'Chofer'
+  Chofer: 'Chofer',
+  PedidoCabecera: 'PedidoCabecera',
+  PedidoDetalle: 'PedidoDetalle'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -320,6 +322,80 @@ export const ChoferScalarFieldEnum = {
 } as const
 
 export type ChoferScalarFieldEnum = (typeof ChoferScalarFieldEnum)[keyof typeof ChoferScalarFieldEnum]
+
+
+export const PedidoCabeceraScalarFieldEnum = {
+  id_ped: 'id_ped',
+  nrodoc: 'nrodoc',
+  ano: 'ano',
+  mes: 'mes',
+  fchdoc: 'fchdoc',
+  fch_ing: 'fch_ing',
+  fch_ent: 'fch_ent',
+  id_clie: 'id_clie',
+  id_ven: 'id_ven',
+  for_pago: 'for_pago',
+  usuario: 'usuario',
+  id_cot: 'id_cot',
+  cotizacion: 'cotizacion',
+  codmon: 'codmon',
+  tpocmb: 'tpocmb',
+  nomaux: 'nomaux',
+  diraux: 'diraux',
+  rucaux: 'rucaux',
+  ocompra: 'ocompra',
+  flg_incigv: 'flg_incigv',
+  porigv: 'porigv',
+  impbto: 'impbto',
+  impigv: 'impigv',
+  imptot: 'imptot',
+  glosa: 'glosa',
+  factura: 'factura',
+  guia_remision: 'guia_remision',
+  flg_anu: 'flg_anu',
+  flg_aprob: 'flg_aprob',
+  fch_anu: 'fch_anu',
+  fch_aprob: 'fch_aprob',
+  fch_ate: 'fch_ate',
+  usuario_anu: 'usuario_anu',
+  usuario_aprob: 'usuario_aprob',
+  usuario_cie: 'usuario_cie',
+  estado: 'estado'
+} as const
+
+export type PedidoCabeceraScalarFieldEnum = (typeof PedidoCabeceraScalarFieldEnum)[keyof typeof PedidoCabeceraScalarFieldEnum]
+
+
+export const PedidoDetalleScalarFieldEnum = {
+  id_ped: 'id_ped',
+  id_art: 'id_art',
+  id_umedr: 'id_umedr',
+  nroitm: 'nroitm',
+  cod_art: 'cod_art',
+  des_art: 'des_art',
+  des_ar1: 'des_ar1',
+  des_ar2: 'des_ar2',
+  des_ar3: 'des_ar3',
+  des_ar4: 'des_ar4',
+  des_ar5: 'des_ar5',
+  des_ar6: 'des_ar6',
+  des_ar7: 'des_ar7',
+  des_ar8: 'des_ar8',
+  can_art: 'can_art',
+  factor: 'factor',
+  operador: 'operador',
+  alias_umed: 'alias_umed',
+  pre_art: 'pre_art',
+  pdes_art: 'pdes_art',
+  igv_art: 'igv_art',
+  pu_conigv: 'pu_conigv',
+  pu_sinigv: 'pu_sinigv',
+  pu_des: 'pu_des',
+  subtot_art: 'subtot_art',
+  tot_art: 'tot_art'
+} as const
+
+export type PedidoDetalleScalarFieldEnum = (typeof PedidoDetalleScalarFieldEnum)[keyof typeof PedidoDetalleScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -139,7 +139,7 @@ const InputNumber: FC<NumberInputProps> = ({
   } else if (isLocked || isReadOnly) {
     dynamicStyle = {
       backgroundColor: "var(--color-background-primary)",
-      color: "var(--color-gray)",
+      color: "var(--color-regular-text)",
       borderColor: "var(--color-border)",
       cursor: isLocked ? "not-allowed" : "default",
       boxShadow: "none",

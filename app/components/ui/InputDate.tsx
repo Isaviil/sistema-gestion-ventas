@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormContext, UseFormRegisterReturn } from "react-hook-form";
 
 interface InputDateProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -6,6 +6,7 @@ interface InputDateProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   hint?: string;
   name?: string;
+  forceEnabledStyle?: boolean;
 }
 
 const InputDate: FC<InputDateProps> = ({
@@ -15,9 +16,16 @@ const InputDate: FC<InputDateProps> = ({
   hint,
   name,
   onChange,
+  onFocus,
+  onBlur,
+  style,
+  forceEnabledStyle = false,
   ...rest
 }) => {
   const { register } = useFormContext();
+  const [isFocused, setIsFocused] = useState(false);
+  const isLocked = !!rest.disabled;
+  const isReadOnly = !!rest.readOnly;
 
   const registerProps = rest as Partial<UseFormRegisterReturn>;
 
@@ -30,25 +38,66 @@ const InputDate: FC<InputDateProps> = ({
       ? register(name)
       : {};
 
-  const base = `w-full flex-1 rounded border appearance-none px-2.5 py-1 text-xs font-normal shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 h-9 uppercase`;
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  };
 
-  let stateClasses = "";
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  };
 
-  if (rest.disabled) {
-    stateClasses =
-      "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200 dark:bg-gray-800 dark:text-gray-500 dark:border-gray-700";
-  } else if (rest.readOnly) {
-    stateClasses =
-      "bg-gray-50 text-gray-700 cursor-default border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700";
+  const baseClasses = [
+    "w-full flex-1 rounded-md border appearance-none px-2.5 py-1",
+    "text-xs font-semibold shadow-sm placeholder:text-gray-400",
+    "focus:outline-none h-8 uppercase transition-all duration-200 [color-scheme:light] dark:[color-scheme:dark]",
+  ].join(" ");
+
+  let dynamicStyle: React.CSSProperties = {
+    backgroundColor: "var(--color-component-background)",
+    color: "var(--color-regular-text)",
+    borderColor: isFocused
+      ? "var(--color-border-focus)"
+      : "var(--color-border)",
+    boxShadow: isFocused ? "0 0 0 2px var(--color-ring-focus)" : "none",
+  };
+
+  if (forceEnabledStyle) {
+    dynamicStyle = {
+      backgroundColor: "var(--color-component-background)",
+      color: "var(--color-regular-text)",
+      borderColor: isFocused
+        ? "var(--color-border-focus)"
+        : "var(--color-border)",
+      boxShadow: isFocused ? "0 0 0 2px var(--color-ring-focus)" : "none",
+    };
+  } else if (isLocked || isReadOnly) {
+    dynamicStyle = {
+      backgroundColor: "var(--color-background-primary)",
+      color: "var(--color-regular-text)",
+      borderColor: "var(--color-border)",
+      cursor: isLocked ? "not-allowed" : "default",
+      boxShadow: "none",
+      opacity: 0.85,
+    };
   } else if (error) {
-    stateClasses = "border-red-500 focus:border-red-500 focus:ring-red-500/20";
+    dynamicStyle = {
+      backgroundColor: "var(--color-component-background)",
+      color: "var(--color-regular-text)",
+      borderColor: "var(--color-accent-primary)",
+      boxShadow: isFocused ? "0 0 0 2px rgba(214, 61, 0, 0.2)" : "none",
+    };
   } else if (success) {
-    stateClasses =
-      "border-green-500 focus:border-green-500 focus:ring-green-500/20";
-  } else {
-    stateClasses =
-      "border-gray-300 hover:border-gray-400 focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white";
+    dynamicStyle = {
+      backgroundColor: "var(--color-component-background)",
+      color: "var(--color-regular-text)",
+      borderColor: "var(--color-steel-ball-secondary)",
+      boxShadow: isFocused ? "0 0 0 2px rgba(26, 75, 167, 0.2)" : "none",
+    };
   }
+
+  const combinedStyle = { ...dynamicStyle, ...style };
 
   return (
     <div className="relative w-full">
@@ -56,13 +105,16 @@ const InputDate: FC<InputDateProps> = ({
         type="date"
         {...field}
         {...rest}
-        className={`${base} ${stateClasses} ${className}`}
+        className={`${baseClasses} ${className}`.trim()}
+        style={combinedStyle}
         onChange={(e) => {
           if (field.onChange) {
             void field.onChange(e);
           }
           onChange?.(e);
         }}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onMouseDown={(e) => {
           if (!rest.readOnly && !rest.disabled) {
             try {
@@ -76,13 +128,14 @@ const InputDate: FC<InputDateProps> = ({
 
       {hint && (
         <p
-          className={`mt-1 text-xs ml-0.5 font-normal ${
-            error
-              ? "text-red-500"
+          className="text-[8px] ml-1 font-bold transition-colors duration-200 mt-1"
+          style={{
+            color: error
+              ? "var(--color-accent-primary)"
               : success
-                ? "text-green-500"
-                : "text-gray-500 dark:text-gray-400"
-          }`}
+                ? "var(--color-steel-ball-secondary)"
+                : "var(--color-gray)",
+          }}
         >
           {hint}
         </p>

@@ -13,16 +13,21 @@ datasource db {
 }
 
 model User {
-  id_usu         Int      @id @default(autoincrement())
-  username       String   @unique
-  password       String
-  nombres        String
-  apellidos      String
-  email          String?  @unique
-  rol            Role     @default(USER)
-  flg_activo     Boolean  @default(true)
-  fec_reg        DateTime @default(now())
-  fec_ult_login  DateTime?
+  id_usu        Int       @id @default(autoincrement())
+  username      String    @unique
+  password      String
+  nombres       String
+  apellidos     String
+  email         String?   @unique
+  rol           Role      @default(USER)
+  flg_activo    Boolean   @default(true)
+  fec_reg       DateTime  @default(now())
+  fec_ult_login DateTime?
+
+  pedidos          PedidoCabecera[] @relation("PedidoUsuario")
+  pedidosAnulados  PedidoCabecera[] @relation("PedidoAnuladoPor")
+  pedidosAprobados PedidoCabecera[] @relation("PedidoAprobadoPor")
+  pedidosCerrados  PedidoCabecera[] @relation("PedidoCerradoPor")
 }
 
 enum Role {
@@ -31,19 +36,21 @@ enum Role {
 }
 
 model PaymentMethod {
-  for_pago    Int     @id @default(autoincrement())
-  forma_pago  String
-  codigo      String? @unique
-  dias        Int     @default(0)
-  flg_activo  Boolean @default(true)
+  for_pago   Int              @id @default(autoincrement())
+  forma_pago String
+  codigo     String?          @unique
+  dias       Int              @default(0)
+  flg_activo Boolean          @default(true)
+  customers  Customer[]
+  pedidos    PedidoCabecera[]
 }
 
 model Customer {
-  id_aux       Int      @id @default(autoincrement())
+  id_aux       Int              @id @default(autoincrement())
   des_aux      String
   tipo_pers    Int?
   tdoc_ide     String?
-  ruc_aux      String?  @unique
+  ruc_aux      String?          @unique
   dir_legal    String?
   referencia   String?
   telefono     String?
@@ -53,87 +60,91 @@ model Customer {
   provincia    String
   distrito     String
   id_ven       Int
-  vendedor     Vendor   @relation(fields: [id_ven], references: [id_aux])
+  vendedor     Vendor           @relation(fields: [id_ven], references: [id_aux])
   for_pago     Int?
+  metodoPago   PaymentMethod?   @relation(fields: [for_pago], references: [for_pago])
+  pedidos      PedidoCabecera[]
   id_tpoclie   Int
-  fec_reg      DateTime @default(now())
-  flg_activo   Boolean  @default(true)
+  fec_reg      DateTime         @default(now())
+  flg_activo   Boolean          @default(true)
 }
 
 model Vendor {
-  id_aux     Int        @id @default(autoincrement())
-  cod_ven    String     @unique
-  nom_aux    String
-  ape_aux    String
-  ape_mat    String
-  tdoc_ide   String
-  ndoc_ide   String
-  cel_job    String
-  email_job  String
-  fec_reg    DateTime   @default(now())
-  flg_baja   Boolean    @default(false)
-  flg_tda    Boolean    @default(false)
-  basico     Decimal    @default(0)
-  id_area    Int
-
-  customers  Customer[]
+  id_aux    Int              @id @default(autoincrement())
+  cod_ven   String           @unique
+  nom_aux   String
+  ape_aux   String
+  ape_mat   String
+  tdoc_ide  String
+  ndoc_ide  String
+  cel_job   String
+  email_job String
+  fec_reg   DateTime         @default(now())
+  flg_baja  Boolean          @default(false)
+  flg_tda   Boolean          @default(false)
+  basico    Decimal          @default(0)
+  id_area   Int
+  pedidos   PedidoCabecera[]
+  customers Customer[]
 }
 
 model Ubigeo {
-  id          Int    @id @default(autoincrement())
-  codigo      String @unique
+  id           Int    @id @default(autoincrement())
+  codigo       String @unique
   departamento String
-  provincia   String
-  distrito    String
+  provincia    String
+  distrito     String
 }
 
 model Product {
-  id_art       Int      @id @default(autoincrement())
-  cod_art      String   @unique
-  des_art      String
-  des_art2     String?
+  id_art   Int     @id @default(autoincrement())
+  cod_art  String  @unique
+  des_art  String
+  des_art2 String?
 
-  stkact       Int      @default(0)
-  peso         Decimal? @default(0)
+  stkact Int      @default(0)
+  peso   Decimal? @default(0)
 
-  pre_art      Decimal  @default(0)
-  pv2          Decimal? @default(0)
-  pv3          Decimal? @default(0)
-  pv4          Decimal? @default(0)
+  pre_art Decimal  @default(0)
+  pv2     Decimal? @default(0)
+  pv3     Decimal? @default(0)
+  pv4     Decimal? @default(0)
 
-  id_umedr     Int?
-  id_fam       Int?
-  id_corte     Int?
-  id_mar       Int?
-  id_color     Int?
-  id_talla     Int?
+  id_umedr Int?
+  id_fam   Int?
+  id_corte Int?
+  id_mar   Int?
+  id_color Int?
+  id_talla Int?
 
-  flg_activo   Boolean  @default(true)
+  flg_activo Boolean         @default(true)
+  detalles   PedidoDetalle[]
 }
 
 model Currency {
-  codmon      String  @id
-  descrip     String
-  flg_activo  Boolean @default(true)
+  codmon     String  @id
+  descrip    String
+  flg_activo Boolean @default(true)
+  pedidos PedidoCabecera[]
 }
 
 model ExchangeRate {
-  id_tcmb  String   @id
-  fchcmb   DateTime
-  oficmp   Decimal
-  ofivta   Decimal
+  id_tcmb String   @id
+  fchcmb  DateTime
+  oficmp  Decimal
+  ofivta  Decimal
 }
 
 model DocumentType {
-  id_tipdoc  Int     @id @default(autoincrement())
-  alias_alm  String?
-  flg_sunat  Boolean @default(false)
-  codsunat   String?
-  dcor_tdoc  String
-  dlar_tdoc  String
-  flg_vta    Boolean @default(false)
-  flg_alm    Boolean @default(false)
-  flg_provi  Boolean @default(false)
+  id_tipdoc Int     @id @default(autoincrement())
+  alias_alm String?
+  flg_sunat Boolean @default(false)
+  codsunat  String?
+  dcor_tdoc String
+  dlar_tdoc String
+  flg_vta   Boolean @default(false)
+  flg_alm   Boolean @default(false)
+  flg_provi Boolean @default(false)
 }
 
 model UnitOfMeasure {
@@ -142,6 +153,8 @@ model UnitOfMeasure {
   alias_umed String
   codigo     String
   reservado  Boolean @default(false)
+
+  detalles PedidoDetalle[]
 }
 
 model ProductFamily {
@@ -172,35 +185,141 @@ model ProductSize {
 }
 
 model Vehicle {
-  id_vehi      Int    @id @default(autoincrement())
-  placa        String
-  marca        String
-  certificado  String?
+  id_vehi     Int     @id @default(autoincrement())
+  placa       String
+  marca       String
+  certificado String?
 }
 
 model Almacen {
-  codalm      Int      @id @default(autoincrement())
-  aliasalm    String
-  desalm      String
-  diralm      String?
-  departam    String
-  provincia   String
-  distrito    String
-  ubigeo      String
-  kanexo      String
-  telefalm    String?
-  logoalm     String?
-  flg_stock   Boolean  @default(false)
-  flg_acu     Boolean  @default(false)
-  usuario     Int
-  fch_reg     DateTime @default(now())
-  flg_ok      Boolean  @default(true)
-  reservado   Boolean  @default(false)
+  codalm    Int      @id @default(autoincrement())
+  aliasalm  String
+  desalm    String
+  diralm    String?
+  departam  String
+  provincia String
+  distrito  String
+  ubigeo    String
+  kanexo    String
+  telefalm  String?
+  logoalm   String?
+  flg_stock Boolean  @default(false)
+  flg_acu   Boolean  @default(false)
+  usuario   Int
+  fch_reg   DateTime @default(now())
+  flg_ok    Boolean  @default(true)
+  reservado Boolean  @default(false)
 }
 
 model Chofer {
-  id_chof  Int    @id @default(autoincrement())
-  brevete  String @unique
-  dni      String @unique
-  nombre   String
+  id_chof Int    @id @default(autoincrement())
+  brevete String @unique
+  dni     String @unique
+  nombre  String
+}
+
+model PedidoCabecera {
+  id_ped Int    @id @default(autoincrement())
+  nrodoc String @unique
+
+  ano     String
+  mes     String
+  fchdoc  DateTime
+  fch_ing DateTime @default(now())
+  fch_ent DateTime
+
+  id_clie  Int
+  id_ven   Int
+  for_pago Int
+  usuario  Int
+
+  cliente    Customer      @relation(fields: [id_clie], references: [id_aux], onDelete: Restrict)
+  vendedor   Vendor        @relation(fields: [id_ven], references: [id_aux], onDelete: Restrict)
+  metodoPago PaymentMethod @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
+  usuarioReg User          @relation("PedidoUsuario", fields: [usuario], references: [id_usu], onDelete: Restrict)
+
+  id_cot     Int?
+  cotizacion String?
+
+  codmon String
+  moneda Currency @relation(fields: [codmon], references: [codmon])
+  tpocmb Decimal @db.Decimal(10, 4)
+
+  nomaux  String
+  diraux  String
+  rucaux  String
+  ocompra String?
+
+  flg_incigv Boolean @default(false)
+  porigv     Decimal @db.Decimal(5, 2)
+  impbto     Decimal @db.Decimal(12, 2)
+  impigv     Decimal @db.Decimal(12, 2)
+  imptot     Decimal @db.Decimal(12, 2)
+
+  glosa         String?
+  factura       String  @default("")
+  guia_remision String?
+
+  flg_anu   Boolean @default(false)
+  flg_aprob Boolean @default(false)
+
+  fch_anu   DateTime?
+  fch_aprob DateTime?
+  fch_ate   DateTime?
+
+  usuarioAnula   User? @relation("PedidoAnuladoPor", fields: [usuario_anu], references: [id_usu], onDelete: Restrict)
+  usuarioAprueba User? @relation("PedidoAprobadoPor", fields: [usuario_aprob], references: [id_usu], onDelete: Restrict)
+  usuarioCierra  User? @relation("PedidoCerradoPor", fields: [usuario_cie], references: [id_usu], onDelete: Restrict)
+
+  usuario_anu   Int?
+  usuario_aprob Int?
+  usuario_cie   Int?
+
+  detalles PedidoDetalle[]
+  estado   EstadoPedido    @default(INGRESADO)
+}
+
+model PedidoDetalle {
+  id_ped   Int
+  id_art   Int
+  id_umedr Int
+
+  pedido       PedidoCabecera @relation(fields: [id_ped], references: [id_ped], onDelete: Restrict)
+  unidadMedida UnitOfMeasure  @relation(fields: [id_umedr], references: [id_umed], onDelete: Restrict)
+
+  nroitm  Int
+  cod_art String
+  des_art String
+  des_ar1 String?
+  des_ar2 String?
+  des_ar3 String?
+  des_ar4 String?
+  des_ar5 String?
+  des_ar6 String?
+  des_ar7 String?
+  des_ar8 String?
+
+  can_art    Decimal @db.Decimal(12, 4)
+  factor     Decimal @db.Decimal(12, 4)
+  operador   String
+  alias_umed String
+  pre_art    Decimal @db.Decimal(12, 4)
+  pdes_art   Decimal @db.Decimal(5, 2)
+  igv_art    Decimal @db.Decimal(5, 2)
+  pu_conigv  Decimal @db.Decimal(12, 4)
+  pu_sinigv  Decimal @db.Decimal(12, 4)
+  pu_des     Decimal @db.Decimal(12, 4)
+  subtot_art Decimal @db.Decimal(12, 2)
+  tot_art    Decimal @db.Decimal(12, 2)
+  articulo   Product @relation(fields: [id_art], references: [id_art], onDelete: Restrict)
+
+  @@id([id_ped, nroitm])
+}
+
+enum EstadoPedido {
+  INGRESADO
+  APROBADO
+  PARCIAL
+  ATENDIDO
+  ANULADO
 }

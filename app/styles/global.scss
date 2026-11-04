@@ -167,7 +167,9 @@ body {
 }
 
 :root {
+  --color-label: #0f172a;
   --color-border-focus: #2563eb;
+  --color-accent-edit: #da0ba6;
   --color-ring-focus: #2563eb33;
   --color-brand-cream: #fffdfb;
   --color-regular-text: #000000;
@@ -206,11 +208,20 @@ body {
 
   --color-toast-success: #eae3d9;
   --color-table-header-solid: #faf6f0;
+
+  --color-excel: #d1fae5;
+  --color-excel-hover: #a7f3d0;
+  --color-excel-text: #065f46;
+  --color-excel-border: #6ee7b7;
+
+  --color-status-info: #0c63d4;
 }
 
 .dark {
+  --color-label: #9ca3af;
   --color-border-focus: #38bdf866;
   --color-ring-focus: #38bdf814;
+  --color-accent-edit: #86145e;
   --color-regular-text: #ffffff;
   --color-black: #000000;
 
@@ -248,4 +259,11 @@ body {
 
   --color-toast-success: #1b1226;
   --color-table-header-solid: #111827;
+
+  --color-excel: #064e3b;
+  --color-excel-hover: #05503b;
+  --color-excel-text: #a7f3d0;
+  --color-excel-border: #047857;
+
+  --color-status-info: #7dd3fc;
 }

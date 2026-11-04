@@ -86,7 +86,7 @@ const SelectTrigger = React.forwardRef<
             readOnly || props.disabled
               ? "var(--color-table-header-solid)"
               : "var(--color-component-background)",
-          borderColor: "var(--color-border)",
+          borderColor: error ? "#ef4444" : "var(--color-border)",
           color: "var(--color-regular-text)",
           ...style,
         }}

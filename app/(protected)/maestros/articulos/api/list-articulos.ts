@@ -6,7 +6,7 @@ export interface ApiResponse<T> {
   data: T;
 }
 
-export const getProducts = async (): Promise<ProductResponse[]> => {
+const getProducts = async (): Promise<ProductResponse[]> => {
   const { data } =
     await axios.get<ApiResponse<ProductResponse[]>>("/articulos");
   return data?.data ?? [];

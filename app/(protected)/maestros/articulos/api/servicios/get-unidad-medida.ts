@@ -2,7 +2,7 @@ import { UnitOfMeasureResponse } from "@/app/api/servicios/types/unidad-medida";
 import { axios } from "@/app/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 
-export const getUnitsOfMeasure = async (): Promise<UnitOfMeasureResponse[]> => {
+const getUnitsOfMeasure = async (): Promise<UnitOfMeasureResponse[]> => {
   const { data } = await axios.get<{ data: UnitOfMeasureResponse[] }>(
     "/servicios/unidad-medida",
   );

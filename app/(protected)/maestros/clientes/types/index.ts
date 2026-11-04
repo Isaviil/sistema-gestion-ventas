@@ -22,7 +22,7 @@ export interface ICustomerResponse {
   des_aux: string;
   tipo_pers: number | null;
   tdoc_ide: string | null;
-  ruc_aux: string | null;
+  ruc_aux: string;
   dir_legal: string | null;
   referencia: string | null;
   telefono: string | null;

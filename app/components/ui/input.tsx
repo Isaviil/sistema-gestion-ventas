@@ -47,7 +47,7 @@ const Input: FC<InputProps> = ({
   const baseClasses = [
     "w-full flex-1 rounded-md border appearance-none px-2.5 py-1",
     "text-xs font-semibold shadow-sm placeholder:text-gray-400",
-    "focus:outline-none h-8 uppercase transition-all duration-200",
+    "focus:outline-none h-8 transition-all duration-200",
   ].join(" ");
 
   let dynamicStyle: React.CSSProperties = {
@@ -71,10 +71,11 @@ const Input: FC<InputProps> = ({
   } else if (isLocked || isReadOnly) {
     dynamicStyle = {
       backgroundColor: "var(--color-background-primary)",
-      color: "var(--color-gray)",
+      color: "var(--color-regular-text)",
       borderColor: "var(--color-border)",
       cursor: isLocked ? "not-allowed" : "default",
       boxShadow: "none",
+      opacity: 0.85,
     };
   } else if (error) {
     dynamicStyle = {
@@ -97,7 +98,7 @@ const Input: FC<InputProps> = ({
   const renderInput = () => (
     <input
       type={type}
-      className={`${baseClasses} ${className}`.trim()}
+      className={`${baseClasses} ${className} placeholder:normal-case`.trim()}
       style={combinedStyle}
       {...rest}
       onChange={handleChange}

@@ -131,3 +131,13 @@ export type Almacen = Prisma.AlmacenModel
  * 
  */
 export type Chofer = Prisma.ChoferModel
+/**
+ * Model PedidoCabecera
+ * 
+ */
+export type PedidoCabecera = Prisma.PedidoCabeceraModel
+/**
+ * Model PedidoDetalle
+ * 
+ */
+export type PedidoDetalle = Prisma.PedidoDetalleModel
