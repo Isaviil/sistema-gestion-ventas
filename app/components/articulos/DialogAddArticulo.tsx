@@ -4,18 +4,17 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import Input from "../ui/input";
 import { articulosColumns } from "./articulos-columns";
 import { useState } from "react";
-import { useProducts } from "@/app/(protected)/maestros/articulos/api/list-articulos";
-import { Spinner } from "../loading/Spinner";
 import { ProductResponse } from "@/app/(protected)/maestros/articulos/types";
 import { toast } from "react-toastify";
-import { IPedidoDetalleFormState } from "@/app/(protected)/movimientos/pedidos/types";
+import { Label } from "../ui/label";
 
 interface DialogAddArticulosProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   onConfirm?: (articulo: ProductResponse[]) => void;
   onClose?: () => void;
-  detalles: IPedidoDetalleFormState[];
+  dataArticulos: ProductResponse[];
+  stockDisponible: ProductResponse[];
 }
 
 const filterArticulos = (
@@ -43,7 +42,7 @@ export default function DialogAddArticulos({
   open,
   setOpen,
   onConfirm,
-  detalles,
+  stockDisponible,
 }: DialogAddArticulosProps) {
   const [filtroCodigo, setFiltroCodigo] = useState("");
   const [filtroNombre, setFiltroNombre] = useState("");
@@ -53,22 +52,8 @@ export default function DialogAddArticulos({
     [],
   );
 
-  const { data: dataArticulos = [], isLoading: isLoadingArticulos } =
-    useProducts();
-
-  const articulosConStockDisponible = dataArticulos.map((articulo) => {
-    const cantidadEnPedido = detalles
-      .filter((item) => item.id_art === articulo.id_art)
-      .reduce((total, item) => total + item.can_art, 0);
-
-    return {
-      ...articulo,
-      stkact: articulo.stkact - cantidadEnPedido,
-    };
-  });
-
   const articulosFiltrados = filterArticulos(
-    articulosConStockDisponible,
+    stockDisponible,
     queryCod,
     queryNombre,
   );
@@ -100,30 +85,41 @@ export default function DialogAddArticulos({
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex gap-2 items-center">
-          <Input
-            placeholder="Código..."
-            value={filtroCodigo}
-            onChange={(e) => setFiltroCodigo(e.target.value)}
-            className="w-20"
-          />
-          <Input
-            placeholder="Buscar por nombre..."
-            value={filtroNombre}
-            onChange={(e) => setFiltroNombre(e.target.value)}
-            className="flex-1"
-          />
-          <Button variant="primary" size="sm" onClick={handleBuscar}>
+        <div className="flex flex-col sm:flex-row gap-2 sm:items-end">
+          <div className="flex flex-col gap-1">
+            <Label htmlFor="filtro-codigo">Código</Label>
+            <Input
+              id="filtro-codigo"
+              placeholder="EJ: 00045"
+              value={filtroCodigo}
+              onChange={(e) => setFiltroCodigo(e.target.value)}
+              className="w-full sm:w-20"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1 flex-1">
+            <Label htmlFor="filtro-nombre">Nombre</Label>
+            <Input
+              id="filtro-nombre"
+              placeholder="EJ: Don Hilario"
+              value={filtroNombre}
+              onChange={(e) => setFiltroNombre(e.target.value)}
+              className="w-full"
+            />
+          </div>
+
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={handleBuscar}
+            className="self-end"
+          >
             Buscar
           </Button>
         </div>
 
         <div className="px-1 py-2">
-          {isLoadingArticulos ? (
-            <div className="flex items-center justify-center h-48">
-              <Spinner />
-            </div>
-          ) : articulosFiltrados.length > 0 ? (
+          {articulosFiltrados.length > 0 ? (
             <DataTable
               columns={articulosColumns}
               data={articulosFiltrados}

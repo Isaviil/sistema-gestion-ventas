@@ -31,7 +31,7 @@ export type PedidoDetalleAvgAggregateOutputType = {
   id_art: number | null
   id_umedr: number | null
   nroitm: number | null
-  can_art: runtime.Decimal | null
+  can_art: number | null
   factor: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pdes_art: runtime.Decimal | null
@@ -41,6 +41,7 @@ export type PedidoDetalleAvgAggregateOutputType = {
   pu_des: runtime.Decimal | null
   subtot_art: runtime.Decimal | null
   tot_art: runtime.Decimal | null
+  can_ate: number | null
 }
 
 export type PedidoDetalleSumAggregateOutputType = {
@@ -48,7 +49,7 @@ export type PedidoDetalleSumAggregateOutputType = {
   id_art: number | null
   id_umedr: number | null
   nroitm: number | null
-  can_art: runtime.Decimal | null
+  can_art: number | null
   factor: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pdes_art: runtime.Decimal | null
@@ -58,6 +59,7 @@ export type PedidoDetalleSumAggregateOutputType = {
   pu_des: runtime.Decimal | null
   subtot_art: runtime.Decimal | null
   tot_art: runtime.Decimal | null
+  can_ate: number | null
 }
 
 export type PedidoDetalleMinAggregateOutputType = {
@@ -75,7 +77,7 @@ export type PedidoDetalleMinAggregateOutputType = {
   des_ar6: string | null
   des_ar7: string | null
   des_ar8: string | null
-  can_art: runtime.Decimal | null
+  can_art: number | null
   factor: runtime.Decimal | null
   operador: string | null
   alias_umed: string | null
@@ -87,6 +89,7 @@ export type PedidoDetalleMinAggregateOutputType = {
   pu_des: runtime.Decimal | null
   subtot_art: runtime.Decimal | null
   tot_art: runtime.Decimal | null
+  can_ate: number | null
 }
 
 export type PedidoDetalleMaxAggregateOutputType = {
@@ -104,7 +107,7 @@ export type PedidoDetalleMaxAggregateOutputType = {
   des_ar6: string | null
   des_ar7: string | null
   des_ar8: string | null
-  can_art: runtime.Decimal | null
+  can_art: number | null
   factor: runtime.Decimal | null
   operador: string | null
   alias_umed: string | null
@@ -116,6 +119,7 @@ export type PedidoDetalleMaxAggregateOutputType = {
   pu_des: runtime.Decimal | null
   subtot_art: runtime.Decimal | null
   tot_art: runtime.Decimal | null
+  can_ate: number | null
 }
 
 export type PedidoDetalleCountAggregateOutputType = {
@@ -145,6 +149,7 @@ export type PedidoDetalleCountAggregateOutputType = {
   pu_des: number
   subtot_art: number
   tot_art: number
+  can_ate: number
   _all: number
 }
 
@@ -164,6 +169,7 @@ export type PedidoDetalleAvgAggregateInputType = {
   pu_des?: true
   subtot_art?: true
   tot_art?: true
+  can_ate?: true
 }
 
 export type PedidoDetalleSumAggregateInputType = {
@@ -181,6 +187,7 @@ export type PedidoDetalleSumAggregateInputType = {
   pu_des?: true
   subtot_art?: true
   tot_art?: true
+  can_ate?: true
 }
 
 export type PedidoDetalleMinAggregateInputType = {
@@ -210,6 +217,7 @@ export type PedidoDetalleMinAggregateInputType = {
   pu_des?: true
   subtot_art?: true
   tot_art?: true
+  can_ate?: true
 }
 
 export type PedidoDetalleMaxAggregateInputType = {
@@ -239,6 +247,7 @@ export type PedidoDetalleMaxAggregateInputType = {
   pu_des?: true
   subtot_art?: true
   tot_art?: true
+  can_ate?: true
 }
 
 export type PedidoDetalleCountAggregateInputType = {
@@ -268,6 +277,7 @@ export type PedidoDetalleCountAggregateInputType = {
   pu_des?: true
   subtot_art?: true
   tot_art?: true
+  can_ate?: true
   _all?: true
 }
 
@@ -372,7 +382,7 @@ export type PedidoDetalleGroupByOutputType = {
   des_ar6: string | null
   des_ar7: string | null
   des_ar8: string | null
-  can_art: runtime.Decimal
+  can_art: number
   factor: runtime.Decimal
   operador: string
   alias_umed: string
@@ -384,6 +394,7 @@ export type PedidoDetalleGroupByOutputType = {
   pu_des: runtime.Decimal
   subtot_art: runtime.Decimal
   tot_art: runtime.Decimal
+  can_ate: number
   _count: PedidoDetalleCountAggregateOutputType | null
   _avg: PedidoDetalleAvgAggregateOutputType | null
   _sum: PedidoDetalleSumAggregateOutputType | null
@@ -424,7 +435,7 @@ export type PedidoDetalleWhereInput = {
   des_ar6?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar7?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar8?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
-  can_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFilter<"PedidoDetalle"> | number
   factor?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFilter<"PedidoDetalle"> | string
   alias_umed?: Prisma.StringFilter<"PedidoDetalle"> | string
@@ -436,9 +447,12 @@ export type PedidoDetalleWhereInput = {
   pu_des?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFilter<"PedidoDetalle"> | number
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
+  articulo?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   pedido?: Prisma.XOR<Prisma.PedidoCabeceraScalarRelationFilter, Prisma.PedidoCabeceraWhereInput>
   unidadMedida?: Prisma.XOR<Prisma.UnitOfMeasureScalarRelationFilter, Prisma.UnitOfMeasureWhereInput>
-  articulo?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }
 
 export type PedidoDetalleOrderByWithRelationInput = {
@@ -468,9 +482,12 @@ export type PedidoDetalleOrderByWithRelationInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
+  facturas?: Prisma.FacturacionDetalleOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionDetalleOrderByRelationAggregateInput
+  articulo?: Prisma.ProductOrderByWithRelationInput
   pedido?: Prisma.PedidoCabeceraOrderByWithRelationInput
   unidadMedida?: Prisma.UnitOfMeasureOrderByWithRelationInput
-  articulo?: Prisma.ProductOrderByWithRelationInput
 }
 
 export type PedidoDetalleWhereUniqueInput = Prisma.AtLeast<{
@@ -492,7 +509,7 @@ export type PedidoDetalleWhereUniqueInput = Prisma.AtLeast<{
   des_ar6?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar7?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar8?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
-  can_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFilter<"PedidoDetalle"> | number
   factor?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFilter<"PedidoDetalle"> | string
   alias_umed?: Prisma.StringFilter<"PedidoDetalle"> | string
@@ -504,9 +521,12 @@ export type PedidoDetalleWhereUniqueInput = Prisma.AtLeast<{
   pu_des?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFilter<"PedidoDetalle"> | number
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
+  articulo?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   pedido?: Prisma.XOR<Prisma.PedidoCabeceraScalarRelationFilter, Prisma.PedidoCabeceraWhereInput>
   unidadMedida?: Prisma.XOR<Prisma.UnitOfMeasureScalarRelationFilter, Prisma.UnitOfMeasureWhereInput>
-  articulo?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }, "id_ped_nroitm">
 
 export type PedidoDetalleOrderByWithAggregationInput = {
@@ -536,6 +556,7 @@ export type PedidoDetalleOrderByWithAggregationInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
   _count?: Prisma.PedidoDetalleCountOrderByAggregateInput
   _avg?: Prisma.PedidoDetalleAvgOrderByAggregateInput
   _max?: Prisma.PedidoDetalleMaxOrderByAggregateInput
@@ -561,7 +582,7 @@ export type PedidoDetalleScalarWhereWithAggregatesInput = {
   des_ar6?: Prisma.StringNullableWithAggregatesFilter<"PedidoDetalle"> | string | null
   des_ar7?: Prisma.StringNullableWithAggregatesFilter<"PedidoDetalle"> | string | null
   des_ar8?: Prisma.StringNullableWithAggregatesFilter<"PedidoDetalle"> | string | null
-  can_art?: Prisma.DecimalWithAggregatesFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntWithAggregatesFilter<"PedidoDetalle"> | number
   factor?: Prisma.DecimalWithAggregatesFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringWithAggregatesFilter<"PedidoDetalle"> | string
   alias_umed?: Prisma.StringWithAggregatesFilter<"PedidoDetalle"> | string
@@ -573,6 +594,7 @@ export type PedidoDetalleScalarWhereWithAggregatesInput = {
   pu_des?: Prisma.DecimalWithAggregatesFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalWithAggregatesFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalWithAggregatesFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntWithAggregatesFilter<"PedidoDetalle"> | number
 }
 
 export type PedidoDetalleCreateInput = {
@@ -587,7 +609,7 @@ export type PedidoDetalleCreateInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -599,9 +621,12 @@ export type PedidoDetalleCreateInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
   pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
   unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
-  articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
 }
 
 export type PedidoDetalleUncheckedCreateInput = {
@@ -619,7 +644,7 @@ export type PedidoDetalleUncheckedCreateInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -631,6 +656,9 @@ export type PedidoDetalleUncheckedCreateInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
 }
 
 export type PedidoDetalleUpdateInput = {
@@ -645,7 +673,7 @@ export type PedidoDetalleUpdateInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -657,9 +685,12 @@ export type PedidoDetalleUpdateInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
   pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
   unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
-  articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateInput = {
@@ -677,7 +708,7 @@ export type PedidoDetalleUncheckedUpdateInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -689,6 +720,9 @@ export type PedidoDetalleUncheckedUpdateInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
 }
 
 export type PedidoDetalleCreateManyInput = {
@@ -706,7 +740,7 @@ export type PedidoDetalleCreateManyInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -718,6 +752,7 @@ export type PedidoDetalleCreateManyInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
 }
 
 export type PedidoDetalleUpdateManyMutationInput = {
@@ -732,7 +767,7 @@ export type PedidoDetalleUpdateManyMutationInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -744,6 +779,7 @@ export type PedidoDetalleUpdateManyMutationInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PedidoDetalleUncheckedUpdateManyInput = {
@@ -761,7 +797,7 @@ export type PedidoDetalleUncheckedUpdateManyInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -773,6 +809,7 @@ export type PedidoDetalleUncheckedUpdateManyInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PedidoDetalleListRelationFilter = {
@@ -817,6 +854,7 @@ export type PedidoDetalleCountOrderByAggregateInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
 }
 
 export type PedidoDetalleAvgOrderByAggregateInput = {
@@ -834,6 +872,7 @@ export type PedidoDetalleAvgOrderByAggregateInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
 }
 
 export type PedidoDetalleMaxOrderByAggregateInput = {
@@ -863,6 +902,7 @@ export type PedidoDetalleMaxOrderByAggregateInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
 }
 
 export type PedidoDetalleMinOrderByAggregateInput = {
@@ -892,6 +932,7 @@ export type PedidoDetalleMinOrderByAggregateInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
 }
 
 export type PedidoDetalleSumOrderByAggregateInput = {
@@ -909,6 +950,12 @@ export type PedidoDetalleSumOrderByAggregateInput = {
   pu_des?: Prisma.SortOrder
   subtot_art?: Prisma.SortOrder
   tot_art?: Prisma.SortOrder
+  can_ate?: Prisma.SortOrder
+}
+
+export type PedidoDetalleNullableScalarRelationFilter = {
+  is?: Prisma.PedidoDetalleWhereInput | null
+  isNot?: Prisma.PedidoDetalleWhereInput | null
 }
 
 export type PedidoDetalleCreateNestedManyWithoutArticuloInput = {
@@ -1037,6 +1084,38 @@ export type PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput = {
   deleteMany?: Prisma.PedidoDetalleScalarWhereInput | Prisma.PedidoDetalleScalarWhereInput[]
 }
 
+export type PedidoDetalleCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PedidoDetalleCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.PedidoDetalleWhereUniqueInput
+}
+
+export type PedidoDetalleUpdateOneWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PedidoDetalleCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.PedidoDetalleUpsertWithoutRemisionesInput
+  disconnect?: Prisma.PedidoDetalleWhereInput | boolean
+  delete?: Prisma.PedidoDetalleWhereInput | boolean
+  connect?: Prisma.PedidoDetalleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoDetalleUpdateToOneWithWhereWithoutRemisionesInput, Prisma.PedidoDetalleUpdateWithoutRemisionesInput>, Prisma.PedidoDetalleUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type PedidoDetalleCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PedidoDetalleCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.PedidoDetalleWhereUniqueInput
+}
+
+export type PedidoDetalleUpdateOneWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PedidoDetalleCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.PedidoDetalleUpsertWithoutFacturasInput
+  disconnect?: Prisma.PedidoDetalleWhereInput | boolean
+  delete?: Prisma.PedidoDetalleWhereInput | boolean
+  connect?: Prisma.PedidoDetalleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoDetalleUpdateToOneWithWhereWithoutFacturasInput, Prisma.PedidoDetalleUpdateWithoutFacturasInput>, Prisma.PedidoDetalleUncheckedUpdateWithoutFacturasInput>
+}
+
 export type PedidoDetalleCreateWithoutArticuloInput = {
   nroitm: number
   cod_art: string
@@ -1049,7 +1128,7 @@ export type PedidoDetalleCreateWithoutArticuloInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1061,6 +1140,9 @@ export type PedidoDetalleCreateWithoutArticuloInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutPedidoDetalleInput
   pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
   unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
 }
@@ -1079,7 +1161,7 @@ export type PedidoDetalleUncheckedCreateWithoutArticuloInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1091,6 +1173,9 @@ export type PedidoDetalleUncheckedCreateWithoutArticuloInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
 }
 
 export type PedidoDetalleCreateOrConnectWithoutArticuloInput = {
@@ -1137,7 +1222,7 @@ export type PedidoDetalleScalarWhereInput = {
   des_ar6?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar7?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
   des_ar8?: Prisma.StringNullableFilter<"PedidoDetalle"> | string | null
-  can_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFilter<"PedidoDetalle"> | number
   factor?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFilter<"PedidoDetalle"> | string
   alias_umed?: Prisma.StringFilter<"PedidoDetalle"> | string
@@ -1149,6 +1234,7 @@ export type PedidoDetalleScalarWhereInput = {
   pu_des?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFilter<"PedidoDetalle"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFilter<"PedidoDetalle"> | number
 }
 
 export type PedidoDetalleCreateWithoutUnidadMedidaInput = {
@@ -1163,7 +1249,7 @@ export type PedidoDetalleCreateWithoutUnidadMedidaInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1175,8 +1261,11 @@ export type PedidoDetalleCreateWithoutUnidadMedidaInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
-  pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutPedidoDetalleInput
   articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
+  pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
 }
 
 export type PedidoDetalleUncheckedCreateWithoutUnidadMedidaInput = {
@@ -1193,7 +1282,7 @@ export type PedidoDetalleUncheckedCreateWithoutUnidadMedidaInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1205,6 +1294,9 @@ export type PedidoDetalleUncheckedCreateWithoutUnidadMedidaInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
 }
 
 export type PedidoDetalleCreateOrConnectWithoutUnidadMedidaInput = {
@@ -1245,7 +1337,7 @@ export type PedidoDetalleCreateWithoutPedidoInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1257,8 +1349,11 @@ export type PedidoDetalleCreateWithoutPedidoInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
-  unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutPedidoDetalleInput
   articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
+  unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
 }
 
 export type PedidoDetalleUncheckedCreateWithoutPedidoInput = {
@@ -1275,7 +1370,7 @@ export type PedidoDetalleUncheckedCreateWithoutPedidoInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1287,6 +1382,9 @@ export type PedidoDetalleUncheckedCreateWithoutPedidoInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
 }
 
 export type PedidoDetalleCreateOrConnectWithoutPedidoInput = {
@@ -1315,6 +1413,286 @@ export type PedidoDetalleUpdateManyWithWhereWithoutPedidoInput = {
   data: Prisma.XOR<Prisma.PedidoDetalleUpdateManyMutationInput, Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoInput>
 }
 
+export type PedidoDetalleCreateWithoutRemisionesInput = {
+  nroitm: number
+  cod_art: string
+  des_art: string
+  des_ar1?: string | null
+  des_ar2?: string | null
+  des_ar3?: string | null
+  des_ar4?: string | null
+  des_ar5?: string | null
+  des_ar6?: string | null
+  des_ar7?: string | null
+  des_ar8?: string | null
+  can_art: number
+  factor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador: string
+  alias_umed: string
+  pre_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
+  pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
+  unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
+}
+
+export type PedidoDetalleUncheckedCreateWithoutRemisionesInput = {
+  id_ped: number
+  id_art: number
+  id_umedr: number
+  nroitm: number
+  cod_art: string
+  des_art: string
+  des_ar1?: string | null
+  des_ar2?: string | null
+  des_ar3?: string | null
+  des_ar4?: string | null
+  des_ar5?: string | null
+  des_ar6?: string | null
+  des_ar7?: string | null
+  des_ar8?: string | null
+  can_art: number
+  factor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador: string
+  alias_umed: string
+  pre_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+}
+
+export type PedidoDetalleCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.PedidoDetalleWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedCreateWithoutRemisionesInput>
+}
+
+export type PedidoDetalleUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.PedidoDetalleUpdateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.PedidoDetalleWhereInput
+}
+
+export type PedidoDetalleUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.PedidoDetalleWhereInput
+  data: Prisma.XOR<Prisma.PedidoDetalleUpdateWithoutRemisionesInput, Prisma.PedidoDetalleUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type PedidoDetalleUpdateWithoutRemisionesInput = {
+  nroitm?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_ar1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar3?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar4?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar5?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
+  factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
+  pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
+  unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
+}
+
+export type PedidoDetalleUncheckedUpdateWithoutRemisionesInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  id_art?: Prisma.IntFieldUpdateOperationsInput | number
+  id_umedr?: Prisma.IntFieldUpdateOperationsInput | number
+  nroitm?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_ar1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar3?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar4?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar5?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
+  factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+}
+
+export type PedidoDetalleCreateWithoutFacturasInput = {
+  nroitm: number
+  cod_art: string
+  des_art: string
+  des_ar1?: string | null
+  des_ar2?: string | null
+  des_ar3?: string | null
+  des_ar4?: string | null
+  des_ar5?: string | null
+  des_ar6?: string | null
+  des_ar7?: string | null
+  des_ar8?: string | null
+  can_art: number
+  factor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador: string
+  alias_umed: string
+  pre_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutPedidoDetalleInput
+  articulo: Prisma.ProductCreateNestedOneWithoutDetallesInput
+  pedido: Prisma.PedidoCabeceraCreateNestedOneWithoutDetallesInput
+  unidadMedida: Prisma.UnitOfMeasureCreateNestedOneWithoutDetallesInput
+}
+
+export type PedidoDetalleUncheckedCreateWithoutFacturasInput = {
+  id_ped: number
+  id_art: number
+  id_umedr: number
+  nroitm: number
+  cod_art: string
+  des_art: string
+  des_ar1?: string | null
+  des_ar2?: string | null
+  des_ar3?: string | null
+  des_ar4?: string | null
+  des_ar5?: string | null
+  des_ar6?: string | null
+  des_ar7?: string | null
+  des_ar8?: string | null
+  can_art: number
+  factor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador: string
+  alias_umed: string
+  pre_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutPedidoDetalleInput
+}
+
+export type PedidoDetalleCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.PedidoDetalleWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedCreateWithoutFacturasInput>
+}
+
+export type PedidoDetalleUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.PedidoDetalleUpdateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.PedidoDetalleCreateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.PedidoDetalleWhereInput
+}
+
+export type PedidoDetalleUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.PedidoDetalleWhereInput
+  data: Prisma.XOR<Prisma.PedidoDetalleUpdateWithoutFacturasInput, Prisma.PedidoDetalleUncheckedUpdateWithoutFacturasInput>
+}
+
+export type PedidoDetalleUpdateWithoutFacturasInput = {
+  nroitm?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_ar1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar3?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar4?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar5?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
+  factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
+  pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
+  unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
+}
+
+export type PedidoDetalleUncheckedUpdateWithoutFacturasInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  id_art?: Prisma.IntFieldUpdateOperationsInput | number
+  id_umedr?: Prisma.IntFieldUpdateOperationsInput | number
+  nroitm?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_ar1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar3?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar4?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar5?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
+  factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  operador?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdes_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  igv_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_conigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_sinigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+}
+
 export type PedidoDetalleCreateManyArticuloInput = {
   id_ped: number
   id_umedr: number
@@ -1329,7 +1707,7 @@ export type PedidoDetalleCreateManyArticuloInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1341,6 +1719,7 @@ export type PedidoDetalleCreateManyArticuloInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
 }
 
 export type PedidoDetalleUpdateWithoutArticuloInput = {
@@ -1355,7 +1734,7 @@ export type PedidoDetalleUpdateWithoutArticuloInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1367,6 +1746,9 @@ export type PedidoDetalleUpdateWithoutArticuloInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutPedidoDetalleNestedInput
   pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
   unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
 }
@@ -1385,7 +1767,7 @@ export type PedidoDetalleUncheckedUpdateWithoutArticuloInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1397,6 +1779,9 @@ export type PedidoDetalleUncheckedUpdateWithoutArticuloInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateManyWithoutArticuloInput = {
@@ -1413,7 +1798,7 @@ export type PedidoDetalleUncheckedUpdateManyWithoutArticuloInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1425,6 +1810,7 @@ export type PedidoDetalleUncheckedUpdateManyWithoutArticuloInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PedidoDetalleCreateManyUnidadMedidaInput = {
@@ -1441,7 +1827,7 @@ export type PedidoDetalleCreateManyUnidadMedidaInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1453,6 +1839,7 @@ export type PedidoDetalleCreateManyUnidadMedidaInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
 }
 
 export type PedidoDetalleUpdateWithoutUnidadMedidaInput = {
@@ -1467,7 +1854,7 @@ export type PedidoDetalleUpdateWithoutUnidadMedidaInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1479,8 +1866,11 @@ export type PedidoDetalleUpdateWithoutUnidadMedidaInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutPedidoDetalleNestedInput
   articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
+  pedido?: Prisma.PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateWithoutUnidadMedidaInput = {
@@ -1497,7 +1887,7 @@ export type PedidoDetalleUncheckedUpdateWithoutUnidadMedidaInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1509,6 +1899,9 @@ export type PedidoDetalleUncheckedUpdateWithoutUnidadMedidaInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaInput = {
@@ -1525,7 +1918,7 @@ export type PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1537,6 +1930,7 @@ export type PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PedidoDetalleCreateManyPedidoInput = {
@@ -1553,7 +1947,7 @@ export type PedidoDetalleCreateManyPedidoInput = {
   des_ar6?: string | null
   des_ar7?: string | null
   des_ar8?: string | null
-  can_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art: number
   factor: runtime.Decimal | runtime.DecimalJsLike | number | string
   operador: string
   alias_umed: string
@@ -1565,6 +1959,7 @@ export type PedidoDetalleCreateManyPedidoInput = {
   pu_des: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art: runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: number
 }
 
 export type PedidoDetalleUpdateWithoutPedidoInput = {
@@ -1579,7 +1974,7 @@ export type PedidoDetalleUpdateWithoutPedidoInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1591,8 +1986,11 @@ export type PedidoDetalleUpdateWithoutPedidoInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutPedidoDetalleNestedInput
   articulo?: Prisma.ProductUpdateOneRequiredWithoutDetallesNestedInput
+  unidadMedida?: Prisma.UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateWithoutPedidoInput = {
@@ -1609,7 +2007,7 @@ export type PedidoDetalleUncheckedUpdateWithoutPedidoInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1621,6 +2019,9 @@ export type PedidoDetalleUncheckedUpdateWithoutPedidoInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutPedidoDetalleNestedInput
 }
 
 export type PedidoDetalleUncheckedUpdateManyWithoutPedidoInput = {
@@ -1637,7 +2038,7 @@ export type PedidoDetalleUncheckedUpdateManyWithoutPedidoInput = {
   des_ar6?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar7?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   des_ar8?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  can_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_art?: Prisma.IntFieldUpdateOperationsInput | number
   factor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   operador?: Prisma.StringFieldUpdateOperationsInput | string
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1649,8 +2050,47 @@ export type PedidoDetalleUncheckedUpdateManyWithoutPedidoInput = {
   pu_des?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tot_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  can_ate?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
+
+/**
+ * Count Type PedidoDetalleCountOutputType
+ */
+
+export type PedidoDetalleCountOutputType = {
+  facturas: number
+  remisiones: number
+}
+
+export type PedidoDetalleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | PedidoDetalleCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | PedidoDetalleCountOutputTypeCountRemisionesArgs
+}
+
+/**
+ * PedidoDetalleCountOutputType without action
+ */
+export type PedidoDetalleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoDetalleCountOutputType
+   */
+  select?: Prisma.PedidoDetalleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PedidoDetalleCountOutputType without action
+ */
+export type PedidoDetalleCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionDetalleWhereInput
+}
+
+/**
+ * PedidoDetalleCountOutputType without action
+ */
+export type PedidoDetalleCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+}
 
 
 export type PedidoDetalleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1680,9 +2120,13 @@ export type PedidoDetalleSelect<ExtArgs extends runtime.Types.Extensions.Interna
   pu_des?: boolean
   subtot_art?: boolean
   tot_art?: boolean
+  can_ate?: boolean
+  facturas?: boolean | Prisma.PedidoDetalle$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PedidoDetalle$remisionesArgs<ExtArgs>
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.PedidoDetalleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoDetalle"]>
 
 export type PedidoDetalleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1712,9 +2156,10 @@ export type PedidoDetalleSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   pu_des?: boolean
   subtot_art?: boolean
   tot_art?: boolean
+  can_ate?: boolean
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoDetalle"]>
 
 export type PedidoDetalleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1744,9 +2189,10 @@ export type PedidoDetalleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   pu_des?: boolean
   subtot_art?: boolean
   tot_art?: boolean
+  can_ate?: boolean
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoDetalle"]>
 
 export type PedidoDetalleSelectScalar = {
@@ -1776,31 +2222,37 @@ export type PedidoDetalleSelectScalar = {
   pu_des?: boolean
   subtot_art?: boolean
   tot_art?: boolean
+  can_ate?: boolean
 }
 
-export type PedidoDetalleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_ped" | "id_art" | "id_umedr" | "nroitm" | "cod_art" | "des_art" | "des_ar1" | "des_ar2" | "des_ar3" | "des_ar4" | "des_ar5" | "des_ar6" | "des_ar7" | "des_ar8" | "can_art" | "factor" | "operador" | "alias_umed" | "pre_art" | "pdes_art" | "igv_art" | "pu_conigv" | "pu_sinigv" | "pu_des" | "subtot_art" | "tot_art", ExtArgs["result"]["pedidoDetalle"]>
+export type PedidoDetalleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_ped" | "id_art" | "id_umedr" | "nroitm" | "cod_art" | "des_art" | "des_ar1" | "des_ar2" | "des_ar3" | "des_ar4" | "des_ar5" | "des_ar6" | "des_ar7" | "des_ar8" | "can_art" | "factor" | "operador" | "alias_umed" | "pre_art" | "pdes_art" | "igv_art" | "pu_conigv" | "pu_sinigv" | "pu_des" | "subtot_art" | "tot_art" | "can_ate", ExtArgs["result"]["pedidoDetalle"]>
 export type PedidoDetalleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | Prisma.PedidoDetalle$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PedidoDetalle$remisionesArgs<ExtArgs>
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.PedidoDetalleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PedidoDetalleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }
 export type PedidoDetalleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   pedido?: boolean | Prisma.PedidoCabeceraDefaultArgs<ExtArgs>
   unidadMedida?: boolean | Prisma.UnitOfMeasureDefaultArgs<ExtArgs>
-  articulo?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }
 
 export type $PedidoDetallePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PedidoDetalle"
   objects: {
+    facturas: Prisma.$FacturacionDetallePayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionDetallePayload<ExtArgs>[]
+    articulo: Prisma.$ProductPayload<ExtArgs>
     pedido: Prisma.$PedidoCabeceraPayload<ExtArgs>
     unidadMedida: Prisma.$UnitOfMeasurePayload<ExtArgs>
-    articulo: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_ped: number
@@ -1817,7 +2269,7 @@ export type $PedidoDetallePayload<ExtArgs extends runtime.Types.Extensions.Inter
     des_ar6: string | null
     des_ar7: string | null
     des_ar8: string | null
-    can_art: runtime.Decimal
+    can_art: number
     factor: runtime.Decimal
     operador: string
     alias_umed: string
@@ -1829,6 +2281,7 @@ export type $PedidoDetallePayload<ExtArgs extends runtime.Types.Extensions.Inter
     pu_des: runtime.Decimal
     subtot_art: runtime.Decimal
     tot_art: runtime.Decimal
+    can_ate: number
   }, ExtArgs["result"]["pedidoDetalle"]>
   composites: {}
 }
@@ -2223,9 +2676,11 @@ readonly fields: PedidoDetalleFieldRefs;
  */
 export interface Prisma__PedidoDetalleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  facturas<T extends Prisma.PedidoDetalle$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoDetalle$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.PedidoDetalle$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoDetalle$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  articulo<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pedido<T extends Prisma.PedidoCabeceraDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabeceraDefaultArgs<ExtArgs>>): Prisma.Prisma__PedidoCabeceraClient<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   unidadMedida<T extends Prisma.UnitOfMeasureDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnitOfMeasureDefaultArgs<ExtArgs>>): Prisma.Prisma__UnitOfMeasureClient<runtime.Types.Result.GetResult<Prisma.$UnitOfMeasurePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  articulo<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2269,7 +2724,7 @@ export interface PedidoDetalleFieldRefs {
   readonly des_ar6: Prisma.FieldRef<"PedidoDetalle", 'String'>
   readonly des_ar7: Prisma.FieldRef<"PedidoDetalle", 'String'>
   readonly des_ar8: Prisma.FieldRef<"PedidoDetalle", 'String'>
-  readonly can_art: Prisma.FieldRef<"PedidoDetalle", 'Decimal'>
+  readonly can_art: Prisma.FieldRef<"PedidoDetalle", 'Int'>
   readonly factor: Prisma.FieldRef<"PedidoDetalle", 'Decimal'>
   readonly operador: Prisma.FieldRef<"PedidoDetalle", 'String'>
   readonly alias_umed: Prisma.FieldRef<"PedidoDetalle", 'String'>
@@ -2281,6 +2736,7 @@ export interface PedidoDetalleFieldRefs {
   readonly pu_des: Prisma.FieldRef<"PedidoDetalle", 'Decimal'>
   readonly subtot_art: Prisma.FieldRef<"PedidoDetalle", 'Decimal'>
   readonly tot_art: Prisma.FieldRef<"PedidoDetalle", 'Decimal'>
+  readonly can_ate: Prisma.FieldRef<"PedidoDetalle", 'Int'>
 }
     
 
@@ -2679,6 +3135,54 @@ export type PedidoDetalleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many PedidoDetalles to delete.
    */
   limit?: number
+}
+
+/**
+ * PedidoDetalle.facturas
+ */
+export type PedidoDetalle$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionDetalle
+   */
+  select?: Prisma.FacturacionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionDetalle
+   */
+  omit?: Prisma.FacturacionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionDetalleInclude<ExtArgs> | null
+  where?: Prisma.FacturacionDetalleWhereInput
+  orderBy?: Prisma.FacturacionDetalleOrderByWithRelationInput | Prisma.FacturacionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionDetalleScalarFieldEnum | Prisma.FacturacionDetalleScalarFieldEnum[]
+}
+
+/**
+ * PedidoDetalle.remisiones
+ */
+export type PedidoDetalle$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionDetalle
+   */
+  select?: Prisma.GuiaRemisionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionDetalle
+   */
+  omit?: Prisma.GuiaRemisionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionDetalleInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+  orderBy?: Prisma.GuiaRemisionDetalleOrderByWithRelationInput | Prisma.GuiaRemisionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionDetalleScalarFieldEnum | Prisma.GuiaRemisionDetalleScalarFieldEnum[]
 }
 
 /**

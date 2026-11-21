@@ -27,17 +27,16 @@ export type AggregateAlmacen = {
 }
 
 export type AlmacenAvgAggregateOutputType = {
-  codalm: number | null
   usuario: number | null
+  codalm: number | null
 }
 
 export type AlmacenSumAggregateOutputType = {
-  codalm: number | null
   usuario: number | null
+  codalm: number | null
 }
 
 export type AlmacenMinAggregateOutputType = {
-  codalm: number | null
   aliasalm: string | null
   desalm: string | null
   diralm: string | null
@@ -51,13 +50,13 @@ export type AlmacenMinAggregateOutputType = {
   flg_stock: boolean | null
   flg_acu: boolean | null
   usuario: number | null
+  codalm: number | null
   fch_reg: Date | null
   flg_ok: boolean | null
   reservado: boolean | null
 }
 
 export type AlmacenMaxAggregateOutputType = {
-  codalm: number | null
   aliasalm: string | null
   desalm: string | null
   diralm: string | null
@@ -71,13 +70,13 @@ export type AlmacenMaxAggregateOutputType = {
   flg_stock: boolean | null
   flg_acu: boolean | null
   usuario: number | null
+  codalm: number | null
   fch_reg: Date | null
   flg_ok: boolean | null
   reservado: boolean | null
 }
 
 export type AlmacenCountAggregateOutputType = {
-  codalm: number
   aliasalm: number
   desalm: number
   diralm: number
@@ -91,6 +90,7 @@ export type AlmacenCountAggregateOutputType = {
   flg_stock: number
   flg_acu: number
   usuario: number
+  codalm: number
   fch_reg: number
   flg_ok: number
   reservado: number
@@ -99,17 +99,16 @@ export type AlmacenCountAggregateOutputType = {
 
 
 export type AlmacenAvgAggregateInputType = {
-  codalm?: true
   usuario?: true
+  codalm?: true
 }
 
 export type AlmacenSumAggregateInputType = {
-  codalm?: true
   usuario?: true
+  codalm?: true
 }
 
 export type AlmacenMinAggregateInputType = {
-  codalm?: true
   aliasalm?: true
   desalm?: true
   diralm?: true
@@ -123,13 +122,13 @@ export type AlmacenMinAggregateInputType = {
   flg_stock?: true
   flg_acu?: true
   usuario?: true
+  codalm?: true
   fch_reg?: true
   flg_ok?: true
   reservado?: true
 }
 
 export type AlmacenMaxAggregateInputType = {
-  codalm?: true
   aliasalm?: true
   desalm?: true
   diralm?: true
@@ -143,13 +142,13 @@ export type AlmacenMaxAggregateInputType = {
   flg_stock?: true
   flg_acu?: true
   usuario?: true
+  codalm?: true
   fch_reg?: true
   flg_ok?: true
   reservado?: true
 }
 
 export type AlmacenCountAggregateInputType = {
-  codalm?: true
   aliasalm?: true
   desalm?: true
   diralm?: true
@@ -163,6 +162,7 @@ export type AlmacenCountAggregateInputType = {
   flg_stock?: true
   flg_acu?: true
   usuario?: true
+  codalm?: true
   fch_reg?: true
   flg_ok?: true
   reservado?: true
@@ -256,7 +256,6 @@ export type AlmacenGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type AlmacenGroupByOutputType = {
-  codalm: number
   aliasalm: string
   desalm: string
   diralm: string | null
@@ -270,6 +269,7 @@ export type AlmacenGroupByOutputType = {
   flg_stock: boolean
   flg_acu: boolean
   usuario: number
+  codalm: number
   fch_reg: Date
   flg_ok: boolean
   reservado: boolean
@@ -299,7 +299,6 @@ export type AlmacenWhereInput = {
   AND?: Prisma.AlmacenWhereInput | Prisma.AlmacenWhereInput[]
   OR?: Prisma.AlmacenWhereInput[]
   NOT?: Prisma.AlmacenWhereInput | Prisma.AlmacenWhereInput[]
-  codalm?: Prisma.IntFilter<"Almacen"> | number
   aliasalm?: Prisma.StringFilter<"Almacen"> | string
   desalm?: Prisma.StringFilter<"Almacen"> | string
   diralm?: Prisma.StringNullableFilter<"Almacen"> | string | null
@@ -313,13 +312,13 @@ export type AlmacenWhereInput = {
   flg_stock?: Prisma.BoolFilter<"Almacen"> | boolean
   flg_acu?: Prisma.BoolFilter<"Almacen"> | boolean
   usuario?: Prisma.IntFilter<"Almacen"> | number
+  codalm?: Prisma.IntFilter<"Almacen"> | number
   fch_reg?: Prisma.DateTimeFilter<"Almacen"> | Date | string
   flg_ok?: Prisma.BoolFilter<"Almacen"> | boolean
   reservado?: Prisma.BoolFilter<"Almacen"> | boolean
 }
 
 export type AlmacenOrderByWithRelationInput = {
-  codalm?: Prisma.SortOrder
   aliasalm?: Prisma.SortOrder
   desalm?: Prisma.SortOrder
   diralm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -333,6 +332,7 @@ export type AlmacenOrderByWithRelationInput = {
   flg_stock?: Prisma.SortOrder
   flg_acu?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
   fch_reg?: Prisma.SortOrder
   flg_ok?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
@@ -362,7 +362,6 @@ export type AlmacenWhereUniqueInput = Prisma.AtLeast<{
 }, "codalm">
 
 export type AlmacenOrderByWithAggregationInput = {
-  codalm?: Prisma.SortOrder
   aliasalm?: Prisma.SortOrder
   desalm?: Prisma.SortOrder
   diralm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -376,6 +375,7 @@ export type AlmacenOrderByWithAggregationInput = {
   flg_stock?: Prisma.SortOrder
   flg_acu?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
   fch_reg?: Prisma.SortOrder
   flg_ok?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
@@ -390,7 +390,6 @@ export type AlmacenScalarWhereWithAggregatesInput = {
   AND?: Prisma.AlmacenScalarWhereWithAggregatesInput | Prisma.AlmacenScalarWhereWithAggregatesInput[]
   OR?: Prisma.AlmacenScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AlmacenScalarWhereWithAggregatesInput | Prisma.AlmacenScalarWhereWithAggregatesInput[]
-  codalm?: Prisma.IntWithAggregatesFilter<"Almacen"> | number
   aliasalm?: Prisma.StringWithAggregatesFilter<"Almacen"> | string
   desalm?: Prisma.StringWithAggregatesFilter<"Almacen"> | string
   diralm?: Prisma.StringNullableWithAggregatesFilter<"Almacen"> | string | null
@@ -404,6 +403,7 @@ export type AlmacenScalarWhereWithAggregatesInput = {
   flg_stock?: Prisma.BoolWithAggregatesFilter<"Almacen"> | boolean
   flg_acu?: Prisma.BoolWithAggregatesFilter<"Almacen"> | boolean
   usuario?: Prisma.IntWithAggregatesFilter<"Almacen"> | number
+  codalm?: Prisma.IntWithAggregatesFilter<"Almacen"> | number
   fch_reg?: Prisma.DateTimeWithAggregatesFilter<"Almacen"> | Date | string
   flg_ok?: Prisma.BoolWithAggregatesFilter<"Almacen"> | boolean
   reservado?: Prisma.BoolWithAggregatesFilter<"Almacen"> | boolean
@@ -429,7 +429,6 @@ export type AlmacenCreateInput = {
 }
 
 export type AlmacenUncheckedCreateInput = {
-  codalm?: number
   aliasalm: string
   desalm: string
   diralm?: string | null
@@ -443,6 +442,7 @@ export type AlmacenUncheckedCreateInput = {
   flg_stock?: boolean
   flg_acu?: boolean
   usuario: number
+  codalm?: number
   fch_reg?: Date | string
   flg_ok?: boolean
   reservado?: boolean
@@ -468,7 +468,6 @@ export type AlmacenUpdateInput = {
 }
 
 export type AlmacenUncheckedUpdateInput = {
-  codalm?: Prisma.IntFieldUpdateOperationsInput | number
   aliasalm?: Prisma.StringFieldUpdateOperationsInput | string
   desalm?: Prisma.StringFieldUpdateOperationsInput | string
   diralm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -482,13 +481,13 @@ export type AlmacenUncheckedUpdateInput = {
   flg_stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_acu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usuario?: Prisma.IntFieldUpdateOperationsInput | number
+  codalm?: Prisma.IntFieldUpdateOperationsInput | number
   fch_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_ok?: Prisma.BoolFieldUpdateOperationsInput | boolean
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type AlmacenCreateManyInput = {
-  codalm?: number
   aliasalm: string
   desalm: string
   diralm?: string | null
@@ -502,6 +501,7 @@ export type AlmacenCreateManyInput = {
   flg_stock?: boolean
   flg_acu?: boolean
   usuario: number
+  codalm?: number
   fch_reg?: Date | string
   flg_ok?: boolean
   reservado?: boolean
@@ -527,7 +527,6 @@ export type AlmacenUpdateManyMutationInput = {
 }
 
 export type AlmacenUncheckedUpdateManyInput = {
-  codalm?: Prisma.IntFieldUpdateOperationsInput | number
   aliasalm?: Prisma.StringFieldUpdateOperationsInput | string
   desalm?: Prisma.StringFieldUpdateOperationsInput | string
   diralm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -541,13 +540,13 @@ export type AlmacenUncheckedUpdateManyInput = {
   flg_stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_acu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usuario?: Prisma.IntFieldUpdateOperationsInput | number
+  codalm?: Prisma.IntFieldUpdateOperationsInput | number
   fch_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_ok?: Prisma.BoolFieldUpdateOperationsInput | boolean
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type AlmacenCountOrderByAggregateInput = {
-  codalm?: Prisma.SortOrder
   aliasalm?: Prisma.SortOrder
   desalm?: Prisma.SortOrder
   diralm?: Prisma.SortOrder
@@ -561,18 +560,18 @@ export type AlmacenCountOrderByAggregateInput = {
   flg_stock?: Prisma.SortOrder
   flg_acu?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
   fch_reg?: Prisma.SortOrder
   flg_ok?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
 }
 
 export type AlmacenAvgOrderByAggregateInput = {
-  codalm?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
 }
 
 export type AlmacenMaxOrderByAggregateInput = {
-  codalm?: Prisma.SortOrder
   aliasalm?: Prisma.SortOrder
   desalm?: Prisma.SortOrder
   diralm?: Prisma.SortOrder
@@ -586,13 +585,13 @@ export type AlmacenMaxOrderByAggregateInput = {
   flg_stock?: Prisma.SortOrder
   flg_acu?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
   fch_reg?: Prisma.SortOrder
   flg_ok?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
 }
 
 export type AlmacenMinOrderByAggregateInput = {
-  codalm?: Prisma.SortOrder
   aliasalm?: Prisma.SortOrder
   desalm?: Prisma.SortOrder
   diralm?: Prisma.SortOrder
@@ -606,20 +605,20 @@ export type AlmacenMinOrderByAggregateInput = {
   flg_stock?: Prisma.SortOrder
   flg_acu?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
   fch_reg?: Prisma.SortOrder
   flg_ok?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
 }
 
 export type AlmacenSumOrderByAggregateInput = {
-  codalm?: Prisma.SortOrder
   usuario?: Prisma.SortOrder
+  codalm?: Prisma.SortOrder
 }
 
 
 
 export type AlmacenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  codalm?: boolean
   aliasalm?: boolean
   desalm?: boolean
   diralm?: boolean
@@ -633,13 +632,13 @@ export type AlmacenSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   flg_stock?: boolean
   flg_acu?: boolean
   usuario?: boolean
+  codalm?: boolean
   fch_reg?: boolean
   flg_ok?: boolean
   reservado?: boolean
 }, ExtArgs["result"]["almacen"]>
 
 export type AlmacenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  codalm?: boolean
   aliasalm?: boolean
   desalm?: boolean
   diralm?: boolean
@@ -653,13 +652,13 @@ export type AlmacenSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   flg_stock?: boolean
   flg_acu?: boolean
   usuario?: boolean
+  codalm?: boolean
   fch_reg?: boolean
   flg_ok?: boolean
   reservado?: boolean
 }, ExtArgs["result"]["almacen"]>
 
 export type AlmacenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  codalm?: boolean
   aliasalm?: boolean
   desalm?: boolean
   diralm?: boolean
@@ -673,13 +672,13 @@ export type AlmacenSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   flg_stock?: boolean
   flg_acu?: boolean
   usuario?: boolean
+  codalm?: boolean
   fch_reg?: boolean
   flg_ok?: boolean
   reservado?: boolean
 }, ExtArgs["result"]["almacen"]>
 
 export type AlmacenSelectScalar = {
-  codalm?: boolean
   aliasalm?: boolean
   desalm?: boolean
   diralm?: boolean
@@ -693,18 +692,18 @@ export type AlmacenSelectScalar = {
   flg_stock?: boolean
   flg_acu?: boolean
   usuario?: boolean
+  codalm?: boolean
   fch_reg?: boolean
   flg_ok?: boolean
   reservado?: boolean
 }
 
-export type AlmacenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"codalm" | "aliasalm" | "desalm" | "diralm" | "departam" | "provincia" | "distrito" | "ubigeo" | "kanexo" | "telefalm" | "logoalm" | "flg_stock" | "flg_acu" | "usuario" | "fch_reg" | "flg_ok" | "reservado", ExtArgs["result"]["almacen"]>
+export type AlmacenOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"aliasalm" | "desalm" | "diralm" | "departam" | "provincia" | "distrito" | "ubigeo" | "kanexo" | "telefalm" | "logoalm" | "flg_stock" | "flg_acu" | "usuario" | "codalm" | "fch_reg" | "flg_ok" | "reservado", ExtArgs["result"]["almacen"]>
 
 export type $AlmacenPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Almacen"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    codalm: number
     aliasalm: string
     desalm: string
     diralm: string | null
@@ -718,6 +717,7 @@ export type $AlmacenPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     flg_stock: boolean
     flg_acu: boolean
     usuario: number
+    codalm: number
     fch_reg: Date
     flg_ok: boolean
     reservado: boolean
@@ -804,8 +804,8 @@ export interface AlmacenDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * // Get first 10 Almacens
    * const almacens = await prisma.almacen.findMany({ take: 10 })
    * 
-   * // Only select the `codalm`
-   * const almacenWithCodalmOnly = await prisma.almacen.findMany({ select: { codalm: true } })
+   * // Only select the `aliasalm`
+   * const almacenWithAliasalmOnly = await prisma.almacen.findMany({ select: { aliasalm: true } })
    * 
    */
   findMany<T extends AlmacenFindManyArgs>(args?: Prisma.SelectSubset<T, AlmacenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlmacenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -849,9 +849,9 @@ export interface AlmacenDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Create many Almacens and only return the `codalm`
-   * const almacenWithCodalmOnly = await prisma.almacen.createManyAndReturn({
-   *   select: { codalm: true },
+   * // Create many Almacens and only return the `aliasalm`
+   * const almacenWithAliasalmOnly = await prisma.almacen.createManyAndReturn({
+   *   select: { aliasalm: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -940,9 +940,9 @@ export interface AlmacenDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Update zero or more Almacens and only return the `codalm`
-   * const almacenWithCodalmOnly = await prisma.almacen.updateManyAndReturn({
-   *   select: { codalm: true },
+   * // Update zero or more Almacens and only return the `aliasalm`
+   * const almacenWithAliasalmOnly = await prisma.almacen.updateManyAndReturn({
+   *   select: { aliasalm: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1144,7 +1144,6 @@ export interface Prisma__AlmacenClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the Almacen model
  */
 export interface AlmacenFieldRefs {
-  readonly codalm: Prisma.FieldRef<"Almacen", 'Int'>
   readonly aliasalm: Prisma.FieldRef<"Almacen", 'String'>
   readonly desalm: Prisma.FieldRef<"Almacen", 'String'>
   readonly diralm: Prisma.FieldRef<"Almacen", 'String'>
@@ -1158,6 +1157,7 @@ export interface AlmacenFieldRefs {
   readonly flg_stock: Prisma.FieldRef<"Almacen", 'Boolean'>
   readonly flg_acu: Prisma.FieldRef<"Almacen", 'Boolean'>
   readonly usuario: Prisma.FieldRef<"Almacen", 'Int'>
+  readonly codalm: Prisma.FieldRef<"Almacen", 'Int'>
   readonly fch_reg: Prisma.FieldRef<"Almacen", 'DateTime'>
   readonly flg_ok: Prisma.FieldRef<"Almacen", 'Boolean'>
   readonly reservado: Prisma.FieldRef<"Almacen", 'Boolean'>

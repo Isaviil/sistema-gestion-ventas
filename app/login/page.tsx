@@ -57,7 +57,8 @@ export default function LoginPage() {
 
     const session = await getSession();
 
-    toast.success(`Bienvenido ${session?.user.name ?? ""}`);
+    const primerNombre = session?.user?.name?.trim().split(/\s+/)[0] ?? "";
+    toast.success(`Bienvenido ${primerNombre}`);
 
     router.push("/dashboard");
   };

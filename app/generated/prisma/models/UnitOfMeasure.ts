@@ -216,6 +216,8 @@ export type UnitOfMeasureWhereInput = {
   alias_umed?: Prisma.StringFilter<"UnitOfMeasure"> | string
   codigo?: Prisma.StringFilter<"UnitOfMeasure"> | string
   reservado?: Prisma.BoolFilter<"UnitOfMeasure"> | boolean
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }
 
@@ -225,6 +227,8 @@ export type UnitOfMeasureOrderByWithRelationInput = {
   alias_umed?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   reservado?: Prisma.SortOrder
+  facturas?: Prisma.FacturacionDetalleOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionDetalleOrderByRelationAggregateInput
   detalles?: Prisma.PedidoDetalleOrderByRelationAggregateInput
 }
 
@@ -237,6 +241,8 @@ export type UnitOfMeasureWhereUniqueInput = Prisma.AtLeast<{
   alias_umed?: Prisma.StringFilter<"UnitOfMeasure"> | string
   codigo?: Prisma.StringFilter<"UnitOfMeasure"> | string
   reservado?: Prisma.BoolFilter<"UnitOfMeasure"> | boolean
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }, "id_umed">
 
@@ -270,6 +276,8 @@ export type UnitOfMeasureCreateInput = {
   alias_umed: string
   codigo: string
   reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutUnidadMedidaInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutUnidadMedidaInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutUnidadMedidaInput
 }
 
@@ -279,6 +287,8 @@ export type UnitOfMeasureUncheckedCreateInput = {
   alias_umed: string
   codigo: string
   reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
 }
 
@@ -288,6 +298,8 @@ export type UnitOfMeasureUpdateInput = {
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutUnidadMedidaNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutUnidadMedidaNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutUnidadMedidaNestedInput
 }
 
@@ -297,6 +309,8 @@ export type UnitOfMeasureUncheckedUpdateInput = {
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
 }
 
@@ -375,12 +389,42 @@ export type UnitOfMeasureUpdateOneRequiredWithoutDetallesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UnitOfMeasureUpdateToOneWithWhereWithoutDetallesInput, Prisma.UnitOfMeasureUpdateWithoutDetallesInput>, Prisma.UnitOfMeasureUncheckedUpdateWithoutDetallesInput>
 }
 
+export type UnitOfMeasureCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.UnitOfMeasureCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.UnitOfMeasureWhereUniqueInput
+}
+
+export type UnitOfMeasureUpdateOneRequiredWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.UnitOfMeasureCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.UnitOfMeasureUpsertWithoutRemisionesInput
+  connect?: Prisma.UnitOfMeasureWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UnitOfMeasureUpdateToOneWithWhereWithoutRemisionesInput, Prisma.UnitOfMeasureUpdateWithoutRemisionesInput>, Prisma.UnitOfMeasureUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type UnitOfMeasureCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.UnitOfMeasureCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.UnitOfMeasureWhereUniqueInput
+}
+
+export type UnitOfMeasureUpdateOneRequiredWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.UnitOfMeasureCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.UnitOfMeasureUpsertWithoutFacturasInput
+  connect?: Prisma.UnitOfMeasureWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UnitOfMeasureUpdateToOneWithWhereWithoutFacturasInput, Prisma.UnitOfMeasureUpdateWithoutFacturasInput>, Prisma.UnitOfMeasureUncheckedUpdateWithoutFacturasInput>
+}
+
 export type UnitOfMeasureCreateWithoutDetallesInput = {
   id_umed: number
   des_umed: string
   alias_umed: string
   codigo: string
   reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutUnidadMedidaInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutUnidadMedidaInput
 }
 
 export type UnitOfMeasureUncheckedCreateWithoutDetallesInput = {
@@ -389,6 +433,8 @@ export type UnitOfMeasureUncheckedCreateWithoutDetallesInput = {
   alias_umed: string
   codigo: string
   reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
 }
 
 export type UnitOfMeasureCreateOrConnectWithoutDetallesInput = {
@@ -413,6 +459,8 @@ export type UnitOfMeasureUpdateWithoutDetallesInput = {
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutUnidadMedidaNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutUnidadMedidaNestedInput
 }
 
 export type UnitOfMeasureUncheckedUpdateWithoutDetallesInput = {
@@ -421,6 +469,120 @@ export type UnitOfMeasureUncheckedUpdateWithoutDetallesInput = {
   alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+}
+
+export type UnitOfMeasureCreateWithoutRemisionesInput = {
+  id_umed: number
+  des_umed: string
+  alias_umed: string
+  codigo: string
+  reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutUnidadMedidaInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutUnidadMedidaInput
+}
+
+export type UnitOfMeasureUncheckedCreateWithoutRemisionesInput = {
+  id_umed: number
+  des_umed: string
+  alias_umed: string
+  codigo: string
+  reservado?: boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+}
+
+export type UnitOfMeasureCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.UnitOfMeasureWhereUniqueInput
+  create: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedCreateWithoutRemisionesInput>
+}
+
+export type UnitOfMeasureUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.UnitOfMeasureUpdateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.UnitOfMeasureWhereInput
+}
+
+export type UnitOfMeasureUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.UnitOfMeasureWhereInput
+  data: Prisma.XOR<Prisma.UnitOfMeasureUpdateWithoutRemisionesInput, Prisma.UnitOfMeasureUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type UnitOfMeasureUpdateWithoutRemisionesInput = {
+  id_umed?: Prisma.IntFieldUpdateOperationsInput | number
+  des_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutUnidadMedidaNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutUnidadMedidaNestedInput
+}
+
+export type UnitOfMeasureUncheckedUpdateWithoutRemisionesInput = {
+  id_umed?: Prisma.IntFieldUpdateOperationsInput | number
+  des_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+}
+
+export type UnitOfMeasureCreateWithoutFacturasInput = {
+  id_umed: number
+  des_umed: string
+  alias_umed: string
+  codigo: string
+  reservado?: boolean
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutUnidadMedidaInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutUnidadMedidaInput
+}
+
+export type UnitOfMeasureUncheckedCreateWithoutFacturasInput = {
+  id_umed: number
+  des_umed: string
+  alias_umed: string
+  codigo: string
+  reservado?: boolean
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutUnidadMedidaInput
+}
+
+export type UnitOfMeasureCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.UnitOfMeasureWhereUniqueInput
+  create: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedCreateWithoutFacturasInput>
+}
+
+export type UnitOfMeasureUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.UnitOfMeasureUpdateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.UnitOfMeasureCreateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.UnitOfMeasureWhereInput
+}
+
+export type UnitOfMeasureUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.UnitOfMeasureWhereInput
+  data: Prisma.XOR<Prisma.UnitOfMeasureUpdateWithoutFacturasInput, Prisma.UnitOfMeasureUncheckedUpdateWithoutFacturasInput>
+}
+
+export type UnitOfMeasureUpdateWithoutFacturasInput = {
+  id_umed?: Prisma.IntFieldUpdateOperationsInput | number
+  des_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutUnidadMedidaNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutUnidadMedidaNestedInput
+}
+
+export type UnitOfMeasureUncheckedUpdateWithoutFacturasInput = {
+  id_umed?: Prisma.IntFieldUpdateOperationsInput | number
+  des_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  alias_umed?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
+  reservado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutUnidadMedidaNestedInput
 }
 
 
@@ -429,10 +591,14 @@ export type UnitOfMeasureUncheckedUpdateWithoutDetallesInput = {
  */
 
 export type UnitOfMeasureCountOutputType = {
+  facturas: number
+  remisiones: number
   detalles: number
 }
 
 export type UnitOfMeasureCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | UnitOfMeasureCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | UnitOfMeasureCountOutputTypeCountRemisionesArgs
   detalles?: boolean | UnitOfMeasureCountOutputTypeCountDetallesArgs
 }
 
@@ -449,6 +615,20 @@ export type UnitOfMeasureCountOutputTypeDefaultArgs<ExtArgs extends runtime.Type
 /**
  * UnitOfMeasureCountOutputType without action
  */
+export type UnitOfMeasureCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionDetalleWhereInput
+}
+
+/**
+ * UnitOfMeasureCountOutputType without action
+ */
+export type UnitOfMeasureCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+}
+
+/**
+ * UnitOfMeasureCountOutputType without action
+ */
 export type UnitOfMeasureCountOutputTypeCountDetallesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PedidoDetalleWhereInput
 }
@@ -460,6 +640,8 @@ export type UnitOfMeasureSelect<ExtArgs extends runtime.Types.Extensions.Interna
   alias_umed?: boolean
   codigo?: boolean
   reservado?: boolean
+  facturas?: boolean | Prisma.UnitOfMeasure$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.UnitOfMeasure$remisionesArgs<ExtArgs>
   detalles?: boolean | Prisma.UnitOfMeasure$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.UnitOfMeasureCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["unitOfMeasure"]>
@@ -490,6 +672,8 @@ export type UnitOfMeasureSelectScalar = {
 
 export type UnitOfMeasureOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_umed" | "des_umed" | "alias_umed" | "codigo" | "reservado", ExtArgs["result"]["unitOfMeasure"]>
 export type UnitOfMeasureInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | Prisma.UnitOfMeasure$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.UnitOfMeasure$remisionesArgs<ExtArgs>
   detalles?: boolean | Prisma.UnitOfMeasure$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.UnitOfMeasureCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -499,6 +683,8 @@ export type UnitOfMeasureIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $UnitOfMeasurePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UnitOfMeasure"
   objects: {
+    facturas: Prisma.$FacturacionDetallePayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionDetallePayload<ExtArgs>[]
     detalles: Prisma.$PedidoDetallePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -901,6 +1087,8 @@ readonly fields: UnitOfMeasureFieldRefs;
  */
 export interface Prisma__UnitOfMeasureClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  facturas<T extends Prisma.UnitOfMeasure$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnitOfMeasure$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.UnitOfMeasure$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnitOfMeasure$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   detalles<T extends Prisma.UnitOfMeasure$detallesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnitOfMeasure$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1326,6 +1514,54 @@ export type UnitOfMeasureDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many UnitOfMeasures to delete.
    */
   limit?: number
+}
+
+/**
+ * UnitOfMeasure.facturas
+ */
+export type UnitOfMeasure$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionDetalle
+   */
+  select?: Prisma.FacturacionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionDetalle
+   */
+  omit?: Prisma.FacturacionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionDetalleInclude<ExtArgs> | null
+  where?: Prisma.FacturacionDetalleWhereInput
+  orderBy?: Prisma.FacturacionDetalleOrderByWithRelationInput | Prisma.FacturacionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionDetalleScalarFieldEnum | Prisma.FacturacionDetalleScalarFieldEnum[]
+}
+
+/**
+ * UnitOfMeasure.remisiones
+ */
+export type UnitOfMeasure$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionDetalle
+   */
+  select?: Prisma.GuiaRemisionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionDetalle
+   */
+  omit?: Prisma.GuiaRemisionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionDetalleInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+  orderBy?: Prisma.GuiaRemisionDetalleOrderByWithRelationInput | Prisma.GuiaRemisionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionDetalleScalarFieldEnum | Prisma.GuiaRemisionDetalleScalarFieldEnum[]
 }
 
 /**

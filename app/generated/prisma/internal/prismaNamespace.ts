@@ -416,7 +416,11 @@ export const ModelName = {
   Almacen: 'Almacen',
   Chofer: 'Chofer',
   PedidoCabecera: 'PedidoCabecera',
-  PedidoDetalle: 'PedidoDetalle'
+  PedidoDetalle: 'PedidoDetalle',
+  GuiaRemisionCabecera: 'GuiaRemisionCabecera',
+  GuiaRemisionDetalle: 'GuiaRemisionDetalle',
+  FacturacionCabecera: 'FacturacionCabecera',
+  FacturacionDetalle: 'FacturacionDetalle'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -432,7 +436,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "paymentMethod" | "customer" | "vendor" | "ubigeo" | "product" | "currency" | "exchangeRate" | "documentType" | "unitOfMeasure" | "productFamily" | "productCut" | "brand" | "productColor" | "productSize" | "vehicle" | "almacen" | "chofer" | "pedidoCabecera" | "pedidoDetalle"
+    modelProps: "user" | "paymentMethod" | "customer" | "vendor" | "ubigeo" | "product" | "currency" | "exchangeRate" | "documentType" | "unitOfMeasure" | "productFamily" | "productCut" | "brand" | "productColor" | "productSize" | "vehicle" | "almacen" | "chofer" | "pedidoCabecera" | "pedidoDetalle" | "guiaRemisionCabecera" | "guiaRemisionDetalle" | "facturacionCabecera" | "facturacionDetalle"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1916,6 +1920,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GuiaRemisionCabecera: {
+      payload: Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>
+      fields: Prisma.GuiaRemisionCabeceraFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GuiaRemisionCabeceraFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GuiaRemisionCabeceraFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        findFirst: {
+          args: Prisma.GuiaRemisionCabeceraFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GuiaRemisionCabeceraFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        findMany: {
+          args: Prisma.GuiaRemisionCabeceraFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>[]
+        }
+        create: {
+          args: Prisma.GuiaRemisionCabeceraCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        createMany: {
+          args: Prisma.GuiaRemisionCabeceraCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GuiaRemisionCabeceraCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>[]
+        }
+        delete: {
+          args: Prisma.GuiaRemisionCabeceraDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        update: {
+          args: Prisma.GuiaRemisionCabeceraUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        deleteMany: {
+          args: Prisma.GuiaRemisionCabeceraDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GuiaRemisionCabeceraUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GuiaRemisionCabeceraUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>[]
+        }
+        upsert: {
+          args: Prisma.GuiaRemisionCabeceraUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionCabeceraPayload>
+        }
+        aggregate: {
+          args: Prisma.GuiaRemisionCabeceraAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuiaRemisionCabecera>
+        }
+        groupBy: {
+          args: Prisma.GuiaRemisionCabeceraGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuiaRemisionCabeceraGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GuiaRemisionCabeceraCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuiaRemisionCabeceraCountAggregateOutputType> | number
+        }
+      }
+    }
+    GuiaRemisionDetalle: {
+      payload: Prisma.$GuiaRemisionDetallePayload<ExtArgs>
+      fields: Prisma.GuiaRemisionDetalleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GuiaRemisionDetalleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GuiaRemisionDetalleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        findFirst: {
+          args: Prisma.GuiaRemisionDetalleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GuiaRemisionDetalleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        findMany: {
+          args: Prisma.GuiaRemisionDetalleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>[]
+        }
+        create: {
+          args: Prisma.GuiaRemisionDetalleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        createMany: {
+          args: Prisma.GuiaRemisionDetalleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GuiaRemisionDetalleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>[]
+        }
+        delete: {
+          args: Prisma.GuiaRemisionDetalleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        update: {
+          args: Prisma.GuiaRemisionDetalleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        deleteMany: {
+          args: Prisma.GuiaRemisionDetalleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GuiaRemisionDetalleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GuiaRemisionDetalleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>[]
+        }
+        upsert: {
+          args: Prisma.GuiaRemisionDetalleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GuiaRemisionDetallePayload>
+        }
+        aggregate: {
+          args: Prisma.GuiaRemisionDetalleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuiaRemisionDetalle>
+        }
+        groupBy: {
+          args: Prisma.GuiaRemisionDetalleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuiaRemisionDetalleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GuiaRemisionDetalleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuiaRemisionDetalleCountAggregateOutputType> | number
+        }
+      }
+    }
+    FacturacionCabecera: {
+      payload: Prisma.$FacturacionCabeceraPayload<ExtArgs>
+      fields: Prisma.FacturacionCabeceraFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FacturacionCabeceraFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FacturacionCabeceraFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        findFirst: {
+          args: Prisma.FacturacionCabeceraFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FacturacionCabeceraFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        findMany: {
+          args: Prisma.FacturacionCabeceraFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>[]
+        }
+        create: {
+          args: Prisma.FacturacionCabeceraCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        createMany: {
+          args: Prisma.FacturacionCabeceraCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FacturacionCabeceraCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>[]
+        }
+        delete: {
+          args: Prisma.FacturacionCabeceraDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        update: {
+          args: Prisma.FacturacionCabeceraUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        deleteMany: {
+          args: Prisma.FacturacionCabeceraDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FacturacionCabeceraUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FacturacionCabeceraUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>[]
+        }
+        upsert: {
+          args: Prisma.FacturacionCabeceraUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionCabeceraPayload>
+        }
+        aggregate: {
+          args: Prisma.FacturacionCabeceraAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFacturacionCabecera>
+        }
+        groupBy: {
+          args: Prisma.FacturacionCabeceraGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacturacionCabeceraGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FacturacionCabeceraCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacturacionCabeceraCountAggregateOutputType> | number
+        }
+      }
+    }
+    FacturacionDetalle: {
+      payload: Prisma.$FacturacionDetallePayload<ExtArgs>
+      fields: Prisma.FacturacionDetalleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FacturacionDetalleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FacturacionDetalleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        findFirst: {
+          args: Prisma.FacturacionDetalleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FacturacionDetalleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        findMany: {
+          args: Prisma.FacturacionDetalleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>[]
+        }
+        create: {
+          args: Prisma.FacturacionDetalleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        createMany: {
+          args: Prisma.FacturacionDetalleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FacturacionDetalleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>[]
+        }
+        delete: {
+          args: Prisma.FacturacionDetalleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        update: {
+          args: Prisma.FacturacionDetalleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        deleteMany: {
+          args: Prisma.FacturacionDetalleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FacturacionDetalleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FacturacionDetalleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>[]
+        }
+        upsert: {
+          args: Prisma.FacturacionDetalleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FacturacionDetallePayload>
+        }
+        aggregate: {
+          args: Prisma.FacturacionDetalleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFacturacionDetalle>
+        }
+        groupBy: {
+          args: Prisma.FacturacionDetalleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacturacionDetalleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FacturacionDetalleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FacturacionDetalleCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1959,13 +2259,13 @@ export const UserScalarFieldEnum = {
   id_usu: 'id_usu',
   username: 'username',
   password: 'password',
-  nombres: 'nombres',
-  apellidos: 'apellidos',
-  email: 'email',
   rol: 'rol',
   flg_activo: 'flg_activo',
   fec_reg: 'fec_reg',
-  fec_ult_login: 'fec_ult_login'
+  apellidos: 'apellidos',
+  email: 'email',
+  fec_ult_login: 'fec_ult_login',
+  nombres: 'nombres'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1989,7 +2289,6 @@ export const CustomerScalarFieldEnum = {
   tdoc_ide: 'tdoc_ide',
   ruc_aux: 'ruc_aux',
   dir_legal: 'dir_legal',
-  referencia: 'referencia',
   telefono: 'telefono',
   email: 'email',
   ubigeo: 'ubigeo',
@@ -2000,7 +2299,8 @@ export const CustomerScalarFieldEnum = {
   for_pago: 'for_pago',
   id_tpoclie: 'id_tpoclie',
   fec_reg: 'fec_reg',
-  flg_activo: 'flg_activo'
+  flg_activo: 'flg_activo',
+  referencia: 'referencia'
 } as const
 
 export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
@@ -2041,20 +2341,20 @@ export const ProductScalarFieldEnum = {
   id_art: 'id_art',
   cod_art: 'cod_art',
   des_art: 'des_art',
-  des_art2: 'des_art2',
   stkact: 'stkact',
-  peso: 'peso',
   pre_art: 'pre_art',
   pv2: 'pv2',
   pv3: 'pv3',
   pv4: 'pv4',
   id_umedr: 'id_umedr',
-  id_fam: 'id_fam',
-  id_corte: 'id_corte',
-  id_mar: 'id_mar',
+  flg_activo: 'flg_activo',
+  des_art2: 'des_art2',
   id_color: 'id_color',
+  id_corte: 'id_corte',
+  id_fam: 'id_fam',
+  id_mar: 'id_mar',
   id_talla: 'id_talla',
-  flg_activo: 'flg_activo'
+  peso: 'peso'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -2081,14 +2381,14 @@ export type ExchangeRateScalarFieldEnum = (typeof ExchangeRateScalarFieldEnum)[k
 
 export const DocumentTypeScalarFieldEnum = {
   id_tipdoc: 'id_tipdoc',
-  alias_alm: 'alias_alm',
   flg_sunat: 'flg_sunat',
   codsunat: 'codsunat',
   dcor_tdoc: 'dcor_tdoc',
   dlar_tdoc: 'dlar_tdoc',
   flg_vta: 'flg_vta',
   flg_alm: 'flg_alm',
-  flg_provi: 'flg_provi'
+  flg_provi: 'flg_provi',
+  alias_alm: 'alias_alm'
 } as const
 
 export type DocumentTypeScalarFieldEnum = (typeof DocumentTypeScalarFieldEnum)[keyof typeof DocumentTypeScalarFieldEnum]
@@ -2158,7 +2458,6 @@ export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeo
 
 
 export const AlmacenScalarFieldEnum = {
-  codalm: 'codalm',
   aliasalm: 'aliasalm',
   desalm: 'desalm',
   diralm: 'diralm',
@@ -2172,6 +2471,7 @@ export const AlmacenScalarFieldEnum = {
   flg_stock: 'flg_stock',
   flg_acu: 'flg_acu',
   usuario: 'usuario',
+  codalm: 'codalm',
   fch_reg: 'fch_reg',
   flg_ok: 'flg_ok',
   reservado: 'reservado'
@@ -2258,10 +2558,174 @@ export const PedidoDetalleScalarFieldEnum = {
   pu_sinigv: 'pu_sinigv',
   pu_des: 'pu_des',
   subtot_art: 'subtot_art',
-  tot_art: 'tot_art'
+  tot_art: 'tot_art',
+  can_ate: 'can_ate'
 } as const
 
 export type PedidoDetalleScalarFieldEnum = (typeof PedidoDetalleScalarFieldEnum)[keyof typeof PedidoDetalleScalarFieldEnum]
+
+
+export const GuiaRemisionCabeceraScalarFieldEnum = {
+  id_remision: 'id_remision',
+  almdes: 'almdes',
+  almori: 'almori',
+  ano: 'ano',
+  bultos: 'bultos',
+  codalm: 'codalm',
+  codmon: 'codmon',
+  codmov: 'codmov',
+  dirent: 'dirent',
+  fchdoc: 'fchdoc',
+  fchtras: 'fchtras',
+  fch_ing: 'fch_ing',
+  flg_incigv: 'flg_incigv',
+  flg_anu: 'flg_anu',
+  for_pago: 'for_pago',
+  glosa: 'glosa',
+  id_aux: 'id_aux',
+  id_chof: 'id_chof',
+  id_ped: 'id_ped',
+  id_cpc: 'id_cpc',
+  id_transp: 'id_transp',
+  id_vehi: 'id_vehi',
+  id_ven: 'id_ven',
+  mes: 'mes',
+  nomaux: 'nomaux',
+  numero: 'numero',
+  peso: 'peso',
+  porigv: 'porigv',
+  ptopartida: 'ptopartida',
+  rucaux: 'rucaux',
+  serie: 'serie',
+  tpocmb: 'tpocmb',
+  ubigeo1: 'ubigeo1',
+  ubigeo2: 'ubigeo2',
+  usuario: 'usuario',
+  usuario_anu: 'usuario_anu',
+  estado: 'estado',
+  fch_anu: 'fch_anu'
+} as const
+
+export type GuiaRemisionCabeceraScalarFieldEnum = (typeof GuiaRemisionCabeceraScalarFieldEnum)[keyof typeof GuiaRemisionCabeceraScalarFieldEnum]
+
+
+export const GuiaRemisionDetalleScalarFieldEnum = {
+  id_remision: 'id_remision',
+  can_art: 'can_art',
+  cod_art: 'cod_art',
+  des_ar1: 'des_ar1',
+  des_ar2: 'des_ar2',
+  des_ar3: 'des_ar3',
+  des_ar4: 'des_ar4',
+  des_ar5: 'des_ar5',
+  des_ar6: 'des_ar6',
+  des_ar7: 'des_ar7',
+  des_ar8: 'des_ar8',
+  des_art: 'des_art',
+  factor: 'factor',
+  id_art: 'id_art',
+  id_cpc: 'id_cpc',
+  id_ped: 'id_ped',
+  id_umedr: 'id_umedr',
+  igv_art: 'igv_art',
+  itmcpc: 'itmcpc',
+  itmped: 'itmped',
+  nrocpc: 'nrocpc',
+  nroitm: 'nroitm',
+  nroped: 'nroped',
+  operador: 'operador',
+  pdes_art: 'pdes_art',
+  pre_art: 'pre_art',
+  pu_conigv: 'pu_conigv',
+  pu_des: 'pu_des',
+  pu_sinigv: 'pu_sinigv',
+  subtot_art: 'subtot_art',
+  tot_art: 'tot_art'
+} as const
+
+export type GuiaRemisionDetalleScalarFieldEnum = (typeof GuiaRemisionDetalleScalarFieldEnum)[keyof typeof GuiaRemisionDetalleScalarFieldEnum]
+
+
+export const FacturacionCabeceraScalarFieldEnum = {
+  id_cpc: 'id_cpc',
+  ano: 'ano',
+  codalm: 'codalm',
+  codmon: 'codmon',
+  diavto: 'diavto',
+  diraux: 'diraux',
+  fchcob: 'fchcob',
+  fchdoc: 'fchdoc',
+  fchvto: 'fchvto',
+  fch_ing: 'fch_ing',
+  fch_anu: 'fch_anu',
+  flg_incigv: 'flg_incigv',
+  flg_anu: 'flg_anu',
+  for_pago: 'for_pago',
+  id_aux: 'id_aux',
+  id_ped: 'id_ped',
+  id_tipdoc: 'id_tipdoc',
+  id_ven: 'id_ven',
+  impadel: 'impadel',
+  impigv: 'impigv',
+  impsbt: 'impsbt',
+  imptot: 'imptot',
+  monto_a: 'monto_a',
+  monto_i: 'monto_i',
+  sdodoc: 'sdodoc',
+  nomaux: 'nomaux',
+  nro_ped: 'nro_ped',
+  nromes: 'nromes',
+  num_doc: 'num_doc',
+  ocompra: 'ocompra',
+  porigv: 'porigv',
+  rucaux: 'rucaux',
+  ser_doc: 'ser_doc',
+  tipo: 'tipo',
+  tpocmb: 'tpocmb',
+  usuario: 'usuario',
+  usuario_anu: 'usuario_anu',
+  estado: 'estado',
+  id_remision: 'id_remision'
+} as const
+
+export type FacturacionCabeceraScalarFieldEnum = (typeof FacturacionCabeceraScalarFieldEnum)[keyof typeof FacturacionCabeceraScalarFieldEnum]
+
+
+export const FacturacionDetalleScalarFieldEnum = {
+  id_cpc: 'id_cpc',
+  nroitm: 'nroitm',
+  id_art: 'id_art',
+  cod_art: 'cod_art',
+  des_art: 'des_art',
+  id_umedr: 'id_umedr',
+  factor: 'factor',
+  can_art: 'can_art',
+  pre_art: 'pre_art',
+  pdes_art: 'pdes_art',
+  pu_des: 'pu_des',
+  tot_art: 'tot_art',
+  des_ar1: 'des_ar1',
+  des_ar2: 'des_ar2',
+  des_ar3: 'des_ar3',
+  des_ar4: 'des_ar4',
+  des_ar5: 'des_ar5',
+  des_ar6: 'des_ar6',
+  des_ar7: 'des_ar7',
+  des_ar8: 'des_ar8',
+  subtot_art: 'subtot_art',
+  igv_art: 'igv_art',
+  pu_conigv: 'pu_conigv',
+  pu_sinigv: 'pu_sinigv',
+  operador: 'operador',
+  id_ped: 'id_ped',
+  itmped: 'itmped',
+  nroped: 'nroped',
+  id_alm: 'id_alm',
+  itmalm: 'itmalm',
+  nroalm: 'nroalm'
+} as const
+
+export type FacturacionDetalleScalarFieldEnum = (typeof FacturacionDetalleScalarFieldEnum)[keyof typeof FacturacionDetalleScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2569,6 +3033,10 @@ export type GlobalOmitConfig = {
   chofer?: Prisma.ChoferOmit
   pedidoCabecera?: Prisma.PedidoCabeceraOmit
   pedidoDetalle?: Prisma.PedidoDetalleOmit
+  guiaRemisionCabecera?: Prisma.GuiaRemisionCabeceraOmit
+  guiaRemisionDetalle?: Prisma.GuiaRemisionDetalleOmit
+  facturacionCabecera?: Prisma.FacturacionCabeceraOmit
+  facturacionDetalle?: Prisma.FacturacionDetalleOmit
 }
 
 /* Types for Logging */

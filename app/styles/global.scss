@@ -214,7 +214,11 @@ body {
   --color-excel-text: #065f46;
   --color-excel-border: #6ee7b7;
 
-  --color-status-info: #0c63d4;
+  --color-status-info: #2563eb;
+  --color-status-success: #059669;
+  --color-status-partial: #d69e16;
+  --color-status-complete: #9333ea;
+  --color-status-danger: #e94343;
 }
 
 .dark {
@@ -265,5 +269,9 @@ body {
   --color-excel-text: #a7f3d0;
   --color-excel-border: #047857;
 
-  --color-status-info: #7dd3fc;
+  --color-status-info: #60a5fa;
+  --color-status-success: #34d399;
+  --color-status-partial: #facc15;
+  --color-status-complete: #c084fc;
+  --color-status-danger: #f87171;
 }

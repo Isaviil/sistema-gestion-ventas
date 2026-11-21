@@ -38,6 +38,9 @@ export const useUpdateEstadoPedido = () => {
       await queryClient.invalidateQueries({
         queryKey: ["pedidos"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["pedidoID"],
+      });
 
       toast.success(data.message, { autoClose: 2000 });
     },

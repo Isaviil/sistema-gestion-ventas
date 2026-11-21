@@ -16,7 +16,7 @@ import { useUpdateAlmacen } from "../api/[id]/update-almacen";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { useUbigeo } from "@/app/hooks/useUbigeo";
+import { useUbigeos } from "@/app/services/useUbigeo";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import { getSession } from "next-auth/react";
 
@@ -150,7 +150,7 @@ export function DialogAddAlmacen({
    * =========================
    */
 
-  const { data: ubigeoData, isLoading: isLoadingUbigeos } = useUbigeo();
+  const { data: ubigeoData, isLoading: isLoadingUbigeos } = useUbigeos();
   const {
     departamentos = [],
     provincias = [],
@@ -248,9 +248,7 @@ export function DialogAddAlmacen({
       setOpen={setOpen}
       title={isEditing ? "Editar almacén" : "Nuevo almacén"}
       onSave={() => {
-        void handleSubmit(onSubmit, (errors) =>
-          console.log("Errores de validación Joi:", errors),
-        )();
+        void handleSubmit(onSubmit);
       }}
       onClose={() => {
         setClearSelectionCounter((prev) => prev + 1);

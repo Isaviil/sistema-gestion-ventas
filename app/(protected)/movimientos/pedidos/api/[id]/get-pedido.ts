@@ -24,6 +24,6 @@ export const usePedidoByID = (idPed: number | null) => {
     queryFn: () => getPedidoPorID(idPed),
     enabled: !!idPed,
     retry: 1,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 };

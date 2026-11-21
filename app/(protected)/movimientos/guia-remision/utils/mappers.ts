@@ -1,0 +1,38 @@
+import { ProductResponse } from "@/app/(protected)/maestros/articulos/types";
+import { IGuiaRemisionDetalles } from "../types";
+
+export const mapArticuloToGuiaDetalle = (
+  articulo: ProductResponse,
+  index: number,
+): IGuiaRemisionDetalles => ({
+  nroitm: index + 1,
+  id_art: articulo.id_art,
+  cod_art: articulo.cod_art,
+  des_art: articulo.des_art,
+  des_ar1: null,
+  des_ar2: null,
+  des_ar3: null,
+  des_ar4: null,
+  des_ar5: null,
+  des_ar6: null,
+  des_ar7: null,
+  des_ar8: null,
+  can_art: 1,
+  factor: 1,
+  id_umedr: articulo.id_umedr,
+  id_cpc: null,
+  id_ped: null,
+  itmcpc: null,
+  itmped: null,
+  nrocpc: null,
+  nroped: null,
+  igv_art: 0,
+  operador: "1",
+  pdes_art: 0,
+  pre_art: articulo.pre_art,
+  pu_conigv: 0,
+  pu_des: 0,
+  pu_sinigv: 0,
+  subtot_art: 0,
+  tot_art: 0,
+});

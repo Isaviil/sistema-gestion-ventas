@@ -65,6 +65,8 @@ export interface IPedidoCabeceraForm {
 
 export interface IPedidoCabeceraFormState extends IPedidoCabeceraForm {
   nrodoc: string | null;
+  factura: string;
+  guia_remision: string;
 }
 
 export interface IPedidoDetalleForm {
@@ -97,6 +99,8 @@ export interface IPedidoDetalleForm {
 
 export interface IPedidoDetalleFormState extends IPedidoDetalleForm {
   cantidad?: number;
+  can_pendiente?: number;
+  id_ped?: number | null;
 }
 
 export interface IPedidoCabeceraPorID {
@@ -118,7 +122,7 @@ export interface IPedidoCabeceraPorID {
   for_pago: number;
   formapago: string;
   glosa: string | null;
-  guia_remision: string | null;
+  guia_remision: string;
   id_clie: number;
   id_ped: number;
   id_ven: number;
@@ -134,9 +138,9 @@ export interface IPedidoCabeceraPorID {
   usu_aprob: number | null;
   usu_cie: number | null;
   usuario: number;
-  usuario_anu: number | null;
-  usuario_aprob: number | null;
-  usuario_cie: number | null;
+  usuario_anu: string | null;
+  usuario_aprob: string | null;
+  usuario_cie: string | null;
   usuario_ing: string;
   vendedor: string;
 }
@@ -171,4 +175,21 @@ export interface IPedidoDetallePorID {
   subtot_art: number;
   tot_art: number;
   umedida: string;
+}
+
+// Exporta un pedido usando idaux
+export interface IPedidoPorCliente {
+  id_ped: number;
+  nrodoc: string;
+  rucaux: string;
+  nomaux: string;
+  formapago: string;
+  codmon: string;
+  imptot: number;
+  tpocmb: number;
+  id_ven: number;
+  for_pago: number;
+  glosa: string | null;
+  fchdoc: string;
+  detalles: IPedidoDetalleFormState[];
 }

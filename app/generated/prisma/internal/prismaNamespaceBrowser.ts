@@ -70,7 +70,11 @@ export const ModelName = {
   Almacen: 'Almacen',
   Chofer: 'Chofer',
   PedidoCabecera: 'PedidoCabecera',
-  PedidoDetalle: 'PedidoDetalle'
+  PedidoDetalle: 'PedidoDetalle',
+  GuiaRemisionCabecera: 'GuiaRemisionCabecera',
+  GuiaRemisionDetalle: 'GuiaRemisionDetalle',
+  FacturacionCabecera: 'FacturacionCabecera',
+  FacturacionDetalle: 'FacturacionDetalle'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -93,13 +97,13 @@ export const UserScalarFieldEnum = {
   id_usu: 'id_usu',
   username: 'username',
   password: 'password',
-  nombres: 'nombres',
-  apellidos: 'apellidos',
-  email: 'email',
   rol: 'rol',
   flg_activo: 'flg_activo',
   fec_reg: 'fec_reg',
-  fec_ult_login: 'fec_ult_login'
+  apellidos: 'apellidos',
+  email: 'email',
+  fec_ult_login: 'fec_ult_login',
+  nombres: 'nombres'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -123,7 +127,6 @@ export const CustomerScalarFieldEnum = {
   tdoc_ide: 'tdoc_ide',
   ruc_aux: 'ruc_aux',
   dir_legal: 'dir_legal',
-  referencia: 'referencia',
   telefono: 'telefono',
   email: 'email',
   ubigeo: 'ubigeo',
@@ -134,7 +137,8 @@ export const CustomerScalarFieldEnum = {
   for_pago: 'for_pago',
   id_tpoclie: 'id_tpoclie',
   fec_reg: 'fec_reg',
-  flg_activo: 'flg_activo'
+  flg_activo: 'flg_activo',
+  referencia: 'referencia'
 } as const
 
 export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
@@ -175,20 +179,20 @@ export const ProductScalarFieldEnum = {
   id_art: 'id_art',
   cod_art: 'cod_art',
   des_art: 'des_art',
-  des_art2: 'des_art2',
   stkact: 'stkact',
-  peso: 'peso',
   pre_art: 'pre_art',
   pv2: 'pv2',
   pv3: 'pv3',
   pv4: 'pv4',
   id_umedr: 'id_umedr',
-  id_fam: 'id_fam',
-  id_corte: 'id_corte',
-  id_mar: 'id_mar',
+  flg_activo: 'flg_activo',
+  des_art2: 'des_art2',
   id_color: 'id_color',
+  id_corte: 'id_corte',
+  id_fam: 'id_fam',
+  id_mar: 'id_mar',
   id_talla: 'id_talla',
-  flg_activo: 'flg_activo'
+  peso: 'peso'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -215,14 +219,14 @@ export type ExchangeRateScalarFieldEnum = (typeof ExchangeRateScalarFieldEnum)[k
 
 export const DocumentTypeScalarFieldEnum = {
   id_tipdoc: 'id_tipdoc',
-  alias_alm: 'alias_alm',
   flg_sunat: 'flg_sunat',
   codsunat: 'codsunat',
   dcor_tdoc: 'dcor_tdoc',
   dlar_tdoc: 'dlar_tdoc',
   flg_vta: 'flg_vta',
   flg_alm: 'flg_alm',
-  flg_provi: 'flg_provi'
+  flg_provi: 'flg_provi',
+  alias_alm: 'alias_alm'
 } as const
 
 export type DocumentTypeScalarFieldEnum = (typeof DocumentTypeScalarFieldEnum)[keyof typeof DocumentTypeScalarFieldEnum]
@@ -292,7 +296,6 @@ export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeo
 
 
 export const AlmacenScalarFieldEnum = {
-  codalm: 'codalm',
   aliasalm: 'aliasalm',
   desalm: 'desalm',
   diralm: 'diralm',
@@ -306,6 +309,7 @@ export const AlmacenScalarFieldEnum = {
   flg_stock: 'flg_stock',
   flg_acu: 'flg_acu',
   usuario: 'usuario',
+  codalm: 'codalm',
   fch_reg: 'fch_reg',
   flg_ok: 'flg_ok',
   reservado: 'reservado'
@@ -392,10 +396,174 @@ export const PedidoDetalleScalarFieldEnum = {
   pu_sinigv: 'pu_sinigv',
   pu_des: 'pu_des',
   subtot_art: 'subtot_art',
-  tot_art: 'tot_art'
+  tot_art: 'tot_art',
+  can_ate: 'can_ate'
 } as const
 
 export type PedidoDetalleScalarFieldEnum = (typeof PedidoDetalleScalarFieldEnum)[keyof typeof PedidoDetalleScalarFieldEnum]
+
+
+export const GuiaRemisionCabeceraScalarFieldEnum = {
+  id_remision: 'id_remision',
+  almdes: 'almdes',
+  almori: 'almori',
+  ano: 'ano',
+  bultos: 'bultos',
+  codalm: 'codalm',
+  codmon: 'codmon',
+  codmov: 'codmov',
+  dirent: 'dirent',
+  fchdoc: 'fchdoc',
+  fchtras: 'fchtras',
+  fch_ing: 'fch_ing',
+  flg_incigv: 'flg_incigv',
+  flg_anu: 'flg_anu',
+  for_pago: 'for_pago',
+  glosa: 'glosa',
+  id_aux: 'id_aux',
+  id_chof: 'id_chof',
+  id_ped: 'id_ped',
+  id_cpc: 'id_cpc',
+  id_transp: 'id_transp',
+  id_vehi: 'id_vehi',
+  id_ven: 'id_ven',
+  mes: 'mes',
+  nomaux: 'nomaux',
+  numero: 'numero',
+  peso: 'peso',
+  porigv: 'porigv',
+  ptopartida: 'ptopartida',
+  rucaux: 'rucaux',
+  serie: 'serie',
+  tpocmb: 'tpocmb',
+  ubigeo1: 'ubigeo1',
+  ubigeo2: 'ubigeo2',
+  usuario: 'usuario',
+  usuario_anu: 'usuario_anu',
+  estado: 'estado',
+  fch_anu: 'fch_anu'
+} as const
+
+export type GuiaRemisionCabeceraScalarFieldEnum = (typeof GuiaRemisionCabeceraScalarFieldEnum)[keyof typeof GuiaRemisionCabeceraScalarFieldEnum]
+
+
+export const GuiaRemisionDetalleScalarFieldEnum = {
+  id_remision: 'id_remision',
+  can_art: 'can_art',
+  cod_art: 'cod_art',
+  des_ar1: 'des_ar1',
+  des_ar2: 'des_ar2',
+  des_ar3: 'des_ar3',
+  des_ar4: 'des_ar4',
+  des_ar5: 'des_ar5',
+  des_ar6: 'des_ar6',
+  des_ar7: 'des_ar7',
+  des_ar8: 'des_ar8',
+  des_art: 'des_art',
+  factor: 'factor',
+  id_art: 'id_art',
+  id_cpc: 'id_cpc',
+  id_ped: 'id_ped',
+  id_umedr: 'id_umedr',
+  igv_art: 'igv_art',
+  itmcpc: 'itmcpc',
+  itmped: 'itmped',
+  nrocpc: 'nrocpc',
+  nroitm: 'nroitm',
+  nroped: 'nroped',
+  operador: 'operador',
+  pdes_art: 'pdes_art',
+  pre_art: 'pre_art',
+  pu_conigv: 'pu_conigv',
+  pu_des: 'pu_des',
+  pu_sinigv: 'pu_sinigv',
+  subtot_art: 'subtot_art',
+  tot_art: 'tot_art'
+} as const
+
+export type GuiaRemisionDetalleScalarFieldEnum = (typeof GuiaRemisionDetalleScalarFieldEnum)[keyof typeof GuiaRemisionDetalleScalarFieldEnum]
+
+
+export const FacturacionCabeceraScalarFieldEnum = {
+  id_cpc: 'id_cpc',
+  ano: 'ano',
+  codalm: 'codalm',
+  codmon: 'codmon',
+  diavto: 'diavto',
+  diraux: 'diraux',
+  fchcob: 'fchcob',
+  fchdoc: 'fchdoc',
+  fchvto: 'fchvto',
+  fch_ing: 'fch_ing',
+  fch_anu: 'fch_anu',
+  flg_incigv: 'flg_incigv',
+  flg_anu: 'flg_anu',
+  for_pago: 'for_pago',
+  id_aux: 'id_aux',
+  id_ped: 'id_ped',
+  id_tipdoc: 'id_tipdoc',
+  id_ven: 'id_ven',
+  impadel: 'impadel',
+  impigv: 'impigv',
+  impsbt: 'impsbt',
+  imptot: 'imptot',
+  monto_a: 'monto_a',
+  monto_i: 'monto_i',
+  sdodoc: 'sdodoc',
+  nomaux: 'nomaux',
+  nro_ped: 'nro_ped',
+  nromes: 'nromes',
+  num_doc: 'num_doc',
+  ocompra: 'ocompra',
+  porigv: 'porigv',
+  rucaux: 'rucaux',
+  ser_doc: 'ser_doc',
+  tipo: 'tipo',
+  tpocmb: 'tpocmb',
+  usuario: 'usuario',
+  usuario_anu: 'usuario_anu',
+  estado: 'estado',
+  id_remision: 'id_remision'
+} as const
+
+export type FacturacionCabeceraScalarFieldEnum = (typeof FacturacionCabeceraScalarFieldEnum)[keyof typeof FacturacionCabeceraScalarFieldEnum]
+
+
+export const FacturacionDetalleScalarFieldEnum = {
+  id_cpc: 'id_cpc',
+  nroitm: 'nroitm',
+  id_art: 'id_art',
+  cod_art: 'cod_art',
+  des_art: 'des_art',
+  id_umedr: 'id_umedr',
+  factor: 'factor',
+  can_art: 'can_art',
+  pre_art: 'pre_art',
+  pdes_art: 'pdes_art',
+  pu_des: 'pu_des',
+  tot_art: 'tot_art',
+  des_ar1: 'des_ar1',
+  des_ar2: 'des_ar2',
+  des_ar3: 'des_ar3',
+  des_ar4: 'des_ar4',
+  des_ar5: 'des_ar5',
+  des_ar6: 'des_ar6',
+  des_ar7: 'des_ar7',
+  des_ar8: 'des_ar8',
+  subtot_art: 'subtot_art',
+  igv_art: 'igv_art',
+  pu_conigv: 'pu_conigv',
+  pu_sinigv: 'pu_sinigv',
+  operador: 'operador',
+  id_ped: 'id_ped',
+  itmped: 'itmped',
+  nroped: 'nroped',
+  id_alm: 'id_alm',
+  itmalm: 'itmalm',
+  nroalm: 'nroalm'
+} as const
+
+export type FacturacionDetalleScalarFieldEnum = (typeof FacturacionDetalleScalarFieldEnum)[keyof typeof FacturacionDetalleScalarFieldEnum]
 
 
 export const SortOrder = {

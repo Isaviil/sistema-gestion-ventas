@@ -1,11 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../app/generated/prisma"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "./erd.svg"
 }
 
 datasource db {
@@ -13,46 +13,45 @@ datasource db {
 }
 
 model User {
-  id_usu        Int       @id @default(autoincrement())
-  username      String    @unique
-  password      String
-  nombres       String
-  apellidos     String
-  email         String?   @unique
-  rol           Role      @default(USER)
-  flg_activo    Boolean   @default(true)
-  fec_reg       DateTime  @default(now())
-  fec_ult_login DateTime?
-
-  pedidos          PedidoCabecera[] @relation("PedidoUsuario")
-  pedidosAnulados  PedidoCabecera[] @relation("PedidoAnuladoPor")
-  pedidosAprobados PedidoCabecera[] @relation("PedidoAprobadoPor")
-  pedidosCerrados  PedidoCabecera[] @relation("PedidoCerradoPor")
-}
-
-enum Role {
-  ADMIN
-  USER
+  id_usu                Int                    @id @default(autoincrement())
+  username              String                 @unique
+  password              String
+  rol                   Role                   @default(USER)
+  flg_activo            Boolean                @default(true)
+  fec_reg               DateTime               @default(now())
+  apellidos             String
+  email                 String?                @unique
+  fec_ult_login         DateTime?
+  nombres               String
+  facturasAnuladas      FacturacionCabecera[]  @relation("FacturacionAnuladoPor")
+  facturasRegistradas   FacturacionCabecera[]  @relation("FacturacionUsuario")
+  remisionesAnuladas    GuiaRemisionCabecera[] @relation("GuiaRemisionAnuladoPor")
+  remisionesRegistradas GuiaRemisionCabecera[] @relation("GuiaRemisionUsuario")
+  pedidosAnulados       PedidoCabecera[]       @relation("PedidoAnuladoPor")
+  pedidosAprobados      PedidoCabecera[]       @relation("PedidoAprobadoPor")
+  pedidosCerrados       PedidoCabecera[]       @relation("PedidoCerradoPor")
+  pedidos               PedidoCabecera[]       @relation("PedidoUsuario")
 }
 
 model PaymentMethod {
-  for_pago   Int              @id @default(autoincrement())
+  for_pago   Int                    @id @default(autoincrement())
   forma_pago String
-  codigo     String?          @unique
-  dias       Int              @default(0)
-  flg_activo Boolean          @default(true)
+  codigo     String?                @unique
+  dias       Int                    @default(0)
+  flg_activo Boolean                @default(true)
   customers  Customer[]
+  facturas   FacturacionCabecera[]
+  remisiones GuiaRemisionCabecera[]
   pedidos    PedidoCabecera[]
 }
 
 model Customer {
-  id_aux       Int              @id @default(autoincrement())
+  id_aux       Int                    @id @default(autoincrement())
   des_aux      String
   tipo_pers    Int?
   tdoc_ide     String?
-  ruc_aux      String?          @unique
+  ruc_aux      String?                @unique
   dir_legal    String?
-  referencia   String?
   telefono     String?
   email        String?
   ubigeo       String
@@ -60,32 +59,37 @@ model Customer {
   provincia    String
   distrito     String
   id_ven       Int
-  vendedor     Vendor           @relation(fields: [id_ven], references: [id_aux])
   for_pago     Int?
-  metodoPago   PaymentMethod?   @relation(fields: [for_pago], references: [for_pago])
-  pedidos      PedidoCabecera[]
   id_tpoclie   Int
-  fec_reg      DateTime         @default(now())
-  flg_activo   Boolean          @default(true)
+  fec_reg      DateTime               @default(now())
+  flg_activo   Boolean                @default(true)
+  referencia   String?
+  metodoPago   PaymentMethod?         @relation(fields: [for_pago], references: [for_pago])
+  vendedor     Vendor                 @relation(fields: [id_ven], references: [id_aux])
+  facturas     FacturacionCabecera[]
+  remisiones   GuiaRemisionCabecera[]
+  pedidos      PedidoCabecera[]
 }
 
 model Vendor {
-  id_aux    Int              @id @default(autoincrement())
-  cod_ven   String           @unique
-  nom_aux   String
-  ape_aux   String
-  ape_mat   String
-  tdoc_ide  String
-  ndoc_ide  String
-  cel_job   String
-  email_job String
-  fec_reg   DateTime         @default(now())
-  flg_baja  Boolean          @default(false)
-  flg_tda   Boolean          @default(false)
-  basico    Decimal          @default(0)
-  id_area   Int
-  pedidos   PedidoCabecera[]
-  customers Customer[]
+  id_aux     Int                    @id @default(autoincrement())
+  cod_ven    String                 @unique
+  nom_aux    String
+  ape_aux    String
+  ape_mat    String
+  tdoc_ide   String
+  ndoc_ide   String
+  cel_job    String
+  email_job  String
+  fec_reg    DateTime               @default(now())
+  flg_baja   Boolean                @default(false)
+  flg_tda    Boolean                @default(false)
+  basico     Decimal                @default(0)
+  id_area    Int
+  customers  Customer[]
+  facturas   FacturacionCabecera[]
+  remisiones GuiaRemisionCabecera[]
+  pedidos    PedidoCabecera[]
 }
 
 model Ubigeo {
@@ -97,35 +101,33 @@ model Ubigeo {
 }
 
 model Product {
-  id_art   Int     @id @default(autoincrement())
-  cod_art  String  @unique
-  des_art  String
-  des_art2 String?
-
-  stkact Int      @default(0)
-  peso   Decimal? @default(0)
-
-  pre_art Decimal  @default(0)
-  pv2     Decimal? @default(0)
-  pv3     Decimal? @default(0)
-  pv4     Decimal? @default(0)
-
-  id_umedr Int?
-  id_fam   Int?
-  id_corte Int?
-  id_mar   Int?
-  id_color Int?
-  id_talla Int?
-
-  flg_activo Boolean         @default(true)
+  id_art     Int                   @id @default(autoincrement())
+  cod_art    String                @unique
+  des_art    String
+  stkact     Int                   @default(0)
+  pre_art    Decimal               @default(0)
+  pv2        Decimal?              @default(0)
+  pv3        Decimal?              @default(0)
+  pv4        Decimal?              @default(0)
+  id_umedr   Int?
+  flg_activo Boolean               @default(true)
+  des_art2   String?
+  id_color   Int?
+  id_corte   Int?
+  id_fam     Int?
+  id_mar     Int?
+  id_talla   Int?
+  peso       Decimal?              @default(0)
+  facturas   FacturacionDetalle[]
+  remisiones GuiaRemisionDetalle[]
   detalles   PedidoDetalle[]
 }
 
 model Currency {
-  codmon     String  @id
+  codmon     String           @id
   descrip    String
-  flg_activo Boolean @default(true)
-  pedidos PedidoCabecera[]
+  flg_activo Boolean          @default(true)
+  pedidos    PedidoCabecera[]
 }
 
 model ExchangeRate {
@@ -137,7 +139,6 @@ model ExchangeRate {
 
 model DocumentType {
   id_tipdoc Int     @id @default(autoincrement())
-  alias_alm String?
   flg_sunat Boolean @default(false)
   codsunat  String?
   dcor_tdoc String
@@ -145,16 +146,18 @@ model DocumentType {
   flg_vta   Boolean @default(false)
   flg_alm   Boolean @default(false)
   flg_provi Boolean @default(false)
+  alias_alm String?
 }
 
 model UnitOfMeasure {
-  id_umed    Int     @id
+  id_umed    Int                   @id
   des_umed   String
   alias_umed String
   codigo     String
-  reservado  Boolean @default(false)
-
-  detalles PedidoDetalle[]
+  reservado  Boolean               @default(false)
+  facturas   FacturacionDetalle[]
+  remisiones GuiaRemisionDetalle[]
+  detalles   PedidoDetalle[]
 }
 
 model ProductFamily {
@@ -192,7 +195,6 @@ model Vehicle {
 }
 
 model Almacen {
-  codalm    Int      @id @default(autoincrement())
   aliasalm  String
   desalm    String
   diralm    String?
@@ -206,6 +208,7 @@ model Almacen {
   flg_stock Boolean  @default(false)
   flg_acu   Boolean  @default(false)
   usuario   Int
+  codalm    Int      @id @default(autoincrement())
   fch_reg   DateTime @default(now())
   flg_ok    Boolean  @default(true)
   reservado Boolean  @default(false)
@@ -219,101 +222,280 @@ model Chofer {
 }
 
 model PedidoCabecera {
-  id_ped Int    @id @default(autoincrement())
-  nrodoc String @unique
-
-  ano     String
-  mes     String
-  fchdoc  DateTime
-  fch_ing DateTime @default(now())
-  fch_ent DateTime
-
-  id_clie  Int
-  id_ven   Int
-  for_pago Int
-  usuario  Int
-
-  cliente    Customer      @relation(fields: [id_clie], references: [id_aux], onDelete: Restrict)
-  vendedor   Vendor        @relation(fields: [id_ven], references: [id_aux], onDelete: Restrict)
-  metodoPago PaymentMethod @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
-  usuarioReg User          @relation("PedidoUsuario", fields: [usuario], references: [id_usu], onDelete: Restrict)
-
-  id_cot     Int?
-  cotizacion String?
-
-  codmon String
-  moneda Currency @relation(fields: [codmon], references: [codmon])
-  tpocmb Decimal @db.Decimal(10, 4)
-
-  nomaux  String
-  diraux  String
-  rucaux  String
-  ocompra String?
-
-  flg_incigv Boolean @default(false)
-  porigv     Decimal @db.Decimal(5, 2)
-  impbto     Decimal @db.Decimal(12, 2)
-  impigv     Decimal @db.Decimal(12, 2)
-  imptot     Decimal @db.Decimal(12, 2)
-
-  glosa         String?
-  factura       String  @default("")
-  guia_remision String?
-
-  flg_anu   Boolean @default(false)
-  flg_aprob Boolean @default(false)
-
-  fch_anu   DateTime?
-  fch_aprob DateTime?
-  fch_ate   DateTime?
-
-  usuarioAnula   User? @relation("PedidoAnuladoPor", fields: [usuario_anu], references: [id_usu], onDelete: Restrict)
-  usuarioAprueba User? @relation("PedidoAprobadoPor", fields: [usuario_aprob], references: [id_usu], onDelete: Restrict)
-  usuarioCierra  User? @relation("PedidoCerradoPor", fields: [usuario_cie], references: [id_usu], onDelete: Restrict)
-
-  usuario_anu   Int?
-  usuario_aprob Int?
-  usuario_cie   Int?
-
-  detalles PedidoDetalle[]
-  estado   EstadoPedido    @default(INGRESADO)
+  id_ped         Int                    @id @default(autoincrement())
+  nrodoc         String                 @unique
+  ano            String
+  mes            String
+  fchdoc         DateTime
+  fch_ing        DateTime               @default(now())
+  fch_ent        DateTime
+  id_clie        Int
+  id_ven         Int
+  for_pago       Int
+  usuario        Int
+  id_cot         Int?
+  cotizacion     String?
+  codmon         String
+  tpocmb         Decimal                @db.Decimal(10, 4)
+  nomaux         String
+  diraux         String
+  rucaux         String
+  ocompra        String?
+  flg_incigv     Boolean                @default(false)
+  porigv         Decimal                @db.Decimal(5, 2)
+  impbto         Decimal                @db.Decimal(12, 2)
+  impigv         Decimal                @db.Decimal(12, 2)
+  imptot         Decimal                @db.Decimal(12, 2)
+  glosa          String?
+  factura        String?
+  guia_remision  String?
+  flg_anu        Boolean                @default(false)
+  flg_aprob      Boolean                @default(false)
+  fch_anu        DateTime?
+  fch_aprob      DateTime?
+  fch_ate        DateTime?
+  usuario_anu    Int?
+  usuario_aprob  Int?
+  usuario_cie    Int?
+  estado         EstadoPedido           @default(INGRESADO)
+  facturas       FacturacionCabecera[]
+  remisiones     GuiaRemisionCabecera[]
+  moneda         Currency               @relation(fields: [codmon], references: [codmon])
+  metodoPago     PaymentMethod          @relation(fields: [for_pago], references: [for_pago])
+  cliente        Customer               @relation(fields: [id_clie], references: [id_aux])
+  vendedor       Vendor                 @relation(fields: [id_ven], references: [id_aux])
+  usuarioAnula   User?                  @relation("PedidoAnuladoPor", fields: [usuario_anu], references: [id_usu], onDelete: Restrict)
+  usuarioAprueba User?                  @relation("PedidoAprobadoPor", fields: [usuario_aprob], references: [id_usu], onDelete: Restrict)
+  usuarioCierra  User?                  @relation("PedidoCerradoPor", fields: [usuario_cie], references: [id_usu], onDelete: Restrict)
+  usuarioReg     User                   @relation("PedidoUsuario", fields: [usuario], references: [id_usu])
+  detalles       PedidoDetalle[]
 }
 
 model PedidoDetalle {
-  id_ped   Int
-  id_art   Int
-  id_umedr Int
-
-  pedido       PedidoCabecera @relation(fields: [id_ped], references: [id_ped], onDelete: Restrict)
-  unidadMedida UnitOfMeasure  @relation(fields: [id_umedr], references: [id_umed], onDelete: Restrict)
-
-  nroitm  Int
-  cod_art String
-  des_art String
-  des_ar1 String?
-  des_ar2 String?
-  des_ar3 String?
-  des_ar4 String?
-  des_ar5 String?
-  des_ar6 String?
-  des_ar7 String?
-  des_ar8 String?
-
-  can_art    Decimal @db.Decimal(12, 4)
-  factor     Decimal @db.Decimal(12, 4)
-  operador   String
-  alias_umed String
-  pre_art    Decimal @db.Decimal(12, 4)
-  pdes_art   Decimal @db.Decimal(5, 2)
-  igv_art    Decimal @db.Decimal(5, 2)
-  pu_conigv  Decimal @db.Decimal(12, 4)
-  pu_sinigv  Decimal @db.Decimal(12, 4)
-  pu_des     Decimal @db.Decimal(12, 4)
-  subtot_art Decimal @db.Decimal(12, 2)
-  tot_art    Decimal @db.Decimal(12, 2)
-  articulo   Product @relation(fields: [id_art], references: [id_art], onDelete: Restrict)
+  id_ped       Int
+  id_art       Int
+  id_umedr     Int
+  nroitm       Int
+  cod_art      String
+  des_art      String
+  des_ar1      String?
+  des_ar2      String?
+  des_ar3      String?
+  des_ar4      String?
+  des_ar5      String?
+  des_ar6      String?
+  des_ar7      String?
+  des_ar8      String?
+  can_art      Int
+  factor       Decimal               @db.Decimal(12, 4)
+  operador     String
+  alias_umed   String
+  pre_art      Decimal               @db.Decimal(12, 4)
+  pdes_art     Decimal               @db.Decimal(5, 2)
+  igv_art      Decimal               @db.Decimal(5, 2)
+  pu_conigv    Decimal               @db.Decimal(12, 4)
+  pu_sinigv    Decimal               @db.Decimal(12, 4)
+  pu_des       Decimal               @db.Decimal(12, 4)
+  subtot_art   Decimal               @db.Decimal(12, 2)
+  tot_art      Decimal               @db.Decimal(12, 2)
+  can_ate      Int                   @default(0)
+  facturas     FacturacionDetalle[]
+  remisiones   GuiaRemisionDetalle[]
+  articulo     Product               @relation(fields: [id_art], references: [id_art])
+  pedido       PedidoCabecera        @relation(fields: [id_ped], references: [id_ped])
+  unidadMedida UnitOfMeasure         @relation(fields: [id_umedr], references: [id_umed])
 
   @@id([id_ped, nroitm])
+}
+
+model GuiaRemisionCabecera {
+  id_remision  Int                   @id @default(autoincrement())
+  almdes       String?
+  almori       String?
+  ano          String
+  bultos       Int
+  codalm       String
+  codmon       String
+  codmov       String
+  dirent       String?
+  fchdoc       DateTime
+  fchtras      DateTime
+  fch_ing      DateTime              @default(now())
+  flg_incigv   Boolean
+  flg_anu      Boolean               @default(false)
+  for_pago     Int?
+  glosa        String?
+  id_aux       Int?
+  id_chof      Int?
+  id_ped       Int?
+  id_cpc       Int?
+  id_transp    Int?
+  id_vehi      Int?
+  id_ven       Int?
+  mes          String
+  nomaux       String?
+  numero       String
+  peso         Decimal               @db.Decimal(12, 2)
+  porigv       Decimal               @db.Decimal(5, 2)
+  ptopartida   String
+  rucaux       String?
+  serie        String
+  tpocmb       Decimal               @db.Decimal(10, 4)
+  ubigeo1      String
+  ubigeo2      String
+  usuario      Int?
+  usuario_anu  Int?
+  estado       String                @default("INGRESADO")
+  fch_anu      DateTime?
+  factura      FacturacionCabecera?  @relation("FacturaRemisionOrigen")
+  metodoPago   PaymentMethod?        @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
+  cliente      Customer?             @relation(fields: [id_aux], references: [id_aux], onDelete: Restrict)
+  facturas     FacturacionCabecera?  @relation("RemisionFacturaOrigen", fields: [id_cpc], references: [id_cpc], onDelete: Restrict)
+  pedido       PedidoCabecera?       @relation(fields: [id_ped], references: [id_ped], onDelete: Restrict)
+  vendedor     Vendor?               @relation(fields: [id_ven], references: [id_aux], onDelete: Restrict)
+  usuarioAnula User?                 @relation("GuiaRemisionAnuladoPor", fields: [usuario_anu], references: [id_usu], onDelete: Restrict)
+  usuarioReg   User?                 @relation("GuiaRemisionUsuario", fields: [usuario], references: [id_usu], onDelete: Restrict)
+  detalles     GuiaRemisionDetalle[]
+}
+
+model GuiaRemisionDetalle {
+  id_remision   Int
+  can_art       Int
+  cod_art       String
+  des_ar1       String?
+  des_ar2       String?
+  des_ar3       String?
+  des_ar4       String?
+  des_ar5       String?
+  des_ar6       String?
+  des_ar7       String?
+  des_ar8       String?
+  des_art       String
+  factor        Decimal              @db.Decimal(12, 4)
+  id_art        Int
+  id_cpc        Int?
+  id_ped        Int?
+  id_umedr      Int
+  igv_art       Decimal              @db.Decimal(5, 2)
+  itmcpc        Int?
+  itmped        Int?
+  nrocpc        String?
+  nroitm        Int
+  nroped        String?
+  operador      String
+  pdes_art      Decimal              @db.Decimal(5, 2)
+  pre_art       Decimal              @db.Decimal(12, 4)
+  pu_conigv     Decimal              @db.Decimal(12, 4)
+  pu_des        Decimal              @db.Decimal(12, 4)
+  pu_sinigv     Decimal              @db.Decimal(12, 4)
+  subtot_art    Decimal              @db.Decimal(12, 2)
+  tot_art       Decimal              @db.Decimal(12, 2)
+  facturas      FacturacionDetalle[] @relation("FacturaDetalleRemisionOrigen")
+  articulo      Product              @relation(fields: [id_art], references: [id_art])
+  pedidoDetalle PedidoDetalle?       @relation(fields: [id_ped, itmped], references: [id_ped, nroitm], onDelete: Restrict)
+  remision      GuiaRemisionCabecera @relation(fields: [id_remision], references: [id_remision])
+  unidadMedida  UnitOfMeasure        @relation(fields: [id_umedr], references: [id_umed])
+
+  @@id([id_remision, nroitm])
+}
+
+model FacturacionCabecera {
+  id_cpc       Int                    @id @default(autoincrement())
+  ano          String
+  codalm       String
+  codmon       String
+  diavto       Int
+  diraux       String
+  fchcob       DateTime?
+  fchdoc       DateTime
+  fchvto       DateTime
+  fch_ing      DateTime               @default(now())
+  fch_anu      DateTime?
+  flg_incigv   Boolean                @default(false)
+  flg_anu      Boolean                @default(false)
+  for_pago     Int?
+  id_aux       Int?
+  id_ped       Int?
+  id_tipdoc    Int
+  id_ven       Int?
+  impadel      Decimal                @db.Decimal(12, 2)
+  impigv       Decimal                @db.Decimal(12, 2)
+  impsbt       Decimal                @db.Decimal(12, 2)
+  imptot       Decimal                @db.Decimal(12, 2)
+  monto_a      Decimal                @db.Decimal(12, 2)
+  monto_i      Decimal                @db.Decimal(12, 2)
+  sdodoc       Decimal                @db.Decimal(12, 2)
+  nomaux       String
+  nro_ped      String?
+  nromes       String
+  num_doc      String?
+  ocompra      String?
+  porigv       Decimal                @db.Decimal(5, 2)
+  rucaux       String
+  ser_doc      String
+  tipo         String?
+  tpocmb       Decimal                @db.Decimal(10, 4)
+  usuario      Int?
+  usuario_anu  Int?
+  estado       String                 @default("INGRESADO")
+  id_remision  Int?                   @unique
+  metodoPago   PaymentMethod?         @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
+  cliente      Customer?              @relation(fields: [id_aux], references: [id_aux], onDelete: Restrict)
+  pedido       PedidoCabecera?        @relation(fields: [id_ped], references: [id_ped], onDelete: Restrict)
+  remision     GuiaRemisionCabecera?  @relation("FacturaRemisionOrigen", fields: [id_remision], references: [id_remision], onDelete: Restrict)
+  vendedor     Vendor?                @relation(fields: [id_ven], references: [id_aux], onDelete: Restrict)
+  usuarioAnula User?                  @relation("FacturacionAnuladoPor", fields: [usuario_anu], references: [id_usu], onDelete: Restrict)
+  usuarioReg   User?                  @relation("FacturacionUsuario", fields: [usuario], references: [id_usu], onDelete: Restrict)
+  detalles     FacturacionDetalle[]
+  remisiones   GuiaRemisionCabecera[] @relation("RemisionFacturaOrigen")
+}
+
+model FacturacionDetalle {
+  id_cpc          Int
+  nroitm          Int
+  id_art          Int
+  cod_art         String
+  des_art         String
+  id_umedr        Int
+  factor          Decimal              @db.Decimal(12, 4)
+  can_art         Int
+  pre_art         Decimal              @db.Decimal(12, 4)
+  pdes_art        Decimal              @db.Decimal(5, 2)
+  pu_des          Decimal              @db.Decimal(12, 4)
+  tot_art         Decimal              @db.Decimal(12, 2)
+  des_ar1         String?
+  des_ar2         String?
+  des_ar3         String?
+  des_ar4         String?
+  des_ar5         String?
+  des_ar6         String?
+  des_ar7         String?
+  des_ar8         String?
+  subtot_art      Decimal              @db.Decimal(12, 2)
+  igv_art         Decimal              @db.Decimal(5, 2)
+  pu_conigv       Decimal              @db.Decimal(12, 4)
+  pu_sinigv       Decimal              @db.Decimal(12, 4)
+  operador        String
+  id_ped          Int?
+  itmped          Int?
+  nroped          String?
+  id_alm          Int?
+  itmalm          Int?
+  nroalm          String?
+  remisionDetalle GuiaRemisionDetalle? @relation("FacturaDetalleRemisionOrigen", fields: [id_alm, itmalm], references: [id_remision, nroitm], onDelete: Restrict)
+  articulo        Product              @relation(fields: [id_art], references: [id_art])
+  factura         FacturacionCabecera  @relation(fields: [id_cpc], references: [id_cpc])
+  pedidoDetalle   PedidoDetalle?       @relation(fields: [id_ped, itmped], references: [id_ped, nroitm], onDelete: Restrict)
+  unidadMedida    UnitOfMeasure        @relation(fields: [id_umedr], references: [id_umed])
+
+  @@id([id_cpc, nroitm])
+  @@index([id_ped, itmped])
+  @@index([id_alm, itmalm])
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 enum EstadoPedido {

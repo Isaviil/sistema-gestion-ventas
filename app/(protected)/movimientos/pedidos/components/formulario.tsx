@@ -55,6 +55,7 @@ import { useUpdateEstadoPedido } from "../api/[id]/update-estado-pedido";
 import { useSession } from "next-auth/react";
 import DialogEditDetalle from "@/app/components/ui/dialog-edit-detalle";
 import { columnsDetalles } from "../components/columns/columns-detalles";
+import { useProducts } from "@/app/(protected)/maestros/articulos/api/list-articulos";
 
 const PedidoValidator = Joi.object({
   // Cabecera
@@ -65,7 +66,9 @@ const PedidoValidator = Joi.object({
   fchdoc: Joi.string().required(),
   flg_incigv: Joi.boolean().required(),
   for_pago: Joi.number().required(),
-  glosa: Joi.string().allow(null).required(),
+  factura: Joi.string().optional().allow("", null),
+  guia_remision: Joi.string().optional().allow("", null),
+  glosa: Joi.string().allow(null, "").optional(),
   id_clie: Joi.number().required(),
   id_cot: Joi.number().allow(null).required(),
   id_ven: Joi.number().required(),
@@ -75,7 +78,7 @@ const PedidoValidator = Joi.object({
   mes: Joi.string().required(),
   nomaux: Joi.string().required(),
   nrodoc: Joi.string().optional().allow("", null),
-  ocompra: Joi.string().allow(null).required(),
+  ocompra: Joi.string().allow(null, "").optional(),
   porigv: Joi.number().required(),
   rucaux: Joi.string().required(),
   tpocmb: Joi.number().required(),
@@ -106,6 +109,8 @@ const defaultValues = (): IPedidoCabeceraFormState => ({
   rucaux: "",
   tpocmb: 0,
   usuario: null,
+  factura: "",
+  guia_remision: "",
 });
 
 interface FormularioPedidoProps {
@@ -123,6 +128,7 @@ export default function FormularioPedido({
   id_ped,
   pedido,
 }: FormularioPedidoProps) {
+  const router = useRouter();
   const { data: session } = useSession();
   const searchParams = useSearchParams();
 
@@ -147,11 +153,6 @@ export default function FormularioPedido({
     IPedidoDetalleFormState[]
   >([]);
 
-  // TODO EL STOCK NO SE ACTUALIZA -VERIFICAR EL HANDLER Y SI DEBERIAS MOVER EL ENDPOOINT DE ARTICULOS AQUI PARA COMPARAR EN EL HANDLER-
-  // TODO AL ANULAR EL PEDIDO, EL STOCK DE ARTICULO SE REESTABLECE
-  // TODO FALTAN OCULTAR LOS BTNS ANULAR, APROBAR Y SU LÓGICA
-  // TODO FALTA EL BANNER QUE EXPLIQUE EL STATUS DEL PEDIDO
-
   /*
    *=========================
    * QUERIES
@@ -165,12 +166,15 @@ export default function FormularioPedido({
   const { data: dataMonedas = [], isLoading: isLoadingMonedas } = useMoneda();
   const { data: dataTipoCambio = [], isLoading: isLoadingTipoCambio } =
     useTipoCambio();
+  const { data: dataArticulos = [], isLoading: isLoadingArticulos } =
+    useProducts();
 
   const isReady =
     !isLoadingVendedor &&
     !isLoadingFormaDePago &&
     !isLoadingMonedas &&
-    !isLoadingTipoCambio;
+    !isLoadingTipoCambio &&
+    !isLoadingArticulos;
   /*
    *=========================
    * MUTACIONES
@@ -220,7 +224,16 @@ export default function FormularioPedido({
     name: "porigv",
   });
 
-  const router = useRouter();
+  const factura = useWatch({
+    control,
+    name: "factura",
+  });
+
+  const guia_remision = useWatch({
+    control,
+    name: "guia_remision",
+  });
+
   const { agregarProducto } = useAgregarProducto(porigv);
 
   /*
@@ -235,9 +248,12 @@ export default function FormularioPedido({
   const totales = useMemo(() => {
     return detalles.reduce(
       (acc, item) => {
-        acc.subtotal += item.subtot_art;
-        acc.total += item.tot_art;
-        acc.igv += item.tot_art - item.subtot_art;
+        const subtot = Number(item.subtot_art) || 0;
+        const tot = Number(item.tot_art) || 0;
+
+        acc.subtotal += subtot;
+        acc.total += tot;
+        acc.igv += tot - subtot;
 
         return acc;
       },
@@ -245,11 +261,45 @@ export default function FormularioPedido({
     );
   }, [detalles]);
 
-  const operacionesConIngresado =
-    pedido?.cabecera.estado === "INGRESADO" && !isAdd; // Anular y aprobar
+  const isAdmin = session?.user?.rol === "ADMIN";
+
+  const showAnular =
+    isAdmin &&
+    pedido?.cabecera.estado === "INGRESADO" &&
+    !isAdd &&
+    !isEnableEdit;
+  const showAprobar =
+    pedido?.cabecera.estado === "INGRESADO" && !isAdd && !isEnableEdit; // Anular y aprobar
   const showSubmit = isEnableEdit;
   const showEdit =
     pedido?.cabecera.estado === "INGRESADO" && !isAdd && !isEnableEdit;
+
+  const articulosStockActual = useMemo(
+    () =>
+      dataArticulos.map((articulo) => {
+        const cantidadEnPedido = detalles
+          .filter((item) => item.id_art === articulo.id_art)
+          .reduce((total, item) => total + item.can_art, 0);
+
+        if (isAdd) {
+          return {
+            ...articulo,
+            stkact: articulo.stkact - cantidadEnPedido,
+          };
+        }
+
+        const cantidadOriginal =
+          pedido?.detalle
+            .filter((item) => item.id_art === articulo.id_art)
+            .reduce((total, item) => total + item.can_art, 0) ?? 0;
+
+        return {
+          ...articulo,
+          stkact: articulo.stkact - (cantidadEnPedido - cantidadOriginal),
+        };
+      }),
+    [dataArticulos, detalles, isAdd, pedido],
+  );
 
   /*
    *=========================
@@ -286,7 +336,7 @@ export default function FormularioPedido({
     setDetalles((prev) =>
       prev.map((detalle) =>
         selectedDetalle.some(
-          (seleccionado) => seleccionado.cod_art === detalle.cod_art,
+          (seleccionado) => seleccionado.nroitm === detalle.nroitm,
         )
           ? { ...detalle, ...pedido }
           : detalle,
@@ -342,7 +392,6 @@ export default function FormularioPedido({
    */
 
   useEffect(() => {
-    if (!isAdd) return;
     if (isLoadingTipoCambio) return;
     if (!tipoCambioHoy) return;
 
@@ -440,7 +489,8 @@ export default function FormularioPedido({
         open={openArticulos}
         setOpen={setOpenArticulos}
         onConfirm={handleAgregarArticulo}
-        detalles={detalles}
+        dataArticulos={dataArticulos}
+        stockDisponible={articulosStockActual}
       />
 
       <DialogAddClientes
@@ -464,8 +514,8 @@ export default function FormularioPedido({
       <FormProvider {...methods}>
         <Formulario
           title={isAdd ? "Nuevo Pedido" : "Consultar Pedido"}
-          showAnular={operacionesConIngresado}
-          showAprobar={operacionesConIngresado}
+          showAnular={showAnular}
+          showAprobar={showAprobar}
           showEdit={showEdit}
           showSubmit={showSubmit}
           onSave={handleSubmit(onSubmit, onError)}
@@ -475,7 +525,7 @@ export default function FormularioPedido({
           onAprobar={() => handleUpdateEstado("aprobar")}
           onAnular={() => handleUpdateEstado("anular")}
           {...totales}
-          pedido={pedido?.cabecera || undefined}
+          data={pedido?.cabecera || undefined}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1.5 w-full">
             {/* Primera fila: Pedido y Fecha */}
@@ -499,7 +549,7 @@ export default function FormularioPedido({
             {/* Segunda fila: RUC Cliente, Razón social, Cotizaciones y espacio vacío */}
             <div className="flex flex-col">
               <Label htmlFor="rucaux">
-                RUC Cliente <span className="text-red-500">*</span>
+                RUC/DNI <span className="text-red-500">*</span>
               </Label>
               <div className="relative">
                 <Input
@@ -536,18 +586,33 @@ export default function FormularioPedido({
               />
             </div>
 
-            <div className="flex flex-col justify-end">
-              <Button
-                type="button"
-                variant="secondary"
-                className="w-full"
-                disabled
-              >
-                Cotizaciones
-              </Button>
-            </div>
+            {Boolean(factura?.trim()) && (
+              <div className="flex flex-col w-full sm:w-44 lg:w-48 shrink-0">
+                <Label htmlFor="factura">Facturas</Label>
+                <Input
+                  id="factura"
+                  readOnly
+                  aria-readonly="true"
+                  title={factura ?? ""}
+                  className="overflow-x-auto bg-gray-50 dark:bg-gray-900/60 cursor-text select-all"
+                  {...register("factura")}
+                />
+              </div>
+            )}
 
-            <div className="hidden lg:block" />
+            {Boolean(guia_remision?.trim()) && (
+              <div className="flex flex-col w-full sm:w-44 lg:w-48 shrink-0">
+                <Label htmlFor="guia_remision">Guías de remisión</Label>
+                <Input
+                  id="guia_remision"
+                  readOnly
+                  aria-readonly="true"
+                  title={guia_remision ?? ""}
+                  className="overflow-x-auto bg-gray-50 dark:bg-gray-900/60 cursor-text select-all"
+                  {...register("guia_remision")}
+                />
+              </div>
+            )}
 
             {/* Tercera fila: Dirección */}
             <div className="sm:col-span-2 md:col-span-4 lg:col-span-6 flex flex-col">
@@ -573,6 +638,7 @@ export default function FormularioPedido({
                 control={control}
                 render={({ field }) => (
                   <Select
+                    name={field.name}
                     value={field.value?.toString() ?? ""}
                     disabled={!isEnableEdit}
                     onValueChange={(value) => {
@@ -618,6 +684,7 @@ export default function FormularioPedido({
                 control={control}
                 render={({ field }) => (
                   <Select
+                    name={field.name}
                     value={field.value?.toString() ?? ""}
                     disabled={!isEnableEdit}
                     onValueChange={(value) => {
@@ -678,7 +745,9 @@ export default function FormularioPedido({
             </div>
 
             <div className="flex flex-col">
-              <Label htmlFor="codmon">Moneda</Label>
+              <Label htmlFor="codmon">
+                Moneda <span className="text-red-500">*</span>
+              </Label>
               <Controller
                 name="codmon"
                 control={control}
@@ -690,7 +759,7 @@ export default function FormularioPedido({
                     onValueChange={field.onChange}
                   >
                     <SelectTrigger
-                      id="for_pago"
+                      id="codmon"
                       className="data-[placeholder]:!normal-case"
                     >
                       <SelectValue placeholder="Seleccione" />

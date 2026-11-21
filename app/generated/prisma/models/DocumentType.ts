@@ -36,7 +36,6 @@ export type DocumentTypeSumAggregateOutputType = {
 
 export type DocumentTypeMinAggregateOutputType = {
   id_tipdoc: number | null
-  alias_alm: string | null
   flg_sunat: boolean | null
   codsunat: string | null
   dcor_tdoc: string | null
@@ -44,11 +43,11 @@ export type DocumentTypeMinAggregateOutputType = {
   flg_vta: boolean | null
   flg_alm: boolean | null
   flg_provi: boolean | null
+  alias_alm: string | null
 }
 
 export type DocumentTypeMaxAggregateOutputType = {
   id_tipdoc: number | null
-  alias_alm: string | null
   flg_sunat: boolean | null
   codsunat: string | null
   dcor_tdoc: string | null
@@ -56,11 +55,11 @@ export type DocumentTypeMaxAggregateOutputType = {
   flg_vta: boolean | null
   flg_alm: boolean | null
   flg_provi: boolean | null
+  alias_alm: string | null
 }
 
 export type DocumentTypeCountAggregateOutputType = {
   id_tipdoc: number
-  alias_alm: number
   flg_sunat: number
   codsunat: number
   dcor_tdoc: number
@@ -68,6 +67,7 @@ export type DocumentTypeCountAggregateOutputType = {
   flg_vta: number
   flg_alm: number
   flg_provi: number
+  alias_alm: number
   _all: number
 }
 
@@ -82,7 +82,6 @@ export type DocumentTypeSumAggregateInputType = {
 
 export type DocumentTypeMinAggregateInputType = {
   id_tipdoc?: true
-  alias_alm?: true
   flg_sunat?: true
   codsunat?: true
   dcor_tdoc?: true
@@ -90,11 +89,11 @@ export type DocumentTypeMinAggregateInputType = {
   flg_vta?: true
   flg_alm?: true
   flg_provi?: true
+  alias_alm?: true
 }
 
 export type DocumentTypeMaxAggregateInputType = {
   id_tipdoc?: true
-  alias_alm?: true
   flg_sunat?: true
   codsunat?: true
   dcor_tdoc?: true
@@ -102,11 +101,11 @@ export type DocumentTypeMaxAggregateInputType = {
   flg_vta?: true
   flg_alm?: true
   flg_provi?: true
+  alias_alm?: true
 }
 
 export type DocumentTypeCountAggregateInputType = {
   id_tipdoc?: true
-  alias_alm?: true
   flg_sunat?: true
   codsunat?: true
   dcor_tdoc?: true
@@ -114,6 +113,7 @@ export type DocumentTypeCountAggregateInputType = {
   flg_vta?: true
   flg_alm?: true
   flg_provi?: true
+  alias_alm?: true
   _all?: true
 }
 
@@ -205,7 +205,6 @@ export type DocumentTypeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type DocumentTypeGroupByOutputType = {
   id_tipdoc: number
-  alias_alm: string | null
   flg_sunat: boolean
   codsunat: string | null
   dcor_tdoc: string
@@ -213,6 +212,7 @@ export type DocumentTypeGroupByOutputType = {
   flg_vta: boolean
   flg_alm: boolean
   flg_provi: boolean
+  alias_alm: string | null
   _count: DocumentTypeCountAggregateOutputType | null
   _avg: DocumentTypeAvgAggregateOutputType | null
   _sum: DocumentTypeSumAggregateOutputType | null
@@ -240,7 +240,6 @@ export type DocumentTypeWhereInput = {
   OR?: Prisma.DocumentTypeWhereInput[]
   NOT?: Prisma.DocumentTypeWhereInput | Prisma.DocumentTypeWhereInput[]
   id_tipdoc?: Prisma.IntFilter<"DocumentType"> | number
-  alias_alm?: Prisma.StringNullableFilter<"DocumentType"> | string | null
   flg_sunat?: Prisma.BoolFilter<"DocumentType"> | boolean
   codsunat?: Prisma.StringNullableFilter<"DocumentType"> | string | null
   dcor_tdoc?: Prisma.StringFilter<"DocumentType"> | string
@@ -248,11 +247,11 @@ export type DocumentTypeWhereInput = {
   flg_vta?: Prisma.BoolFilter<"DocumentType"> | boolean
   flg_alm?: Prisma.BoolFilter<"DocumentType"> | boolean
   flg_provi?: Prisma.BoolFilter<"DocumentType"> | boolean
+  alias_alm?: Prisma.StringNullableFilter<"DocumentType"> | string | null
 }
 
 export type DocumentTypeOrderByWithRelationInput = {
   id_tipdoc?: Prisma.SortOrder
-  alias_alm?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_sunat?: Prisma.SortOrder
   codsunat?: Prisma.SortOrderInput | Prisma.SortOrder
   dcor_tdoc?: Prisma.SortOrder
@@ -260,6 +259,7 @@ export type DocumentTypeOrderByWithRelationInput = {
   flg_vta?: Prisma.SortOrder
   flg_alm?: Prisma.SortOrder
   flg_provi?: Prisma.SortOrder
+  alias_alm?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type DocumentTypeWhereUniqueInput = Prisma.AtLeast<{
@@ -267,7 +267,6 @@ export type DocumentTypeWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.DocumentTypeWhereInput | Prisma.DocumentTypeWhereInput[]
   OR?: Prisma.DocumentTypeWhereInput[]
   NOT?: Prisma.DocumentTypeWhereInput | Prisma.DocumentTypeWhereInput[]
-  alias_alm?: Prisma.StringNullableFilter<"DocumentType"> | string | null
   flg_sunat?: Prisma.BoolFilter<"DocumentType"> | boolean
   codsunat?: Prisma.StringNullableFilter<"DocumentType"> | string | null
   dcor_tdoc?: Prisma.StringFilter<"DocumentType"> | string
@@ -275,11 +274,11 @@ export type DocumentTypeWhereUniqueInput = Prisma.AtLeast<{
   flg_vta?: Prisma.BoolFilter<"DocumentType"> | boolean
   flg_alm?: Prisma.BoolFilter<"DocumentType"> | boolean
   flg_provi?: Prisma.BoolFilter<"DocumentType"> | boolean
+  alias_alm?: Prisma.StringNullableFilter<"DocumentType"> | string | null
 }, "id_tipdoc">
 
 export type DocumentTypeOrderByWithAggregationInput = {
   id_tipdoc?: Prisma.SortOrder
-  alias_alm?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_sunat?: Prisma.SortOrder
   codsunat?: Prisma.SortOrderInput | Prisma.SortOrder
   dcor_tdoc?: Prisma.SortOrder
@@ -287,6 +286,7 @@ export type DocumentTypeOrderByWithAggregationInput = {
   flg_vta?: Prisma.SortOrder
   flg_alm?: Prisma.SortOrder
   flg_provi?: Prisma.SortOrder
+  alias_alm?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DocumentTypeCountOrderByAggregateInput
   _avg?: Prisma.DocumentTypeAvgOrderByAggregateInput
   _max?: Prisma.DocumentTypeMaxOrderByAggregateInput
@@ -299,7 +299,6 @@ export type DocumentTypeScalarWhereWithAggregatesInput = {
   OR?: Prisma.DocumentTypeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DocumentTypeScalarWhereWithAggregatesInput | Prisma.DocumentTypeScalarWhereWithAggregatesInput[]
   id_tipdoc?: Prisma.IntWithAggregatesFilter<"DocumentType"> | number
-  alias_alm?: Prisma.StringNullableWithAggregatesFilter<"DocumentType"> | string | null
   flg_sunat?: Prisma.BoolWithAggregatesFilter<"DocumentType"> | boolean
   codsunat?: Prisma.StringNullableWithAggregatesFilter<"DocumentType"> | string | null
   dcor_tdoc?: Prisma.StringWithAggregatesFilter<"DocumentType"> | string
@@ -307,10 +306,10 @@ export type DocumentTypeScalarWhereWithAggregatesInput = {
   flg_vta?: Prisma.BoolWithAggregatesFilter<"DocumentType"> | boolean
   flg_alm?: Prisma.BoolWithAggregatesFilter<"DocumentType"> | boolean
   flg_provi?: Prisma.BoolWithAggregatesFilter<"DocumentType"> | boolean
+  alias_alm?: Prisma.StringNullableWithAggregatesFilter<"DocumentType"> | string | null
 }
 
 export type DocumentTypeCreateInput = {
-  alias_alm?: string | null
   flg_sunat?: boolean
   codsunat?: string | null
   dcor_tdoc: string
@@ -318,11 +317,11 @@ export type DocumentTypeCreateInput = {
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: string | null
 }
 
 export type DocumentTypeUncheckedCreateInput = {
   id_tipdoc?: number
-  alias_alm?: string | null
   flg_sunat?: boolean
   codsunat?: string | null
   dcor_tdoc: string
@@ -330,10 +329,10 @@ export type DocumentTypeUncheckedCreateInput = {
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: string | null
 }
 
 export type DocumentTypeUpdateInput = {
-  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_sunat?: Prisma.BoolFieldUpdateOperationsInput | boolean
   codsunat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dcor_tdoc?: Prisma.StringFieldUpdateOperationsInput | string
@@ -341,11 +340,11 @@ export type DocumentTypeUpdateInput = {
   flg_vta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_alm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_provi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DocumentTypeUncheckedUpdateInput = {
   id_tipdoc?: Prisma.IntFieldUpdateOperationsInput | number
-  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_sunat?: Prisma.BoolFieldUpdateOperationsInput | boolean
   codsunat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dcor_tdoc?: Prisma.StringFieldUpdateOperationsInput | string
@@ -353,11 +352,11 @@ export type DocumentTypeUncheckedUpdateInput = {
   flg_vta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_alm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_provi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DocumentTypeCreateManyInput = {
   id_tipdoc?: number
-  alias_alm?: string | null
   flg_sunat?: boolean
   codsunat?: string | null
   dcor_tdoc: string
@@ -365,10 +364,10 @@ export type DocumentTypeCreateManyInput = {
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: string | null
 }
 
 export type DocumentTypeUpdateManyMutationInput = {
-  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_sunat?: Prisma.BoolFieldUpdateOperationsInput | boolean
   codsunat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dcor_tdoc?: Prisma.StringFieldUpdateOperationsInput | string
@@ -376,11 +375,11 @@ export type DocumentTypeUpdateManyMutationInput = {
   flg_vta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_alm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_provi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DocumentTypeUncheckedUpdateManyInput = {
   id_tipdoc?: Prisma.IntFieldUpdateOperationsInput | number
-  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_sunat?: Prisma.BoolFieldUpdateOperationsInput | boolean
   codsunat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dcor_tdoc?: Prisma.StringFieldUpdateOperationsInput | string
@@ -388,11 +387,11 @@ export type DocumentTypeUncheckedUpdateManyInput = {
   flg_vta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_alm?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_provi?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alias_alm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DocumentTypeCountOrderByAggregateInput = {
   id_tipdoc?: Prisma.SortOrder
-  alias_alm?: Prisma.SortOrder
   flg_sunat?: Prisma.SortOrder
   codsunat?: Prisma.SortOrder
   dcor_tdoc?: Prisma.SortOrder
@@ -400,6 +399,7 @@ export type DocumentTypeCountOrderByAggregateInput = {
   flg_vta?: Prisma.SortOrder
   flg_alm?: Prisma.SortOrder
   flg_provi?: Prisma.SortOrder
+  alias_alm?: Prisma.SortOrder
 }
 
 export type DocumentTypeAvgOrderByAggregateInput = {
@@ -408,7 +408,6 @@ export type DocumentTypeAvgOrderByAggregateInput = {
 
 export type DocumentTypeMaxOrderByAggregateInput = {
   id_tipdoc?: Prisma.SortOrder
-  alias_alm?: Prisma.SortOrder
   flg_sunat?: Prisma.SortOrder
   codsunat?: Prisma.SortOrder
   dcor_tdoc?: Prisma.SortOrder
@@ -416,11 +415,11 @@ export type DocumentTypeMaxOrderByAggregateInput = {
   flg_vta?: Prisma.SortOrder
   flg_alm?: Prisma.SortOrder
   flg_provi?: Prisma.SortOrder
+  alias_alm?: Prisma.SortOrder
 }
 
 export type DocumentTypeMinOrderByAggregateInput = {
   id_tipdoc?: Prisma.SortOrder
-  alias_alm?: Prisma.SortOrder
   flg_sunat?: Prisma.SortOrder
   codsunat?: Prisma.SortOrder
   dcor_tdoc?: Prisma.SortOrder
@@ -428,6 +427,7 @@ export type DocumentTypeMinOrderByAggregateInput = {
   flg_vta?: Prisma.SortOrder
   flg_alm?: Prisma.SortOrder
   flg_provi?: Prisma.SortOrder
+  alias_alm?: Prisma.SortOrder
 }
 
 export type DocumentTypeSumOrderByAggregateInput = {
@@ -438,7 +438,6 @@ export type DocumentTypeSumOrderByAggregateInput = {
 
 export type DocumentTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_tipdoc?: boolean
-  alias_alm?: boolean
   flg_sunat?: boolean
   codsunat?: boolean
   dcor_tdoc?: boolean
@@ -446,11 +445,11 @@ export type DocumentTypeSelect<ExtArgs extends runtime.Types.Extensions.Internal
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: boolean
 }, ExtArgs["result"]["documentType"]>
 
 export type DocumentTypeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_tipdoc?: boolean
-  alias_alm?: boolean
   flg_sunat?: boolean
   codsunat?: boolean
   dcor_tdoc?: boolean
@@ -458,11 +457,11 @@ export type DocumentTypeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: boolean
 }, ExtArgs["result"]["documentType"]>
 
 export type DocumentTypeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_tipdoc?: boolean
-  alias_alm?: boolean
   flg_sunat?: boolean
   codsunat?: boolean
   dcor_tdoc?: boolean
@@ -470,11 +469,11 @@ export type DocumentTypeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: boolean
 }, ExtArgs["result"]["documentType"]>
 
 export type DocumentTypeSelectScalar = {
   id_tipdoc?: boolean
-  alias_alm?: boolean
   flg_sunat?: boolean
   codsunat?: boolean
   dcor_tdoc?: boolean
@@ -482,16 +481,16 @@ export type DocumentTypeSelectScalar = {
   flg_vta?: boolean
   flg_alm?: boolean
   flg_provi?: boolean
+  alias_alm?: boolean
 }
 
-export type DocumentTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_tipdoc" | "alias_alm" | "flg_sunat" | "codsunat" | "dcor_tdoc" | "dlar_tdoc" | "flg_vta" | "flg_alm" | "flg_provi", ExtArgs["result"]["documentType"]>
+export type DocumentTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_tipdoc" | "flg_sunat" | "codsunat" | "dcor_tdoc" | "dlar_tdoc" | "flg_vta" | "flg_alm" | "flg_provi" | "alias_alm", ExtArgs["result"]["documentType"]>
 
 export type $DocumentTypePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DocumentType"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_tipdoc: number
-    alias_alm: string | null
     flg_sunat: boolean
     codsunat: string | null
     dcor_tdoc: string
@@ -499,6 +498,7 @@ export type $DocumentTypePayload<ExtArgs extends runtime.Types.Extensions.Intern
     flg_vta: boolean
     flg_alm: boolean
     flg_provi: boolean
+    alias_alm: string | null
   }, ExtArgs["result"]["documentType"]>
   composites: {}
 }
@@ -923,7 +923,6 @@ export interface Prisma__DocumentTypeClient<T, Null = never, ExtArgs extends run
  */
 export interface DocumentTypeFieldRefs {
   readonly id_tipdoc: Prisma.FieldRef<"DocumentType", 'Int'>
-  readonly alias_alm: Prisma.FieldRef<"DocumentType", 'String'>
   readonly flg_sunat: Prisma.FieldRef<"DocumentType", 'Boolean'>
   readonly codsunat: Prisma.FieldRef<"DocumentType", 'String'>
   readonly dcor_tdoc: Prisma.FieldRef<"DocumentType", 'String'>
@@ -931,6 +930,7 @@ export interface DocumentTypeFieldRefs {
   readonly flg_vta: Prisma.FieldRef<"DocumentType", 'Boolean'>
   readonly flg_alm: Prisma.FieldRef<"DocumentType", 'Boolean'>
   readonly flg_provi: Prisma.FieldRef<"DocumentType", 'Boolean'>
+  readonly alias_alm: Prisma.FieldRef<"DocumentType", 'String'>
 }
     
 

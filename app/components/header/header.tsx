@@ -8,11 +8,12 @@ import UserDropdown from "./user-dropdown";
 
 interface HeaderProps {
   onToggle?: () => void;
+  isOpen: boolean;
 }
 
 const emptySubscribe = () => () => {};
 
-export default function Header({ onToggle }: HeaderProps) {
+export default function Header({ onToggle, isOpen }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const isMounted = useSyncExternalStore(
     emptySubscribe,
@@ -31,31 +32,35 @@ export default function Header({ onToggle }: HeaderProps) {
     >
       <div className="flex h-14 items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-3">
-          <button
-            onClick={onToggle}
-            type="button"
-            className="p-1.5 rounded-lg lg:hidden transition-colors"
-            style={{ color: "var(--color-gray)" }}
-            aria-label="Abrir menú"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {!isOpen && (
+            <button
+              onClick={onToggle}
+              type="button"
+              className="p-1.5 rounded-lg lg:hidden transition-colors"
+              style={{ color: "var(--color-gray)" }}
+              aria-label="Abrir menú"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-3">
-          {session?.user.name && <UserDropdown name={session.user.name} />}
+          {session?.user.name && (
+            <UserDropdown name={session.user.name.trim().split(/\s+/)[0]} />
+          )}
 
           {isMounted ? (
             <button

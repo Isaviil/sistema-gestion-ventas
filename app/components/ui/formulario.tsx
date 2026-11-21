@@ -6,14 +6,24 @@ import {
   XCircle,
   CheckCircle,
   Pencil,
+  Printer,
 } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 import Totales from "./totals";
 import Button from "./button";
 import { StatusCard } from "./status-card";
-import { IPedidoCabeceraPorID } from "@/app/(protected)/movimientos/pedidos/types";
 
-interface FormularioProps {
+export interface IStatusDocument {
+  estado: string;
+  usuario_ing?: string | null;
+  usuario_aprob?: string | null;
+  usuario_anu?: string | null;
+  fch_ing?: string | null;
+  fch_aprob?: string | null;
+  fch_anu?: string | null;
+}
+
+interface FormularioProps<T extends IStatusDocument> {
   title: string;
   children: React.ReactNode;
   className?: string;
@@ -23,19 +33,22 @@ interface FormularioProps {
   showAnular?: boolean;
   showAprobar?: boolean;
   showEdit?: boolean;
+  showPrint?: boolean;
   showSubmit?: boolean;
   onSave?: () => void;
   onEdit?: () => void;
   onCancel?: () => void;
   onAnular?: () => void;
   onAprobar?: () => void;
+  onPrint?: () => void;
   saveText?: string;
   cancelText?: string;
   isSubmitting?: boolean;
-  pedido?: IPedidoCabeceraPorID;
+  data?: T;
+  mostrarTotal?: boolean;
 }
 
-export function Formulario({
+export function Formulario<T extends IStatusDocument>({
   title,
   children,
   className,
@@ -45,23 +58,25 @@ export function Formulario({
   showAnular,
   showAprobar,
   showEdit,
+  showPrint,
   showSubmit,
   onSave,
   onEdit,
   onCancel,
   onAnular,
   onAprobar,
+  onPrint,
   saveText = "Guardar",
   cancelText = "Volver",
   isSubmitting = false,
-  pedido,
-}: FormularioProps) {
+  data,
+  mostrarTotal,
+}: FormularioProps<T>) {
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
 
     onSave?.();
   };
-
   return (
     <div
       className={cn(
@@ -76,7 +91,7 @@ export function Formulario({
           {title}
         </h1>
 
-        {pedido && <StatusCard pedido={pedido} />}
+        {data && <StatusCard data={data} />}
       </div>
 
       <form onSubmit={handleSave} className="flex flex-col gap-6">
@@ -150,9 +165,26 @@ export function Formulario({
                 Aprobar
               </Button>
             )}
+
+            {onPrint && showPrint && (
+              <Button
+                type="button"
+                disabled={isSubmitting}
+                startIcon={<Printer className="w-4 h-4" />}
+                onClick={onPrint}
+                variant="secondary"
+              >
+                Imprimir
+              </Button>
+            )}
           </div>
 
-          <Totales subtotal={subtotal ?? 0} igv={igv ?? 0} total={total ?? 0} />
+          <Totales
+            subtotal={subtotal ?? 0}
+            igv={igv ?? 0}
+            total={total ?? 0}
+            mostrarTotal={mostrarTotal}
+          />
         </div>
       </form>
     </div>

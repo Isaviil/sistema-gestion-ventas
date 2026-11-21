@@ -443,7 +443,7 @@ export type PedidoCabeceraGroupByOutputType = {
   impigv: runtime.Decimal
   imptot: runtime.Decimal
   glosa: string | null
-  factura: string
+  factura: string | null
   guia_remision: string | null
   flg_anu: boolean
   flg_aprob: boolean
@@ -505,7 +505,7 @@ export type PedidoCabeceraWhereInput = {
   impigv?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
-  factura?: Prisma.StringFilter<"PedidoCabecera"> | string
+  factura?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   guia_remision?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   flg_anu?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
   flg_aprob?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
@@ -516,14 +516,16 @@ export type PedidoCabeceraWhereInput = {
   usuario_aprob?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   usuario_cie?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   estado?: Prisma.EnumEstadoPedidoFilter<"PedidoCabecera"> | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
+  moneda?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  metodoPago?: Prisma.XOR<Prisma.PaymentMethodScalarRelationFilter, Prisma.PaymentMethodWhereInput>
   cliente?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
-  metodoPago?: Prisma.XOR<Prisma.PaymentMethodScalarRelationFilter, Prisma.PaymentMethodWhereInput>
-  usuarioReg?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  moneda?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   usuarioAnula?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   usuarioAprueba?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   usuarioCierra?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  usuarioReg?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }
 
@@ -553,7 +555,7 @@ export type PedidoCabeceraOrderByWithRelationInput = {
   impigv?: Prisma.SortOrder
   imptot?: Prisma.SortOrder
   glosa?: Prisma.SortOrderInput | Prisma.SortOrder
-  factura?: Prisma.SortOrder
+  factura?: Prisma.SortOrderInput | Prisma.SortOrder
   guia_remision?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_anu?: Prisma.SortOrder
   flg_aprob?: Prisma.SortOrder
@@ -564,14 +566,16 @@ export type PedidoCabeceraOrderByWithRelationInput = {
   usuario_aprob?: Prisma.SortOrderInput | Prisma.SortOrder
   usuario_cie?: Prisma.SortOrderInput | Prisma.SortOrder
   estado?: Prisma.SortOrder
+  facturas?: Prisma.FacturacionCabeceraOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionCabeceraOrderByRelationAggregateInput
+  moneda?: Prisma.CurrencyOrderByWithRelationInput
+  metodoPago?: Prisma.PaymentMethodOrderByWithRelationInput
   cliente?: Prisma.CustomerOrderByWithRelationInput
   vendedor?: Prisma.VendorOrderByWithRelationInput
-  metodoPago?: Prisma.PaymentMethodOrderByWithRelationInput
-  usuarioReg?: Prisma.UserOrderByWithRelationInput
-  moneda?: Prisma.CurrencyOrderByWithRelationInput
   usuarioAnula?: Prisma.UserOrderByWithRelationInput
   usuarioAprueba?: Prisma.UserOrderByWithRelationInput
   usuarioCierra?: Prisma.UserOrderByWithRelationInput
+  usuarioReg?: Prisma.UserOrderByWithRelationInput
   detalles?: Prisma.PedidoDetalleOrderByRelationAggregateInput
 }
 
@@ -604,7 +608,7 @@ export type PedidoCabeceraWhereUniqueInput = Prisma.AtLeast<{
   impigv?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
-  factura?: Prisma.StringFilter<"PedidoCabecera"> | string
+  factura?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   guia_remision?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   flg_anu?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
   flg_aprob?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
@@ -615,14 +619,16 @@ export type PedidoCabeceraWhereUniqueInput = Prisma.AtLeast<{
   usuario_aprob?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   usuario_cie?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   estado?: Prisma.EnumEstadoPedidoFilter<"PedidoCabecera"> | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
+  moneda?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
+  metodoPago?: Prisma.XOR<Prisma.PaymentMethodScalarRelationFilter, Prisma.PaymentMethodWhereInput>
   cliente?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
-  metodoPago?: Prisma.XOR<Prisma.PaymentMethodScalarRelationFilter, Prisma.PaymentMethodWhereInput>
-  usuarioReg?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  moneda?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   usuarioAnula?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   usuarioAprueba?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   usuarioCierra?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  usuarioReg?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }, "id_ped" | "nrodoc">
 
@@ -652,7 +658,7 @@ export type PedidoCabeceraOrderByWithAggregationInput = {
   impigv?: Prisma.SortOrder
   imptot?: Prisma.SortOrder
   glosa?: Prisma.SortOrderInput | Prisma.SortOrder
-  factura?: Prisma.SortOrder
+  factura?: Prisma.SortOrderInput | Prisma.SortOrder
   guia_remision?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_anu?: Prisma.SortOrder
   flg_aprob?: Prisma.SortOrder
@@ -699,7 +705,7 @@ export type PedidoCabeceraScalarWhereWithAggregatesInput = {
   impigv?: Prisma.DecimalWithAggregatesFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalWithAggregatesFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.StringNullableWithAggregatesFilter<"PedidoCabecera"> | string | null
-  factura?: Prisma.StringWithAggregatesFilter<"PedidoCabecera"> | string
+  factura?: Prisma.StringNullableWithAggregatesFilter<"PedidoCabecera"> | string | null
   guia_remision?: Prisma.StringNullableWithAggregatesFilter<"PedidoCabecera"> | string | null
   flg_anu?: Prisma.BoolWithAggregatesFilter<"PedidoCabecera"> | boolean
   flg_aprob?: Prisma.BoolWithAggregatesFilter<"PedidoCabecera"> | boolean
@@ -732,7 +738,7 @@ export type PedidoCabeceraCreateInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -740,14 +746,16 @@ export type PedidoCabeceraCreateInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -777,7 +785,7 @@ export type PedidoCabeceraUncheckedCreateInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -788,6 +796,8 @@ export type PedidoCabeceraUncheckedCreateInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -811,7 +821,7 @@ export type PedidoCabeceraUpdateInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -819,14 +829,16 @@ export type PedidoCabeceraUpdateInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -856,7 +868,7 @@ export type PedidoCabeceraUncheckedUpdateInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -867,6 +879,8 @@ export type PedidoCabeceraUncheckedUpdateInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -896,7 +910,7 @@ export type PedidoCabeceraCreateManyInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -929,7 +943,7 @@ export type PedidoCabeceraUpdateManyMutationInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -965,7 +979,7 @@ export type PedidoCabeceraUncheckedUpdateManyInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1144,11 +1158,9 @@ export type PedidoCabeceraScalarRelationFilter = {
   isNot?: Prisma.PedidoCabeceraWhereInput
 }
 
-export type PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput = {
-  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput> | Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput[] | Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput[]
-  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput | Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput[]
-  createMany?: Prisma.PedidoCabeceraCreateManyUsuarioRegInputEnvelope
-  connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
+export type PedidoCabeceraNullableScalarRelationFilter = {
+  is?: Prisma.PedidoCabeceraWhereInput | null
+  isNot?: Prisma.PedidoCabeceraWhereInput | null
 }
 
 export type PedidoCabeceraCreateNestedManyWithoutUsuarioAnulaInput = {
@@ -1172,7 +1184,7 @@ export type PedidoCabeceraCreateNestedManyWithoutUsuarioCierraInput = {
   connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
 }
 
-export type PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput = {
+export type PedidoCabeceraCreateNestedManyWithoutUsuarioRegInput = {
   create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput> | Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput[] | Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput[]
   connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput | Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput[]
   createMany?: Prisma.PedidoCabeceraCreateManyUsuarioRegInputEnvelope
@@ -1200,18 +1212,11 @@ export type PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioCierraInput = {
   connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
 }
 
-export type PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput = {
+export type PedidoCabeceraUncheckedCreateNestedManyWithoutUsuarioRegInput = {
   create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput> | Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput[] | Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput[]
   connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput | Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput[]
-  upsert?: Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput[]
   createMany?: Prisma.PedidoCabeceraCreateManyUsuarioRegInputEnvelope
-  set?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
-  disconnect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
-  delete?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
   connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
-  update?: Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput[]
-  updateMany?: Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput[]
-  deleteMany?: Prisma.PedidoCabeceraScalarWhereInput | Prisma.PedidoCabeceraScalarWhereInput[]
 }
 
 export type PedidoCabeceraUpdateManyWithoutUsuarioAnulaNestedInput = {
@@ -1256,7 +1261,7 @@ export type PedidoCabeceraUpdateManyWithoutUsuarioCierraNestedInput = {
   deleteMany?: Prisma.PedidoCabeceraScalarWhereInput | Prisma.PedidoCabeceraScalarWhereInput[]
 }
 
-export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput = {
+export type PedidoCabeceraUpdateManyWithoutUsuarioRegNestedInput = {
   create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput> | Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput[] | Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput[]
   connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput | Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput[]
   upsert?: Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput[]
@@ -1309,6 +1314,20 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraNestedInput = {
   connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
   update?: Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioCierraInput | Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioCierraInput[]
   updateMany?: Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioCierraInput | Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioCierraInput[]
+  deleteMany?: Prisma.PedidoCabeceraScalarWhereInput | Prisma.PedidoCabeceraScalarWhereInput[]
+}
+
+export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput> | Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput[] | Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput[]
+  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput | Prisma.PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput[]
+  upsert?: Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput[]
+  createMany?: Prisma.PedidoCabeceraCreateManyUsuarioRegInputEnvelope
+  set?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
+  disconnect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
+  delete?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
+  connect?: Prisma.PedidoCabeceraWhereUniqueInput | Prisma.PedidoCabeceraWhereUniqueInput[]
+  update?: Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput[]
+  updateMany?: Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput | Prisma.PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput[]
   deleteMany?: Prisma.PedidoCabeceraScalarWhereInput | Prisma.PedidoCabeceraScalarWhereInput[]
 }
 
@@ -1498,91 +1517,36 @@ export type PedidoCabeceraUpdateOneRequiredWithoutDetallesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoCabeceraUpdateToOneWithWhereWithoutDetallesInput, Prisma.PedidoCabeceraUpdateWithoutDetallesInput>, Prisma.PedidoCabeceraUncheckedUpdateWithoutDetallesInput>
 }
 
-export type PedidoCabeceraCreateWithoutUsuarioRegInput = {
-  nrodoc: string
-  ano: string
-  mes: string
-  fchdoc: Date | string
-  fch_ing?: Date | string
-  fch_ent: Date | string
-  id_cot?: number | null
-  cotizacion?: string | null
-  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
-  nomaux: string
-  diraux: string
-  rucaux: string
-  ocompra?: string | null
-  flg_incigv?: boolean
-  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
-  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
-  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
-  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
-  glosa?: string | null
-  factura?: string
-  guia_remision?: string | null
-  flg_anu?: boolean
-  flg_aprob?: boolean
-  fch_anu?: Date | string | null
-  fch_aprob?: Date | string | null
-  fch_ate?: Date | string | null
-  estado?: $Enums.EstadoPedido
-  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
-  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
-  usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
-  usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
-  usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
-  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
+export type PedidoCabeceraCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.PedidoCabeceraWhereUniqueInput
 }
 
-export type PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput = {
-  id_ped?: number
-  nrodoc: string
-  ano: string
-  mes: string
-  fchdoc: Date | string
-  fch_ing?: Date | string
-  fch_ent: Date | string
-  id_clie: number
-  id_ven: number
-  for_pago: number
-  id_cot?: number | null
-  cotizacion?: string | null
-  codmon: string
-  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
-  nomaux: string
-  diraux: string
-  rucaux: string
-  ocompra?: string | null
-  flg_incigv?: boolean
-  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
-  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
-  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
-  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
-  glosa?: string | null
-  factura?: string
-  guia_remision?: string | null
-  flg_anu?: boolean
-  flg_aprob?: boolean
-  fch_anu?: Date | string | null
-  fch_aprob?: Date | string | null
-  fch_ate?: Date | string | null
-  usuario_anu?: number | null
-  usuario_aprob?: number | null
-  usuario_cie?: number | null
-  estado?: $Enums.EstadoPedido
-  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
+export type PedidoCabeceraUpdateOneWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.PedidoCabeceraUpsertWithoutRemisionesInput
+  disconnect?: Prisma.PedidoCabeceraWhereInput | boolean
+  delete?: Prisma.PedidoCabeceraWhereInput | boolean
+  connect?: Prisma.PedidoCabeceraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoCabeceraUpdateToOneWithWhereWithoutRemisionesInput, Prisma.PedidoCabeceraUpdateWithoutRemisionesInput>, Prisma.PedidoCabeceraUncheckedUpdateWithoutRemisionesInput>
 }
 
-export type PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput = {
-  where: Prisma.PedidoCabeceraWhereUniqueInput
-  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput>
+export type PedidoCabeceraCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.PedidoCabeceraWhereUniqueInput
 }
 
-export type PedidoCabeceraCreateManyUsuarioRegInputEnvelope = {
-  data: Prisma.PedidoCabeceraCreateManyUsuarioRegInput | Prisma.PedidoCabeceraCreateManyUsuarioRegInput[]
-  skipDuplicates?: boolean
+export type PedidoCabeceraUpdateOneWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PedidoCabeceraCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.PedidoCabeceraUpsertWithoutFacturasInput
+  disconnect?: Prisma.PedidoCabeceraWhereInput | boolean
+  delete?: Prisma.PedidoCabeceraWhereInput | boolean
+  connect?: Prisma.PedidoCabeceraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoCabeceraUpdateToOneWithWhereWithoutFacturasInput, Prisma.PedidoCabeceraUpdateWithoutFacturasInput>, Prisma.PedidoCabeceraUncheckedUpdateWithoutFacturasInput>
 }
 
 export type PedidoCabeceraCreateWithoutUsuarioAnulaInput = {
@@ -1605,7 +1569,7 @@ export type PedidoCabeceraCreateWithoutUsuarioAnulaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1613,13 +1577,15 @@ export type PedidoCabeceraCreateWithoutUsuarioAnulaInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -1649,7 +1615,7 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioAnulaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1659,6 +1625,8 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioAnulaInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -1692,7 +1660,7 @@ export type PedidoCabeceraCreateWithoutUsuarioApruebaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1700,13 +1668,15 @@ export type PedidoCabeceraCreateWithoutUsuarioApruebaInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -1736,7 +1706,7 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioApruebaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1746,6 +1716,8 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioApruebaInput = {
   usuario_anu?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -1779,7 +1751,7 @@ export type PedidoCabeceraCreateWithoutUsuarioCierraInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1787,13 +1759,15 @@ export type PedidoCabeceraCreateWithoutUsuarioCierraInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -1823,7 +1797,7 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioCierraInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1833,6 +1807,8 @@ export type PedidoCabeceraUncheckedCreateWithoutUsuarioCierraInput = {
   usuario_anu?: number | null
   usuario_aprob?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -1846,20 +1822,111 @@ export type PedidoCabeceraCreateManyUsuarioCierraInputEnvelope = {
   skipDuplicates?: boolean
 }
 
-export type PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput = {
+export type PedidoCabeceraCreateWithoutUsuarioRegInput = {
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_cot?: number | null
+  cotizacion?: string | null
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
+  usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
+  usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
+  usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput = {
+  id_ped?: number
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_clie: number
+  id_ven: number
+  for_pago: number
+  id_cot?: number | null
+  cotizacion?: string | null
+  codmon: string
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  usuario_anu?: number | null
+  usuario_aprob?: number | null
+  usuario_cie?: number | null
+  estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraCreateOrConnectWithoutUsuarioRegInput = {
   where: Prisma.PedidoCabeceraWhereUniqueInput
-  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput>
   create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput>
 }
 
-export type PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput = {
-  where: Prisma.PedidoCabeceraWhereUniqueInput
-  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput>
+export type PedidoCabeceraCreateManyUsuarioRegInputEnvelope = {
+  data: Prisma.PedidoCabeceraCreateManyUsuarioRegInput | Prisma.PedidoCabeceraCreateManyUsuarioRegInput[]
+  skipDuplicates?: boolean
 }
 
-export type PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput = {
+export type PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioAnulaInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput>
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioAnulaInput>
+}
+
+export type PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioAnulaInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput>
+}
+
+export type PedidoCabeceraUpdateManyWithWhereWithoutUsuarioAnulaInput = {
   where: Prisma.PedidoCabeceraScalarWhereInput
-  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateManyMutationInput, Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegInput>
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateManyMutationInput, Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaInput>
 }
 
 export type PedidoCabeceraScalarWhereInput = {
@@ -1891,7 +1958,7 @@ export type PedidoCabeceraScalarWhereInput = {
   impigv?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFilter<"PedidoCabecera"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
-  factura?: Prisma.StringFilter<"PedidoCabecera"> | string
+  factura?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   guia_remision?: Prisma.StringNullableFilter<"PedidoCabecera"> | string | null
   flg_anu?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
   flg_aprob?: Prisma.BoolFilter<"PedidoCabecera"> | boolean
@@ -1902,22 +1969,6 @@ export type PedidoCabeceraScalarWhereInput = {
   usuario_aprob?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   usuario_cie?: Prisma.IntNullableFilter<"PedidoCabecera"> | number | null
   estado?: Prisma.EnumEstadoPedidoFilter<"PedidoCabecera"> | $Enums.EstadoPedido
-}
-
-export type PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioAnulaInput = {
-  where: Prisma.PedidoCabeceraWhereUniqueInput
-  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput>
-  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioAnulaInput>
-}
-
-export type PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioAnulaInput = {
-  where: Prisma.PedidoCabeceraWhereUniqueInput
-  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioAnulaInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput>
-}
-
-export type PedidoCabeceraUpdateManyWithWhereWithoutUsuarioAnulaInput = {
-  where: Prisma.PedidoCabeceraScalarWhereInput
-  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateManyMutationInput, Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaInput>
 }
 
 export type PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioApruebaInput = {
@@ -1952,6 +2003,22 @@ export type PedidoCabeceraUpdateManyWithWhereWithoutUsuarioCierraInput = {
   data: Prisma.XOR<Prisma.PedidoCabeceraUpdateManyMutationInput, Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraInput>
 }
 
+export type PedidoCabeceraUpsertWithWhereUniqueWithoutUsuarioRegInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput>
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedCreateWithoutUsuarioRegInput>
+}
+
+export type PedidoCabeceraUpdateWithWhereUniqueWithoutUsuarioRegInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutUsuarioRegInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput>
+}
+
+export type PedidoCabeceraUpdateManyWithWhereWithoutUsuarioRegInput = {
+  where: Prisma.PedidoCabeceraScalarWhereInput
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateManyMutationInput, Prisma.PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegInput>
+}
+
 export type PedidoCabeceraCreateWithoutMetodoPagoInput = {
   nrodoc: string
   ano: string
@@ -1972,7 +2039,7 @@ export type PedidoCabeceraCreateWithoutMetodoPagoInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -1980,13 +2047,15 @@ export type PedidoCabeceraCreateWithoutMetodoPagoInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -2015,7 +2084,7 @@ export type PedidoCabeceraUncheckedCreateWithoutMetodoPagoInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2026,6 +2095,8 @@ export type PedidoCabeceraUncheckedCreateWithoutMetodoPagoInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -2075,7 +2146,7 @@ export type PedidoCabeceraCreateWithoutClienteInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2083,13 +2154,15 @@ export type PedidoCabeceraCreateWithoutClienteInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
-  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
   moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -2118,7 +2191,7 @@ export type PedidoCabeceraUncheckedCreateWithoutClienteInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2129,6 +2202,8 @@ export type PedidoCabeceraUncheckedCreateWithoutClienteInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -2178,7 +2253,7 @@ export type PedidoCabeceraCreateWithoutVendedorInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2186,13 +2261,15 @@ export type PedidoCabeceraCreateWithoutVendedorInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
-  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
   moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -2221,7 +2298,7 @@ export type PedidoCabeceraUncheckedCreateWithoutVendedorInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2232,6 +2309,8 @@ export type PedidoCabeceraUncheckedCreateWithoutVendedorInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -2281,7 +2360,7 @@ export type PedidoCabeceraCreateWithoutMonedaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2289,13 +2368,15 @@ export type PedidoCabeceraCreateWithoutMonedaInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
 }
 
@@ -2324,7 +2405,7 @@ export type PedidoCabeceraUncheckedCreateWithoutMonedaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2335,6 +2416,8 @@ export type PedidoCabeceraUncheckedCreateWithoutMonedaInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
 }
 
@@ -2384,7 +2467,7 @@ export type PedidoCabeceraCreateWithoutDetallesInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2392,14 +2475,16 @@ export type PedidoCabeceraCreateWithoutDetallesInput = {
   fch_aprob?: Date | string | null
   fch_ate?: Date | string | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
   cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
   vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
-  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
-  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
-  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
   usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
   usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
   usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
 }
 
 export type PedidoCabeceraUncheckedCreateWithoutDetallesInput = {
@@ -2428,7 +2513,7 @@ export type PedidoCabeceraUncheckedCreateWithoutDetallesInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2439,6 +2524,8 @@ export type PedidoCabeceraUncheckedCreateWithoutDetallesInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoCabeceraCreateOrConnectWithoutDetallesInput = {
@@ -2477,7 +2564,7 @@ export type PedidoCabeceraUpdateWithoutDetallesInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2485,14 +2572,16 @@ export type PedidoCabeceraUpdateWithoutDetallesInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
 }
 
 export type PedidoCabeceraUncheckedUpdateWithoutDetallesInput = {
@@ -2521,7 +2610,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutDetallesInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2532,9 +2621,51 @@ export type PedidoCabeceraUncheckedUpdateWithoutDetallesInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
-export type PedidoCabeceraCreateManyUsuarioRegInput = {
+export type PedidoCabeceraCreateWithoutRemisionesInput = {
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_cot?: number | null
+  cotizacion?: string | null
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
+  usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
+  usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
+  usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraUncheckedCreateWithoutRemisionesInput = {
   id_ped?: number
   nrodoc: string
   ano: string
@@ -2545,6 +2676,7 @@ export type PedidoCabeceraCreateManyUsuarioRegInput = {
   id_clie: number
   id_ven: number
   for_pago: number
+  usuario: number
   id_cot?: number | null
   cotizacion?: string | null
   codmon: string
@@ -2559,7 +2691,7 @@ export type PedidoCabeceraCreateManyUsuarioRegInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2570,6 +2702,283 @@ export type PedidoCabeceraCreateManyUsuarioRegInput = {
   usuario_aprob?: number | null
   usuario_cie?: number | null
   estado?: $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedCreateWithoutRemisionesInput>
+}
+
+export type PedidoCabeceraUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.PedidoCabeceraWhereInput
+}
+
+export type PedidoCabeceraUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.PedidoCabeceraWhereInput
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutRemisionesInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type PedidoCabeceraUpdateWithoutRemisionesInput = {
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
+  usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
+  usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
+  usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCabeceraUncheckedUpdateWithoutRemisionesInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  usuario?: Prisma.IntFieldUpdateOperationsInput | number
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codmon?: Prisma.StringFieldUpdateOperationsInput | string
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCabeceraCreateWithoutFacturasInput = {
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_cot?: number | null
+  cotizacion?: string | null
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  estado?: $Enums.EstadoPedido
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutPedidoInput
+  moneda: Prisma.CurrencyCreateNestedOneWithoutPedidosInput
+  metodoPago: Prisma.PaymentMethodCreateNestedOneWithoutPedidosInput
+  cliente: Prisma.CustomerCreateNestedOneWithoutPedidosInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutPedidosInput
+  usuarioAnula?: Prisma.UserCreateNestedOneWithoutPedidosAnuladosInput
+  usuarioAprueba?: Prisma.UserCreateNestedOneWithoutPedidosAprobadosInput
+  usuarioCierra?: Prisma.UserCreateNestedOneWithoutPedidosCerradosInput
+  usuarioReg: Prisma.UserCreateNestedOneWithoutPedidosInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraUncheckedCreateWithoutFacturasInput = {
+  id_ped?: number
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_clie: number
+  id_ven: number
+  for_pago: number
+  usuario: number
+  id_cot?: number | null
+  cotizacion?: string | null
+  codmon: string
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  usuario_anu?: number | null
+  usuario_aprob?: number | null
+  usuario_cie?: number | null
+  estado?: $Enums.EstadoPedido
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutPedidoInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCabeceraCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.PedidoCabeceraWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedCreateWithoutFacturasInput>
+}
+
+export type PedidoCabeceraUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.PedidoCabeceraCreateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.PedidoCabeceraWhereInput
+}
+
+export type PedidoCabeceraUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.PedidoCabeceraWhereInput
+  data: Prisma.XOR<Prisma.PedidoCabeceraUpdateWithoutFacturasInput, Prisma.PedidoCabeceraUncheckedUpdateWithoutFacturasInput>
+}
+
+export type PedidoCabeceraUpdateWithoutFacturasInput = {
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
+  usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
+  usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
+  usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCabeceraUncheckedUpdateWithoutFacturasInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  usuario?: Prisma.IntFieldUpdateOperationsInput | number
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codmon?: Prisma.StringFieldUpdateOperationsInput | string
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoCabeceraCreateManyUsuarioAnulaInput = {
@@ -2598,7 +3007,7 @@ export type PedidoCabeceraCreateManyUsuarioAnulaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2636,7 +3045,7 @@ export type PedidoCabeceraCreateManyUsuarioApruebaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2674,7 +3083,7 @@ export type PedidoCabeceraCreateManyUsuarioCierraInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -2686,119 +3095,42 @@ export type PedidoCabeceraCreateManyUsuarioCierraInput = {
   estado?: $Enums.EstadoPedido
 }
 
-export type PedidoCabeceraUpdateWithoutUsuarioRegInput = {
-  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
-  ano?: Prisma.StringFieldUpdateOperationsInput | string
-  mes?: Prisma.StringFieldUpdateOperationsInput | string
-  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
-  diraux?: Prisma.StringFieldUpdateOperationsInput | string
-  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
-  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
-  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
-  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
-  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
-  usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
-  usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
-  detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
-}
-
-export type PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput = {
-  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
-  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
-  ano?: Prisma.StringFieldUpdateOperationsInput | string
-  mes?: Prisma.StringFieldUpdateOperationsInput | string
-  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
-  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
-  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
-  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codmon?: Prisma.StringFieldUpdateOperationsInput | string
-  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
-  diraux?: Prisma.StringFieldUpdateOperationsInput | string
-  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
-  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
-  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
-  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
-}
-
-export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegInput = {
-  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
-  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
-  ano?: Prisma.StringFieldUpdateOperationsInput | string
-  mes?: Prisma.StringFieldUpdateOperationsInput | string
-  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
-  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
-  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
-  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codmon?: Prisma.StringFieldUpdateOperationsInput | string
-  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
-  diraux?: Prisma.StringFieldUpdateOperationsInput | string
-  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
-  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
-  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+export type PedidoCabeceraCreateManyUsuarioRegInput = {
+  id_ped?: number
+  nrodoc: string
+  ano: string
+  mes: string
+  fchdoc: Date | string
+  fch_ing?: Date | string
+  fch_ent: Date | string
+  id_clie: number
+  id_ven: number
+  for_pago: number
+  id_cot?: number | null
+  cotizacion?: string | null
+  codmon: string
+  tpocmb: runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux: string
+  diraux: string
+  rucaux: string
+  ocompra?: string | null
+  flg_incigv?: boolean
+  porigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: string | null
+  factura?: string | null
+  guia_remision?: string | null
+  flg_anu?: boolean
+  flg_aprob?: boolean
+  fch_anu?: Date | string | null
+  fch_aprob?: Date | string | null
+  fch_ate?: Date | string | null
+  usuario_anu?: number | null
+  usuario_aprob?: number | null
+  usuario_cie?: number | null
+  estado?: $Enums.EstadoPedido
 }
 
 export type PedidoCabeceraUpdateWithoutUsuarioAnulaInput = {
@@ -2821,7 +3153,7 @@ export type PedidoCabeceraUpdateWithoutUsuarioAnulaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2829,13 +3161,15 @@ export type PedidoCabeceraUpdateWithoutUsuarioAnulaInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -2865,7 +3199,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2875,6 +3209,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioAnulaInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -2904,7 +3240,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioAnulaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2936,7 +3272,7 @@ export type PedidoCabeceraUpdateWithoutUsuarioApruebaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2944,13 +3280,15 @@ export type PedidoCabeceraUpdateWithoutUsuarioApruebaInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -2980,7 +3318,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioApruebaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2990,6 +3328,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioApruebaInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3019,7 +3359,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioApruebaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3051,7 +3391,7 @@ export type PedidoCabeceraUpdateWithoutUsuarioCierraInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3059,13 +3399,15 @@ export type PedidoCabeceraUpdateWithoutUsuarioCierraInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3095,7 +3437,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioCierraInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3105,6 +3447,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutUsuarioCierraInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3134,7 +3478,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3143,6 +3487,125 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioCierraInput = {
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+}
+
+export type PedidoCabeceraUpdateWithoutUsuarioRegInput = {
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
+  usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
+  usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
+  usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCabeceraUncheckedUpdateWithoutUsuarioRegInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codmon?: Prisma.StringFieldUpdateOperationsInput | string
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCabeceraUncheckedUpdateManyWithoutUsuarioRegInput = {
+  id_ped?: Prisma.IntFieldUpdateOperationsInput | number
+  nrodoc?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  fchdoc?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ing?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fch_ent?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id_clie?: Prisma.IntFieldUpdateOperationsInput | number
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  id_cot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cotizacion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codmon?: Prisma.StringFieldUpdateOperationsInput | string
+  tpocmb?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  nomaux?: Prisma.StringFieldUpdateOperationsInput | string
+  diraux?: Prisma.StringFieldUpdateOperationsInput | string
+  rucaux?: Prisma.StringFieldUpdateOperationsInput | string
+  ocompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_incigv?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impbto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
 }
 
@@ -3171,7 +3634,7 @@ export type PedidoCabeceraCreateManyMetodoPagoInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -3204,7 +3667,7 @@ export type PedidoCabeceraUpdateWithoutMetodoPagoInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3212,13 +3675,15 @@ export type PedidoCabeceraUpdateWithoutMetodoPagoInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
-  moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3247,7 +3712,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutMetodoPagoInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3258,6 +3723,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutMetodoPagoInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3286,7 +3753,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutMetodoPagoInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3324,7 +3791,7 @@ export type PedidoCabeceraCreateManyClienteInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -3357,7 +3824,7 @@ export type PedidoCabeceraUpdateWithoutClienteInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3365,13 +3832,15 @@ export type PedidoCabeceraUpdateWithoutClienteInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
-  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
   moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3400,7 +3869,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutClienteInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3411,6 +3880,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutClienteInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3439,7 +3910,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutClienteInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3477,7 +3948,7 @@ export type PedidoCabeceraCreateManyVendedorInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -3510,7 +3981,7 @@ export type PedidoCabeceraUpdateWithoutVendedorInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3518,13 +3989,15 @@ export type PedidoCabeceraUpdateWithoutVendedorInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
-  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
   moneda?: Prisma.CurrencyUpdateOneRequiredWithoutPedidosNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
+  cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3553,7 +4026,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutVendedorInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3564,6 +4037,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutVendedorInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3592,7 +4067,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutVendedorInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3630,7 +4105,7 @@ export type PedidoCabeceraCreateManyMonedaInput = {
   impigv: runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot: runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: string | null
-  factura?: string
+  factura?: string | null
   guia_remision?: string | null
   flg_anu?: boolean
   flg_aprob?: boolean
@@ -3663,7 +4138,7 @@ export type PedidoCabeceraUpdateWithoutMonedaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3671,13 +4146,15 @@ export type PedidoCabeceraUpdateWithoutMonedaInput = {
   fch_aprob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fch_ate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutPedidoNestedInput
+  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
   cliente?: Prisma.CustomerUpdateOneRequiredWithoutPedidosNestedInput
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutPedidosNestedInput
-  metodoPago?: Prisma.PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput
-  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   usuarioAnula?: Prisma.UserUpdateOneWithoutPedidosAnuladosNestedInput
   usuarioAprueba?: Prisma.UserUpdateOneWithoutPedidosAprobadosNestedInput
   usuarioCierra?: Prisma.UserUpdateOneWithoutPedidosCerradosNestedInput
+  usuarioReg?: Prisma.UserUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3706,7 +4183,7 @@ export type PedidoCabeceraUncheckedUpdateWithoutMonedaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3717,6 +4194,8 @@ export type PedidoCabeceraUncheckedUpdateWithoutMonedaInput = {
   usuario_aprob?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuario_cie?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutPedidoNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
@@ -3745,7 +4224,7 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutMonedaInput = {
   impigv?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   imptot?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   glosa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  factura?: Prisma.StringFieldUpdateOperationsInput | string
+  factura?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guia_remision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   flg_anu?: Prisma.BoolFieldUpdateOperationsInput | boolean
   flg_aprob?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -3764,10 +4243,14 @@ export type PedidoCabeceraUncheckedUpdateManyWithoutMonedaInput = {
  */
 
 export type PedidoCabeceraCountOutputType = {
+  facturas: number
+  remisiones: number
   detalles: number
 }
 
 export type PedidoCabeceraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | PedidoCabeceraCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | PedidoCabeceraCountOutputTypeCountRemisionesArgs
   detalles?: boolean | PedidoCabeceraCountOutputTypeCountDetallesArgs
 }
 
@@ -3779,6 +4262,20 @@ export type PedidoCabeceraCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
    * Select specific fields to fetch from the PedidoCabeceraCountOutputType
    */
   select?: Prisma.PedidoCabeceraCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PedidoCabeceraCountOutputType without action
+ */
+export type PedidoCabeceraCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionCabeceraWhereInput
+}
+
+/**
+ * PedidoCabeceraCountOutputType without action
+ */
+export type PedidoCabeceraCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
 }
 
 /**
@@ -3826,14 +4323,16 @@ export type PedidoCabeceraSelect<ExtArgs extends runtime.Types.Extensions.Intern
   usuario_aprob?: boolean
   usuario_cie?: boolean
   estado?: boolean
+  facturas?: boolean | Prisma.PedidoCabecera$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PedidoCabecera$remisionesArgs<ExtArgs>
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   detalles?: boolean | Prisma.PedidoCabecera$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCabeceraCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoCabecera"]>
@@ -3875,14 +4374,14 @@ export type PedidoCabeceraSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   usuario_aprob?: boolean
   usuario_cie?: boolean
   estado?: boolean
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoCabecera"]>
 
 export type PedidoCabeceraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3922,14 +4421,14 @@ export type PedidoCabeceraSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   usuario_aprob?: boolean
   usuario_cie?: boolean
   estado?: boolean
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedidoCabecera"]>
 
 export type PedidoCabeceraSelectScalar = {
@@ -3973,49 +4472,53 @@ export type PedidoCabeceraSelectScalar = {
 
 export type PedidoCabeceraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_ped" | "nrodoc" | "ano" | "mes" | "fchdoc" | "fch_ing" | "fch_ent" | "id_clie" | "id_ven" | "for_pago" | "usuario" | "id_cot" | "cotizacion" | "codmon" | "tpocmb" | "nomaux" | "diraux" | "rucaux" | "ocompra" | "flg_incigv" | "porigv" | "impbto" | "impigv" | "imptot" | "glosa" | "factura" | "guia_remision" | "flg_anu" | "flg_aprob" | "fch_anu" | "fch_aprob" | "fch_ate" | "usuario_anu" | "usuario_aprob" | "usuario_cie" | "estado", ExtArgs["result"]["pedidoCabecera"]>
 export type PedidoCabeceraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | Prisma.PedidoCabecera$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PedidoCabecera$remisionesArgs<ExtArgs>
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   detalles?: boolean | Prisma.PedidoCabecera$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCabeceraCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PedidoCabeceraIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PedidoCabeceraIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
+  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
-  metodoPago?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
-  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  moneda?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   usuarioAnula?: boolean | Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>
   usuarioAprueba?: boolean | Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>
   usuarioCierra?: boolean | Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>
+  usuarioReg?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $PedidoCabeceraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PedidoCabecera"
   objects: {
+    facturas: Prisma.$FacturacionCabeceraPayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>[]
+    moneda: Prisma.$CurrencyPayload<ExtArgs>
+    metodoPago: Prisma.$PaymentMethodPayload<ExtArgs>
     cliente: Prisma.$CustomerPayload<ExtArgs>
     vendedor: Prisma.$VendorPayload<ExtArgs>
-    metodoPago: Prisma.$PaymentMethodPayload<ExtArgs>
-    usuarioReg: Prisma.$UserPayload<ExtArgs>
-    moneda: Prisma.$CurrencyPayload<ExtArgs>
     usuarioAnula: Prisma.$UserPayload<ExtArgs> | null
     usuarioAprueba: Prisma.$UserPayload<ExtArgs> | null
     usuarioCierra: Prisma.$UserPayload<ExtArgs> | null
+    usuarioReg: Prisma.$UserPayload<ExtArgs>
     detalles: Prisma.$PedidoDetallePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -4044,7 +4547,7 @@ export type $PedidoCabeceraPayload<ExtArgs extends runtime.Types.Extensions.Inte
     impigv: runtime.Decimal
     imptot: runtime.Decimal
     glosa: string | null
-    factura: string
+    factura: string | null
     guia_remision: string | null
     flg_anu: boolean
     flg_aprob: boolean
@@ -4449,14 +4952,16 @@ readonly fields: PedidoCabeceraFieldRefs;
  */
 export interface Prisma__PedidoCabeceraClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  facturas<T extends Prisma.PedidoCabecera$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.PedidoCabecera$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  moneda<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  metodoPago<T extends Prisma.PaymentMethodDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethodDefaultArgs<ExtArgs>>): Prisma.Prisma__PaymentMethodClient<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   cliente<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   vendedor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  metodoPago<T extends Prisma.PaymentMethodDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethodDefaultArgs<ExtArgs>>): Prisma.Prisma__PaymentMethodClient<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  usuarioReg<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  moneda<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   usuarioAnula<T extends Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$usuarioAnulaArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   usuarioAprueba<T extends Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$usuarioApruebaArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   usuarioCierra<T extends Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$usuarioCierraArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  usuarioReg<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   detalles<T extends Prisma.PedidoCabecera$detallesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PedidoCabecera$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4921,6 +5426,54 @@ export type PedidoCabeceraDeleteManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many PedidoCabeceras to delete.
    */
   limit?: number
+}
+
+/**
+ * PedidoCabecera.facturas
+ */
+export type PedidoCabecera$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionCabecera
+   */
+  select?: Prisma.FacturacionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionCabecera
+   */
+  omit?: Prisma.FacturacionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.FacturacionCabeceraWhereInput
+  orderBy?: Prisma.FacturacionCabeceraOrderByWithRelationInput | Prisma.FacturacionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionCabeceraScalarFieldEnum | Prisma.FacturacionCabeceraScalarFieldEnum[]
+}
+
+/**
+ * PedidoCabecera.remisiones
+ */
+export type PedidoCabecera$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionCabecera
+   */
+  select?: Prisma.GuiaRemisionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionCabecera
+   */
+  omit?: Prisma.GuiaRemisionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+  orderBy?: Prisma.GuiaRemisionCabeceraOrderByWithRelationInput | Prisma.GuiaRemisionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionCabeceraScalarFieldEnum | Prisma.GuiaRemisionCabeceraScalarFieldEnum[]
 }
 
 /**

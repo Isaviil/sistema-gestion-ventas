@@ -13,7 +13,7 @@ const getUbigeos = async (): Promise<IUbigeoResponse> => {
   return data.data;
 };
 
-export const useUbigeo = () => {
+export const useUbigeos = () => {
   return useQuery({
     queryKey: ["ubigeos"],
     queryFn: getUbigeos,

@@ -29,93 +29,93 @@ export type AggregateProduct = {
 export type ProductAvgAggregateOutputType = {
   id_art: number | null
   stkact: number | null
-  peso: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pv2: runtime.Decimal | null
   pv3: runtime.Decimal | null
   pv4: runtime.Decimal | null
   id_umedr: number | null
-  id_fam: number | null
-  id_corte: number | null
-  id_mar: number | null
   id_color: number | null
+  id_corte: number | null
+  id_fam: number | null
+  id_mar: number | null
   id_talla: number | null
+  peso: runtime.Decimal | null
 }
 
 export type ProductSumAggregateOutputType = {
   id_art: number | null
   stkact: number | null
-  peso: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pv2: runtime.Decimal | null
   pv3: runtime.Decimal | null
   pv4: runtime.Decimal | null
   id_umedr: number | null
-  id_fam: number | null
-  id_corte: number | null
-  id_mar: number | null
   id_color: number | null
+  id_corte: number | null
+  id_fam: number | null
+  id_mar: number | null
   id_talla: number | null
+  peso: runtime.Decimal | null
 }
 
 export type ProductMinAggregateOutputType = {
   id_art: number | null
   cod_art: string | null
   des_art: string | null
-  des_art2: string | null
   stkact: number | null
-  peso: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pv2: runtime.Decimal | null
   pv3: runtime.Decimal | null
   pv4: runtime.Decimal | null
   id_umedr: number | null
-  id_fam: number | null
-  id_corte: number | null
-  id_mar: number | null
-  id_color: number | null
-  id_talla: number | null
   flg_activo: boolean | null
+  des_art2: string | null
+  id_color: number | null
+  id_corte: number | null
+  id_fam: number | null
+  id_mar: number | null
+  id_talla: number | null
+  peso: runtime.Decimal | null
 }
 
 export type ProductMaxAggregateOutputType = {
   id_art: number | null
   cod_art: string | null
   des_art: string | null
-  des_art2: string | null
   stkact: number | null
-  peso: runtime.Decimal | null
   pre_art: runtime.Decimal | null
   pv2: runtime.Decimal | null
   pv3: runtime.Decimal | null
   pv4: runtime.Decimal | null
   id_umedr: number | null
-  id_fam: number | null
-  id_corte: number | null
-  id_mar: number | null
-  id_color: number | null
-  id_talla: number | null
   flg_activo: boolean | null
+  des_art2: string | null
+  id_color: number | null
+  id_corte: number | null
+  id_fam: number | null
+  id_mar: number | null
+  id_talla: number | null
+  peso: runtime.Decimal | null
 }
 
 export type ProductCountAggregateOutputType = {
   id_art: number
   cod_art: number
   des_art: number
-  des_art2: number
   stkact: number
-  peso: number
   pre_art: number
   pv2: number
   pv3: number
   pv4: number
   id_umedr: number
-  id_fam: number
-  id_corte: number
-  id_mar: number
-  id_color: number
-  id_talla: number
   flg_activo: number
+  des_art2: number
+  id_color: number
+  id_corte: number
+  id_fam: number
+  id_mar: number
+  id_talla: number
+  peso: number
   _all: number
 }
 
@@ -123,93 +123,93 @@ export type ProductCountAggregateOutputType = {
 export type ProductAvgAggregateInputType = {
   id_art?: true
   stkact?: true
-  peso?: true
   pre_art?: true
   pv2?: true
   pv3?: true
   pv4?: true
   id_umedr?: true
-  id_fam?: true
-  id_corte?: true
-  id_mar?: true
   id_color?: true
+  id_corte?: true
+  id_fam?: true
+  id_mar?: true
   id_talla?: true
+  peso?: true
 }
 
 export type ProductSumAggregateInputType = {
   id_art?: true
   stkact?: true
-  peso?: true
   pre_art?: true
   pv2?: true
   pv3?: true
   pv4?: true
   id_umedr?: true
-  id_fam?: true
-  id_corte?: true
-  id_mar?: true
   id_color?: true
+  id_corte?: true
+  id_fam?: true
+  id_mar?: true
   id_talla?: true
+  peso?: true
 }
 
 export type ProductMinAggregateInputType = {
   id_art?: true
   cod_art?: true
   des_art?: true
-  des_art2?: true
   stkact?: true
-  peso?: true
   pre_art?: true
   pv2?: true
   pv3?: true
   pv4?: true
   id_umedr?: true
-  id_fam?: true
-  id_corte?: true
-  id_mar?: true
-  id_color?: true
-  id_talla?: true
   flg_activo?: true
+  des_art2?: true
+  id_color?: true
+  id_corte?: true
+  id_fam?: true
+  id_mar?: true
+  id_talla?: true
+  peso?: true
 }
 
 export type ProductMaxAggregateInputType = {
   id_art?: true
   cod_art?: true
   des_art?: true
-  des_art2?: true
   stkact?: true
-  peso?: true
   pre_art?: true
   pv2?: true
   pv3?: true
   pv4?: true
   id_umedr?: true
-  id_fam?: true
-  id_corte?: true
-  id_mar?: true
-  id_color?: true
-  id_talla?: true
   flg_activo?: true
+  des_art2?: true
+  id_color?: true
+  id_corte?: true
+  id_fam?: true
+  id_mar?: true
+  id_talla?: true
+  peso?: true
 }
 
 export type ProductCountAggregateInputType = {
   id_art?: true
   cod_art?: true
   des_art?: true
-  des_art2?: true
   stkact?: true
-  peso?: true
   pre_art?: true
   pv2?: true
   pv3?: true
   pv4?: true
   id_umedr?: true
-  id_fam?: true
-  id_corte?: true
-  id_mar?: true
-  id_color?: true
-  id_talla?: true
   flg_activo?: true
+  des_art2?: true
+  id_color?: true
+  id_corte?: true
+  id_fam?: true
+  id_mar?: true
+  id_talla?: true
+  peso?: true
   _all?: true
 }
 
@@ -303,20 +303,20 @@ export type ProductGroupByOutputType = {
   id_art: number
   cod_art: string
   des_art: string
-  des_art2: string | null
   stkact: number
-  peso: runtime.Decimal | null
   pre_art: runtime.Decimal
   pv2: runtime.Decimal | null
   pv3: runtime.Decimal | null
   pv4: runtime.Decimal | null
   id_umedr: number | null
-  id_fam: number | null
-  id_corte: number | null
-  id_mar: number | null
-  id_color: number | null
-  id_talla: number | null
   flg_activo: boolean
+  des_art2: string | null
+  id_color: number | null
+  id_corte: number | null
+  id_fam: number | null
+  id_mar: number | null
+  id_talla: number | null
+  peso: runtime.Decimal | null
   _count: ProductCountAggregateOutputType | null
   _avg: ProductAvgAggregateOutputType | null
   _sum: ProductSumAggregateOutputType | null
@@ -346,20 +346,22 @@ export type ProductWhereInput = {
   id_art?: Prisma.IntFilter<"Product"> | number
   cod_art?: Prisma.StringFilter<"Product"> | string
   des_art?: Prisma.StringFilter<"Product"> | string
-  des_art2?: Prisma.StringNullableFilter<"Product"> | string | null
   stkact?: Prisma.IntFilter<"Product"> | number
-  peso?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_fam?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_corte?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_mar?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_color?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_talla?: Prisma.IntNullableFilter<"Product"> | number | null
   flg_activo?: Prisma.BoolFilter<"Product"> | boolean
+  des_art2?: Prisma.StringNullableFilter<"Product"> | string | null
+  id_color?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_corte?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_fam?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_mar?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_talla?: Prisma.IntNullableFilter<"Product"> | number | null
+  peso?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }
 
@@ -367,20 +369,22 @@ export type ProductOrderByWithRelationInput = {
   id_art?: Prisma.SortOrder
   cod_art?: Prisma.SortOrder
   des_art?: Prisma.SortOrder
-  des_art2?: Prisma.SortOrderInput | Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrderInput | Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrderInput | Prisma.SortOrder
   pv3?: Prisma.SortOrderInput | Prisma.SortOrder
   pv4?: Prisma.SortOrderInput | Prisma.SortOrder
   id_umedr?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_fam?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_corte?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_mar?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_color?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_talla?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  des_art2?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_color?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_corte?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_fam?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_mar?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_talla?: Prisma.SortOrderInput | Prisma.SortOrder
+  peso?: Prisma.SortOrderInput | Prisma.SortOrder
+  facturas?: Prisma.FacturacionDetalleOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionDetalleOrderByRelationAggregateInput
   detalles?: Prisma.PedidoDetalleOrderByRelationAggregateInput
 }
 
@@ -391,20 +395,22 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProductWhereInput[]
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   des_art?: Prisma.StringFilter<"Product"> | string
-  des_art2?: Prisma.StringNullableFilter<"Product"> | string | null
   stkact?: Prisma.IntFilter<"Product"> | number
-  peso?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_fam?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_corte?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_mar?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_color?: Prisma.IntNullableFilter<"Product"> | number | null
-  id_talla?: Prisma.IntNullableFilter<"Product"> | number | null
   flg_activo?: Prisma.BoolFilter<"Product"> | boolean
+  des_art2?: Prisma.StringNullableFilter<"Product"> | string | null
+  id_color?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_corte?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_fam?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_mar?: Prisma.IntNullableFilter<"Product"> | number | null
+  id_talla?: Prisma.IntNullableFilter<"Product"> | number | null
+  peso?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleListRelationFilter
+  remisiones?: Prisma.GuiaRemisionDetalleListRelationFilter
   detalles?: Prisma.PedidoDetalleListRelationFilter
 }, "id_art" | "cod_art">
 
@@ -412,20 +418,20 @@ export type ProductOrderByWithAggregationInput = {
   id_art?: Prisma.SortOrder
   cod_art?: Prisma.SortOrder
   des_art?: Prisma.SortOrder
-  des_art2?: Prisma.SortOrderInput | Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrderInput | Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrderInput | Prisma.SortOrder
   pv3?: Prisma.SortOrderInput | Prisma.SortOrder
   pv4?: Prisma.SortOrderInput | Prisma.SortOrder
   id_umedr?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_fam?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_corte?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_mar?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_color?: Prisma.SortOrderInput | Prisma.SortOrder
-  id_talla?: Prisma.SortOrderInput | Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  des_art2?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_color?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_corte?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_fam?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_mar?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_talla?: Prisma.SortOrderInput | Prisma.SortOrder
+  peso?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
   _avg?: Prisma.ProductAvgOrderByAggregateInput
   _max?: Prisma.ProductMaxOrderByAggregateInput
@@ -440,39 +446,41 @@ export type ProductScalarWhereWithAggregatesInput = {
   id_art?: Prisma.IntWithAggregatesFilter<"Product"> | number
   cod_art?: Prisma.StringWithAggregatesFilter<"Product"> | string
   des_art?: Prisma.StringWithAggregatesFilter<"Product"> | string
-  des_art2?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   stkact?: Prisma.IntWithAggregatesFilter<"Product"> | number
-  peso?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
-  id_fam?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
-  id_corte?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
-  id_mar?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
-  id_color?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
-  id_talla?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
   flg_activo?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  des_art2?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  id_color?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  id_corte?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  id_fam?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  id_mar?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  id_talla?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  peso?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type ProductCreateInput = {
   cod_art: string
   des_art: string
-  des_art2?: string | null
   stkact?: number
-  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: number | null
-  id_fam?: number | null
-  id_corte?: number | null
-  id_mar?: number | null
-  id_color?: number | null
-  id_talla?: number | null
   flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutArticuloInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutArticuloInput
   detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutArticuloInput
 }
 
@@ -480,40 +488,44 @@ export type ProductUncheckedCreateInput = {
   id_art?: number
   cod_art: string
   des_art: string
-  des_art2?: string | null
   stkact?: number
-  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: number | null
-  id_fam?: number | null
-  id_corte?: number | null
-  id_mar?: number | null
-  id_color?: number | null
-  id_talla?: number | null
   flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutArticuloInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutArticuloInput
   detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutArticuloInput
 }
 
 export type ProductUpdateInput = {
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutArticuloNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutArticuloNestedInput
   detalles?: Prisma.PedidoDetalleUpdateManyWithoutArticuloNestedInput
 }
 
@@ -521,20 +533,22 @@ export type ProductUncheckedUpdateInput = {
   id_art?: Prisma.IntFieldUpdateOperationsInput | number
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
   detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutArticuloNestedInput
 }
 
@@ -542,151 +556,151 @@ export type ProductCreateManyInput = {
   id_art?: number
   cod_art: string
   des_art: string
-  des_art2?: string | null
   stkact?: number
-  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: number | null
-  id_fam?: number | null
-  id_corte?: number | null
-  id_mar?: number | null
-  id_color?: number | null
-  id_talla?: number | null
   flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type ProductUpdateManyMutationInput = {
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type ProductUncheckedUpdateManyInput = {
   id_art?: Prisma.IntFieldUpdateOperationsInput | number
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type ProductCountOrderByAggregateInput = {
   id_art?: Prisma.SortOrder
   cod_art?: Prisma.SortOrder
   des_art?: Prisma.SortOrder
-  des_art2?: Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrder
   pv3?: Prisma.SortOrder
   pv4?: Prisma.SortOrder
   id_umedr?: Prisma.SortOrder
-  id_fam?: Prisma.SortOrder
-  id_corte?: Prisma.SortOrder
-  id_mar?: Prisma.SortOrder
-  id_color?: Prisma.SortOrder
-  id_talla?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  des_art2?: Prisma.SortOrder
+  id_color?: Prisma.SortOrder
+  id_corte?: Prisma.SortOrder
+  id_fam?: Prisma.SortOrder
+  id_mar?: Prisma.SortOrder
+  id_talla?: Prisma.SortOrder
+  peso?: Prisma.SortOrder
 }
 
 export type ProductAvgOrderByAggregateInput = {
   id_art?: Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrder
   pv3?: Prisma.SortOrder
   pv4?: Prisma.SortOrder
   id_umedr?: Prisma.SortOrder
-  id_fam?: Prisma.SortOrder
-  id_corte?: Prisma.SortOrder
-  id_mar?: Prisma.SortOrder
   id_color?: Prisma.SortOrder
+  id_corte?: Prisma.SortOrder
+  id_fam?: Prisma.SortOrder
+  id_mar?: Prisma.SortOrder
   id_talla?: Prisma.SortOrder
+  peso?: Prisma.SortOrder
 }
 
 export type ProductMaxOrderByAggregateInput = {
   id_art?: Prisma.SortOrder
   cod_art?: Prisma.SortOrder
   des_art?: Prisma.SortOrder
-  des_art2?: Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrder
   pv3?: Prisma.SortOrder
   pv4?: Prisma.SortOrder
   id_umedr?: Prisma.SortOrder
-  id_fam?: Prisma.SortOrder
-  id_corte?: Prisma.SortOrder
-  id_mar?: Prisma.SortOrder
-  id_color?: Prisma.SortOrder
-  id_talla?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  des_art2?: Prisma.SortOrder
+  id_color?: Prisma.SortOrder
+  id_corte?: Prisma.SortOrder
+  id_fam?: Prisma.SortOrder
+  id_mar?: Prisma.SortOrder
+  id_talla?: Prisma.SortOrder
+  peso?: Prisma.SortOrder
 }
 
 export type ProductMinOrderByAggregateInput = {
   id_art?: Prisma.SortOrder
   cod_art?: Prisma.SortOrder
   des_art?: Prisma.SortOrder
-  des_art2?: Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrder
   pv3?: Prisma.SortOrder
   pv4?: Prisma.SortOrder
   id_umedr?: Prisma.SortOrder
-  id_fam?: Prisma.SortOrder
-  id_corte?: Prisma.SortOrder
-  id_mar?: Prisma.SortOrder
-  id_color?: Prisma.SortOrder
-  id_talla?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  des_art2?: Prisma.SortOrder
+  id_color?: Prisma.SortOrder
+  id_corte?: Prisma.SortOrder
+  id_fam?: Prisma.SortOrder
+  id_mar?: Prisma.SortOrder
+  id_talla?: Prisma.SortOrder
+  peso?: Prisma.SortOrder
 }
 
 export type ProductSumOrderByAggregateInput = {
   id_art?: Prisma.SortOrder
   stkact?: Prisma.SortOrder
-  peso?: Prisma.SortOrder
   pre_art?: Prisma.SortOrder
   pv2?: Prisma.SortOrder
   pv3?: Prisma.SortOrder
   pv4?: Prisma.SortOrder
   id_umedr?: Prisma.SortOrder
-  id_fam?: Prisma.SortOrder
-  id_corte?: Prisma.SortOrder
-  id_mar?: Prisma.SortOrder
   id_color?: Prisma.SortOrder
+  id_corte?: Prisma.SortOrder
+  id_fam?: Prisma.SortOrder
+  id_mar?: Prisma.SortOrder
   id_talla?: Prisma.SortOrder
+  peso?: Prisma.SortOrder
 }
 
 export type ProductScalarRelationFilter = {
@@ -716,43 +730,75 @@ export type ProductUpdateOneRequiredWithoutDetallesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutDetallesInput, Prisma.ProductUpdateWithoutDetallesInput>, Prisma.ProductUncheckedUpdateWithoutDetallesInput>
 }
 
+export type ProductCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutRemisionesInput, Prisma.ProductUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutRemisionesInput, Prisma.ProductUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.ProductUpsertWithoutRemisionesInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutRemisionesInput, Prisma.ProductUpdateWithoutRemisionesInput>, Prisma.ProductUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type ProductCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFacturasInput, Prisma.ProductUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFacturasInput, Prisma.ProductUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.ProductUpsertWithoutFacturasInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutFacturasInput, Prisma.ProductUpdateWithoutFacturasInput>, Prisma.ProductUncheckedUpdateWithoutFacturasInput>
+}
+
 export type ProductCreateWithoutDetallesInput = {
   cod_art: string
   des_art: string
-  des_art2?: string | null
   stkact?: number
-  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: number | null
-  id_fam?: number | null
-  id_corte?: number | null
-  id_mar?: number | null
-  id_color?: number | null
-  id_talla?: number | null
   flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutArticuloInput
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutArticuloInput
 }
 
 export type ProductUncheckedCreateWithoutDetallesInput = {
   id_art?: number
   cod_art: string
   des_art: string
-  des_art2?: string | null
   stkact?: number
-  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: number | null
-  id_fam?: number | null
-  id_corte?: number | null
-  id_mar?: number | null
-  id_color?: number | null
-  id_talla?: number | null
   flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutArticuloInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutArticuloInput
 }
 
 export type ProductCreateOrConnectWithoutDetallesInput = {
@@ -774,40 +820,248 @@ export type ProductUpdateToOneWithWhereWithoutDetallesInput = {
 export type ProductUpdateWithoutDetallesInput = {
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutArticuloNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutArticuloNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutDetallesInput = {
   id_art?: Prisma.IntFieldUpdateOperationsInput | number
   cod_art?: Prisma.StringFieldUpdateOperationsInput | string
   des_art?: Prisma.StringFieldUpdateOperationsInput | string
-  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stkact?: Prisma.IntFieldUpdateOperationsInput | number
-  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+}
+
+export type ProductCreateWithoutRemisionesInput = {
+  cod_art: string
+  des_art: string
+  stkact?: number
+  pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: number | null
+  flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleCreateNestedManyWithoutArticuloInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutArticuloInput
+}
+
+export type ProductUncheckedCreateWithoutRemisionesInput = {
+  id_art?: number
+  cod_art: string
+  des_art: string
+  stkact?: number
+  pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: number | null
+  flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedCreateNestedManyWithoutArticuloInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutArticuloInput
+}
+
+export type ProductCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutRemisionesInput, Prisma.ProductUncheckedCreateWithoutRemisionesInput>
+}
+
+export type ProductUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutRemisionesInput, Prisma.ProductUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutRemisionesInput, Prisma.ProductUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutRemisionesInput, Prisma.ProductUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type ProductUpdateWithoutRemisionesInput = {
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  stkact?: Prisma.IntFieldUpdateOperationsInput | number
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUpdateManyWithoutArticuloNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutArticuloNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutRemisionesInput = {
+  id_art?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  stkact?: Prisma.IntFieldUpdateOperationsInput | number
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  facturas?: Prisma.FacturacionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+}
+
+export type ProductCreateWithoutFacturasInput = {
+  cod_art: string
+  des_art: string
+  stkact?: number
+  pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: number | null
+  flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  remisiones?: Prisma.GuiaRemisionDetalleCreateNestedManyWithoutArticuloInput
+  detalles?: Prisma.PedidoDetalleCreateNestedManyWithoutArticuloInput
+}
+
+export type ProductUncheckedCreateWithoutFacturasInput = {
+  id_art?: number
+  cod_art: string
+  des_art: string
+  stkact?: number
+  pre_art?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: number | null
+  flg_activo?: boolean
+  des_art2?: string | null
+  id_color?: number | null
+  id_corte?: number | null
+  id_fam?: number | null
+  id_mar?: number | null
+  id_talla?: number | null
+  peso?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutArticuloInput
+  detalles?: Prisma.PedidoDetalleUncheckedCreateNestedManyWithoutArticuloInput
+}
+
+export type ProductCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFacturasInput, Prisma.ProductUncheckedCreateWithoutFacturasInput>
+}
+
+export type ProductUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutFacturasInput, Prisma.ProductUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFacturasInput, Prisma.ProductUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutFacturasInput, Prisma.ProductUncheckedUpdateWithoutFacturasInput>
+}
+
+export type ProductUpdateWithoutFacturasInput = {
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  stkact?: Prisma.IntFieldUpdateOperationsInput | number
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  remisiones?: Prisma.GuiaRemisionDetalleUpdateManyWithoutArticuloNestedInput
+  detalles?: Prisma.PedidoDetalleUpdateManyWithoutArticuloNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutFacturasInput = {
+  id_art?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_art?: Prisma.StringFieldUpdateOperationsInput | string
+  des_art?: Prisma.StringFieldUpdateOperationsInput | string
+  stkact?: Prisma.IntFieldUpdateOperationsInput | number
+  pre_art?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pv2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv3?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pv4?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id_umedr?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  des_art2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_color?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_corte?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_fam?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_mar?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_talla?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  peso?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  remisiones?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutArticuloNestedInput
+  detalles?: Prisma.PedidoDetalleUncheckedUpdateManyWithoutArticuloNestedInput
 }
 
 
@@ -816,10 +1070,14 @@ export type ProductUncheckedUpdateWithoutDetallesInput = {
  */
 
 export type ProductCountOutputType = {
+  facturas: number
+  remisiones: number
   detalles: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | ProductCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | ProductCountOutputTypeCountRemisionesArgs
   detalles?: boolean | ProductCountOutputTypeCountDetallesArgs
 }
 
@@ -836,6 +1094,20 @@ export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * ProductCountOutputType without action
  */
+export type ProductCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionDetalleWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
 export type ProductCountOutputTypeCountDetallesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PedidoDetalleWhereInput
 }
@@ -845,20 +1117,22 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id_art?: boolean
   cod_art?: boolean
   des_art?: boolean
-  des_art2?: boolean
   stkact?: boolean
-  peso?: boolean
   pre_art?: boolean
   pv2?: boolean
   pv3?: boolean
   pv4?: boolean
   id_umedr?: boolean
-  id_fam?: boolean
-  id_corte?: boolean
-  id_mar?: boolean
-  id_color?: boolean
-  id_talla?: boolean
   flg_activo?: boolean
+  des_art2?: boolean
+  id_color?: boolean
+  id_corte?: boolean
+  id_fam?: boolean
+  id_mar?: boolean
+  id_talla?: boolean
+  peso?: boolean
+  facturas?: boolean | Prisma.Product$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Product$remisionesArgs<ExtArgs>
   detalles?: boolean | Prisma.Product$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
@@ -867,64 +1141,66 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id_art?: boolean
   cod_art?: boolean
   des_art?: boolean
-  des_art2?: boolean
   stkact?: boolean
-  peso?: boolean
   pre_art?: boolean
   pv2?: boolean
   pv3?: boolean
   pv4?: boolean
   id_umedr?: boolean
-  id_fam?: boolean
-  id_corte?: boolean
-  id_mar?: boolean
-  id_color?: boolean
-  id_talla?: boolean
   flg_activo?: boolean
+  des_art2?: boolean
+  id_color?: boolean
+  id_corte?: boolean
+  id_fam?: boolean
+  id_mar?: boolean
+  id_talla?: boolean
+  peso?: boolean
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_art?: boolean
   cod_art?: boolean
   des_art?: boolean
-  des_art2?: boolean
   stkact?: boolean
-  peso?: boolean
   pre_art?: boolean
   pv2?: boolean
   pv3?: boolean
   pv4?: boolean
   id_umedr?: boolean
-  id_fam?: boolean
-  id_corte?: boolean
-  id_mar?: boolean
-  id_color?: boolean
-  id_talla?: boolean
   flg_activo?: boolean
+  des_art2?: boolean
+  id_color?: boolean
+  id_corte?: boolean
+  id_fam?: boolean
+  id_mar?: boolean
+  id_talla?: boolean
+  peso?: boolean
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectScalar = {
   id_art?: boolean
   cod_art?: boolean
   des_art?: boolean
-  des_art2?: boolean
   stkact?: boolean
-  peso?: boolean
   pre_art?: boolean
   pv2?: boolean
   pv3?: boolean
   pv4?: boolean
   id_umedr?: boolean
-  id_fam?: boolean
-  id_corte?: boolean
-  id_mar?: boolean
-  id_color?: boolean
-  id_talla?: boolean
   flg_activo?: boolean
+  des_art2?: boolean
+  id_color?: boolean
+  id_corte?: boolean
+  id_fam?: boolean
+  id_mar?: boolean
+  id_talla?: boolean
+  peso?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_art" | "cod_art" | "des_art" | "des_art2" | "stkact" | "peso" | "pre_art" | "pv2" | "pv3" | "pv4" | "id_umedr" | "id_fam" | "id_corte" | "id_mar" | "id_color" | "id_talla" | "flg_activo", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_art" | "cod_art" | "des_art" | "stkact" | "pre_art" | "pv2" | "pv3" | "pv4" | "id_umedr" | "flg_activo" | "des_art2" | "id_color" | "id_corte" | "id_fam" | "id_mar" | "id_talla" | "peso", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | Prisma.Product$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Product$remisionesArgs<ExtArgs>
   detalles?: boolean | Prisma.Product$detallesArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -934,26 +1210,28 @@ export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
+    facturas: Prisma.$FacturacionDetallePayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionDetallePayload<ExtArgs>[]
     detalles: Prisma.$PedidoDetallePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_art: number
     cod_art: string
     des_art: string
-    des_art2: string | null
     stkact: number
-    peso: runtime.Decimal | null
     pre_art: runtime.Decimal
     pv2: runtime.Decimal | null
     pv3: runtime.Decimal | null
     pv4: runtime.Decimal | null
     id_umedr: number | null
-    id_fam: number | null
-    id_corte: number | null
-    id_mar: number | null
-    id_color: number | null
-    id_talla: number | null
     flg_activo: boolean
+    des_art2: string | null
+    id_color: number | null
+    id_corte: number | null
+    id_fam: number | null
+    id_mar: number | null
+    id_talla: number | null
+    peso: runtime.Decimal | null
   }, ExtArgs["result"]["product"]>
   composites: {}
 }
@@ -1348,6 +1626,8 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  facturas<T extends Prisma.Product$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.Product$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   detalles<T extends Prisma.Product$detallesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1381,20 +1661,20 @@ export interface ProductFieldRefs {
   readonly id_art: Prisma.FieldRef<"Product", 'Int'>
   readonly cod_art: Prisma.FieldRef<"Product", 'String'>
   readonly des_art: Prisma.FieldRef<"Product", 'String'>
-  readonly des_art2: Prisma.FieldRef<"Product", 'String'>
   readonly stkact: Prisma.FieldRef<"Product", 'Int'>
-  readonly peso: Prisma.FieldRef<"Product", 'Decimal'>
   readonly pre_art: Prisma.FieldRef<"Product", 'Decimal'>
   readonly pv2: Prisma.FieldRef<"Product", 'Decimal'>
   readonly pv3: Prisma.FieldRef<"Product", 'Decimal'>
   readonly pv4: Prisma.FieldRef<"Product", 'Decimal'>
   readonly id_umedr: Prisma.FieldRef<"Product", 'Int'>
-  readonly id_fam: Prisma.FieldRef<"Product", 'Int'>
-  readonly id_corte: Prisma.FieldRef<"Product", 'Int'>
-  readonly id_mar: Prisma.FieldRef<"Product", 'Int'>
-  readonly id_color: Prisma.FieldRef<"Product", 'Int'>
-  readonly id_talla: Prisma.FieldRef<"Product", 'Int'>
   readonly flg_activo: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly des_art2: Prisma.FieldRef<"Product", 'String'>
+  readonly id_color: Prisma.FieldRef<"Product", 'Int'>
+  readonly id_corte: Prisma.FieldRef<"Product", 'Int'>
+  readonly id_fam: Prisma.FieldRef<"Product", 'Int'>
+  readonly id_mar: Prisma.FieldRef<"Product", 'Int'>
+  readonly id_talla: Prisma.FieldRef<"Product", 'Int'>
+  readonly peso: Prisma.FieldRef<"Product", 'Decimal'>
 }
     
 
@@ -1785,6 +2065,54 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Products to delete.
    */
   limit?: number
+}
+
+/**
+ * Product.facturas
+ */
+export type Product$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionDetalle
+   */
+  select?: Prisma.FacturacionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionDetalle
+   */
+  omit?: Prisma.FacturacionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionDetalleInclude<ExtArgs> | null
+  where?: Prisma.FacturacionDetalleWhereInput
+  orderBy?: Prisma.FacturacionDetalleOrderByWithRelationInput | Prisma.FacturacionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionDetalleScalarFieldEnum | Prisma.FacturacionDetalleScalarFieldEnum[]
+}
+
+/**
+ * Product.remisiones
+ */
+export type Product$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionDetalle
+   */
+  select?: Prisma.GuiaRemisionDetalleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionDetalle
+   */
+  omit?: Prisma.GuiaRemisionDetalleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionDetalleInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionDetalleWhereInput
+  orderBy?: Prisma.GuiaRemisionDetalleOrderByWithRelationInput | Prisma.GuiaRemisionDetalleOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionDetalleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionDetalleScalarFieldEnum | Prisma.GuiaRemisionDetalleScalarFieldEnum[]
 }
 
 /**

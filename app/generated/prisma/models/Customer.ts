@@ -49,7 +49,6 @@ export type CustomerMinAggregateOutputType = {
   tdoc_ide: string | null
   ruc_aux: string | null
   dir_legal: string | null
-  referencia: string | null
   telefono: string | null
   email: string | null
   ubigeo: string | null
@@ -61,6 +60,7 @@ export type CustomerMinAggregateOutputType = {
   id_tpoclie: number | null
   fec_reg: Date | null
   flg_activo: boolean | null
+  referencia: string | null
 }
 
 export type CustomerMaxAggregateOutputType = {
@@ -70,7 +70,6 @@ export type CustomerMaxAggregateOutputType = {
   tdoc_ide: string | null
   ruc_aux: string | null
   dir_legal: string | null
-  referencia: string | null
   telefono: string | null
   email: string | null
   ubigeo: string | null
@@ -82,6 +81,7 @@ export type CustomerMaxAggregateOutputType = {
   id_tpoclie: number | null
   fec_reg: Date | null
   flg_activo: boolean | null
+  referencia: string | null
 }
 
 export type CustomerCountAggregateOutputType = {
@@ -91,7 +91,6 @@ export type CustomerCountAggregateOutputType = {
   tdoc_ide: number
   ruc_aux: number
   dir_legal: number
-  referencia: number
   telefono: number
   email: number
   ubigeo: number
@@ -103,6 +102,7 @@ export type CustomerCountAggregateOutputType = {
   id_tpoclie: number
   fec_reg: number
   flg_activo: number
+  referencia: number
   _all: number
 }
 
@@ -130,7 +130,6 @@ export type CustomerMinAggregateInputType = {
   tdoc_ide?: true
   ruc_aux?: true
   dir_legal?: true
-  referencia?: true
   telefono?: true
   email?: true
   ubigeo?: true
@@ -142,6 +141,7 @@ export type CustomerMinAggregateInputType = {
   id_tpoclie?: true
   fec_reg?: true
   flg_activo?: true
+  referencia?: true
 }
 
 export type CustomerMaxAggregateInputType = {
@@ -151,7 +151,6 @@ export type CustomerMaxAggregateInputType = {
   tdoc_ide?: true
   ruc_aux?: true
   dir_legal?: true
-  referencia?: true
   telefono?: true
   email?: true
   ubigeo?: true
@@ -163,6 +162,7 @@ export type CustomerMaxAggregateInputType = {
   id_tpoclie?: true
   fec_reg?: true
   flg_activo?: true
+  referencia?: true
 }
 
 export type CustomerCountAggregateInputType = {
@@ -172,7 +172,6 @@ export type CustomerCountAggregateInputType = {
   tdoc_ide?: true
   ruc_aux?: true
   dir_legal?: true
-  referencia?: true
   telefono?: true
   email?: true
   ubigeo?: true
@@ -184,6 +183,7 @@ export type CustomerCountAggregateInputType = {
   id_tpoclie?: true
   fec_reg?: true
   flg_activo?: true
+  referencia?: true
   _all?: true
 }
 
@@ -280,7 +280,6 @@ export type CustomerGroupByOutputType = {
   tdoc_ide: string | null
   ruc_aux: string | null
   dir_legal: string | null
-  referencia: string | null
   telefono: string | null
   email: string | null
   ubigeo: string
@@ -292,6 +291,7 @@ export type CustomerGroupByOutputType = {
   id_tpoclie: number
   fec_reg: Date
   flg_activo: boolean
+  referencia: string | null
   _count: CustomerCountAggregateOutputType | null
   _avg: CustomerAvgAggregateOutputType | null
   _sum: CustomerSumAggregateOutputType | null
@@ -324,7 +324,6 @@ export type CustomerWhereInput = {
   tdoc_ide?: Prisma.StringNullableFilter<"Customer"> | string | null
   ruc_aux?: Prisma.StringNullableFilter<"Customer"> | string | null
   dir_legal?: Prisma.StringNullableFilter<"Customer"> | string | null
-  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
   telefono?: Prisma.StringNullableFilter<"Customer"> | string | null
   email?: Prisma.StringNullableFilter<"Customer"> | string | null
   ubigeo?: Prisma.StringFilter<"Customer"> | string
@@ -336,8 +335,11 @@ export type CustomerWhereInput = {
   id_tpoclie?: Prisma.IntFilter<"Customer"> | number
   fec_reg?: Prisma.DateTimeFilter<"Customer"> | Date | string
   flg_activo?: Prisma.BoolFilter<"Customer"> | boolean
-  vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
+  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
   metodoPago?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
+  vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
   pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }
 
@@ -348,7 +350,6 @@ export type CustomerOrderByWithRelationInput = {
   tdoc_ide?: Prisma.SortOrderInput | Prisma.SortOrder
   ruc_aux?: Prisma.SortOrderInput | Prisma.SortOrder
   dir_legal?: Prisma.SortOrderInput | Prisma.SortOrder
-  referencia?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   ubigeo?: Prisma.SortOrder
@@ -360,8 +361,11 @@ export type CustomerOrderByWithRelationInput = {
   id_tpoclie?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
-  vendedor?: Prisma.VendorOrderByWithRelationInput
+  referencia?: Prisma.SortOrderInput | Prisma.SortOrder
   metodoPago?: Prisma.PaymentMethodOrderByWithRelationInput
+  vendedor?: Prisma.VendorOrderByWithRelationInput
+  facturas?: Prisma.FacturacionCabeceraOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionCabeceraOrderByRelationAggregateInput
   pedidos?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
 }
 
@@ -375,7 +379,6 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   tipo_pers?: Prisma.IntNullableFilter<"Customer"> | number | null
   tdoc_ide?: Prisma.StringNullableFilter<"Customer"> | string | null
   dir_legal?: Prisma.StringNullableFilter<"Customer"> | string | null
-  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
   telefono?: Prisma.StringNullableFilter<"Customer"> | string | null
   email?: Prisma.StringNullableFilter<"Customer"> | string | null
   ubigeo?: Prisma.StringFilter<"Customer"> | string
@@ -387,8 +390,11 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   id_tpoclie?: Prisma.IntFilter<"Customer"> | number
   fec_reg?: Prisma.DateTimeFilter<"Customer"> | Date | string
   flg_activo?: Prisma.BoolFilter<"Customer"> | boolean
-  vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
+  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
   metodoPago?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
+  vendedor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
   pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }, "id_aux" | "ruc_aux">
 
@@ -399,7 +405,6 @@ export type CustomerOrderByWithAggregationInput = {
   tdoc_ide?: Prisma.SortOrderInput | Prisma.SortOrder
   ruc_aux?: Prisma.SortOrderInput | Prisma.SortOrder
   dir_legal?: Prisma.SortOrderInput | Prisma.SortOrder
-  referencia?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   ubigeo?: Prisma.SortOrder
@@ -411,6 +416,7 @@ export type CustomerOrderByWithAggregationInput = {
   id_tpoclie?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  referencia?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CustomerCountOrderByAggregateInput
   _avg?: Prisma.CustomerAvgOrderByAggregateInput
   _max?: Prisma.CustomerMaxOrderByAggregateInput
@@ -428,7 +434,6 @@ export type CustomerScalarWhereWithAggregatesInput = {
   tdoc_ide?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   ruc_aux?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   dir_legal?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
-  referencia?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   telefono?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   ubigeo?: Prisma.StringWithAggregatesFilter<"Customer"> | string
@@ -440,6 +445,7 @@ export type CustomerScalarWhereWithAggregatesInput = {
   id_tpoclie?: Prisma.IntWithAggregatesFilter<"Customer"> | number
   fec_reg?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
   flg_activo?: Prisma.BoolWithAggregatesFilter<"Customer"> | boolean
+  referencia?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
 }
 
 export type CustomerCreateInput = {
@@ -448,7 +454,6 @@ export type CustomerCreateInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -458,8 +463,11 @@ export type CustomerCreateInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
-  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  referencia?: string | null
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutCustomersInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutClienteInput
 }
 
@@ -470,7 +478,6 @@ export type CustomerUncheckedCreateInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -482,6 +489,9 @@ export type CustomerUncheckedCreateInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -491,7 +501,6 @@ export type CustomerUpdateInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -501,8 +510,11 @@ export type CustomerUpdateInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutCustomersNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutClienteNestedInput
 }
 
@@ -513,7 +525,6 @@ export type CustomerUncheckedUpdateInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -525,6 +536,9 @@ export type CustomerUncheckedUpdateInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -535,7 +549,6 @@ export type CustomerCreateManyInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -547,6 +560,7 @@ export type CustomerCreateManyInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
 }
 
 export type CustomerUpdateManyMutationInput = {
@@ -555,7 +569,6 @@ export type CustomerUpdateManyMutationInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -565,6 +578,7 @@ export type CustomerUpdateManyMutationInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CustomerUncheckedUpdateManyInput = {
@@ -574,7 +588,6 @@ export type CustomerUncheckedUpdateManyInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -586,6 +599,7 @@ export type CustomerUncheckedUpdateManyInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CustomerListRelationFilter = {
@@ -605,7 +619,6 @@ export type CustomerCountOrderByAggregateInput = {
   tdoc_ide?: Prisma.SortOrder
   ruc_aux?: Prisma.SortOrder
   dir_legal?: Prisma.SortOrder
-  referencia?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
   ubigeo?: Prisma.SortOrder
@@ -617,6 +630,7 @@ export type CustomerCountOrderByAggregateInput = {
   id_tpoclie?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  referencia?: Prisma.SortOrder
 }
 
 export type CustomerAvgOrderByAggregateInput = {
@@ -634,7 +648,6 @@ export type CustomerMaxOrderByAggregateInput = {
   tdoc_ide?: Prisma.SortOrder
   ruc_aux?: Prisma.SortOrder
   dir_legal?: Prisma.SortOrder
-  referencia?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
   ubigeo?: Prisma.SortOrder
@@ -646,6 +659,7 @@ export type CustomerMaxOrderByAggregateInput = {
   id_tpoclie?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  referencia?: Prisma.SortOrder
 }
 
 export type CustomerMinOrderByAggregateInput = {
@@ -655,7 +669,6 @@ export type CustomerMinOrderByAggregateInput = {
   tdoc_ide?: Prisma.SortOrder
   ruc_aux?: Prisma.SortOrder
   dir_legal?: Prisma.SortOrder
-  referencia?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
   ubigeo?: Prisma.SortOrder
@@ -667,6 +680,7 @@ export type CustomerMinOrderByAggregateInput = {
   id_tpoclie?: Prisma.SortOrder
   fec_reg?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
+  referencia?: Prisma.SortOrder
 }
 
 export type CustomerSumOrderByAggregateInput = {
@@ -680,6 +694,11 @@ export type CustomerSumOrderByAggregateInput = {
 export type CustomerScalarRelationFilter = {
   is?: Prisma.CustomerWhereInput
   isNot?: Prisma.CustomerWhereInput
+}
+
+export type CustomerNullableScalarRelationFilter = {
+  is?: Prisma.CustomerWhereInput | null
+  isNot?: Prisma.CustomerWhereInput | null
 }
 
 export type CustomerCreateNestedManyWithoutMetodoPagoInput = {
@@ -788,13 +807,44 @@ export type CustomerUpdateOneRequiredWithoutPedidosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutPedidosInput, Prisma.CustomerUpdateWithoutPedidosInput>, Prisma.CustomerUncheckedUpdateWithoutPedidosInput>
 }
 
+export type CustomerCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutRemisionesInput, Prisma.CustomerUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.CustomerWhereUniqueInput
+}
+
+export type CustomerUpdateOneWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutRemisionesInput, Prisma.CustomerUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.CustomerUpsertWithoutRemisionesInput
+  disconnect?: Prisma.CustomerWhereInput | boolean
+  delete?: Prisma.CustomerWhereInput | boolean
+  connect?: Prisma.CustomerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutRemisionesInput, Prisma.CustomerUpdateWithoutRemisionesInput>, Prisma.CustomerUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type CustomerCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutFacturasInput, Prisma.CustomerUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.CustomerWhereUniqueInput
+}
+
+export type CustomerUpdateOneWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutFacturasInput, Prisma.CustomerUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.CustomerUpsertWithoutFacturasInput
+  disconnect?: Prisma.CustomerWhereInput | boolean
+  delete?: Prisma.CustomerWhereInput | boolean
+  connect?: Prisma.CustomerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutFacturasInput, Prisma.CustomerUpdateWithoutFacturasInput>, Prisma.CustomerUncheckedUpdateWithoutFacturasInput>
+}
+
 export type CustomerCreateWithoutMetodoPagoInput = {
   des_aux: string
   tipo_pers?: number | null
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -804,7 +854,10 @@ export type CustomerCreateWithoutMetodoPagoInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
   vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutClienteInput
 }
 
@@ -815,7 +868,6 @@ export type CustomerUncheckedCreateWithoutMetodoPagoInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -826,6 +878,9 @@ export type CustomerUncheckedCreateWithoutMetodoPagoInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -865,7 +920,6 @@ export type CustomerScalarWhereInput = {
   tdoc_ide?: Prisma.StringNullableFilter<"Customer"> | string | null
   ruc_aux?: Prisma.StringNullableFilter<"Customer"> | string | null
   dir_legal?: Prisma.StringNullableFilter<"Customer"> | string | null
-  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
   telefono?: Prisma.StringNullableFilter<"Customer"> | string | null
   email?: Prisma.StringNullableFilter<"Customer"> | string | null
   ubigeo?: Prisma.StringFilter<"Customer"> | string
@@ -877,6 +931,7 @@ export type CustomerScalarWhereInput = {
   id_tpoclie?: Prisma.IntFilter<"Customer"> | number
   fec_reg?: Prisma.DateTimeFilter<"Customer"> | Date | string
   flg_activo?: Prisma.BoolFilter<"Customer"> | boolean
+  referencia?: Prisma.StringNullableFilter<"Customer"> | string | null
 }
 
 export type CustomerCreateWithoutVendedorInput = {
@@ -885,7 +940,6 @@ export type CustomerCreateWithoutVendedorInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -895,7 +949,10 @@ export type CustomerCreateWithoutVendedorInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutCustomersInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutClienteInput
 }
 
@@ -906,7 +963,6 @@ export type CustomerUncheckedCreateWithoutVendedorInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -917,6 +973,9 @@ export type CustomerUncheckedCreateWithoutVendedorInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutClienteInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -952,7 +1011,6 @@ export type CustomerCreateWithoutPedidosInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -962,8 +1020,11 @@ export type CustomerCreateWithoutPedidosInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
-  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  referencia?: string | null
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutCustomersInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutClienteInput
 }
 
 export type CustomerUncheckedCreateWithoutPedidosInput = {
@@ -973,7 +1034,6 @@ export type CustomerUncheckedCreateWithoutPedidosInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -985,6 +1045,9 @@ export type CustomerUncheckedCreateWithoutPedidosInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutClienteInput
 }
 
 export type CustomerCreateOrConnectWithoutPedidosInput = {
@@ -1009,7 +1072,6 @@ export type CustomerUpdateWithoutPedidosInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1019,8 +1081,11 @@ export type CustomerUpdateWithoutPedidosInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutCustomersNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutClienteNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutPedidosInput = {
@@ -1030,7 +1095,6 @@ export type CustomerUncheckedUpdateWithoutPedidosInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1042,6 +1106,221 @@ export type CustomerUncheckedUpdateWithoutPedidosInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+}
+
+export type CustomerCreateWithoutRemisionesInput = {
+  des_aux: string
+  tipo_pers?: number | null
+  tdoc_ide?: string | null
+  ruc_aux?: string | null
+  dir_legal?: string | null
+  telefono?: string | null
+  email?: string | null
+  ubigeo: string
+  departamento: string
+  provincia: string
+  distrito: string
+  id_tpoclie: number
+  fec_reg?: Date | string
+  flg_activo?: boolean
+  referencia?: string | null
+  metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutCustomersInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutClienteInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutClienteInput
+}
+
+export type CustomerUncheckedCreateWithoutRemisionesInput = {
+  id_aux?: number
+  des_aux: string
+  tipo_pers?: number | null
+  tdoc_ide?: string | null
+  ruc_aux?: string | null
+  dir_legal?: string | null
+  telefono?: string | null
+  email?: string | null
+  ubigeo: string
+  departamento: string
+  provincia: string
+  distrito: string
+  id_ven: number
+  for_pago?: number | null
+  id_tpoclie: number
+  fec_reg?: Date | string
+  flg_activo?: boolean
+  referencia?: string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutClienteInput
+}
+
+export type CustomerCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutRemisionesInput, Prisma.CustomerUncheckedCreateWithoutRemisionesInput>
+}
+
+export type CustomerUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.CustomerUpdateWithoutRemisionesInput, Prisma.CustomerUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutRemisionesInput, Prisma.CustomerUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.CustomerWhereInput
+}
+
+export type CustomerUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.CustomerWhereInput
+  data: Prisma.XOR<Prisma.CustomerUpdateWithoutRemisionesInput, Prisma.CustomerUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type CustomerUpdateWithoutRemisionesInput = {
+  des_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo_pers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
+  departamento?: Prisma.StringFieldUpdateOperationsInput | string
+  provincia?: Prisma.StringFieldUpdateOperationsInput | string
+  distrito?: Prisma.StringFieldUpdateOperationsInput | string
+  id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metodoPago?: Prisma.PaymentMethodUpdateOneWithoutCustomersNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutClienteNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutClienteNestedInput
+}
+
+export type CustomerUncheckedUpdateWithoutRemisionesInput = {
+  id_aux?: Prisma.IntFieldUpdateOperationsInput | number
+  des_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo_pers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
+  departamento?: Prisma.StringFieldUpdateOperationsInput | string
+  provincia?: Prisma.StringFieldUpdateOperationsInput | string
+  distrito?: Prisma.StringFieldUpdateOperationsInput | string
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+}
+
+export type CustomerCreateWithoutFacturasInput = {
+  des_aux: string
+  tipo_pers?: number | null
+  tdoc_ide?: string | null
+  ruc_aux?: string | null
+  dir_legal?: string | null
+  telefono?: string | null
+  email?: string | null
+  ubigeo: string
+  departamento: string
+  provincia: string
+  distrito: string
+  id_tpoclie: number
+  fec_reg?: Date | string
+  flg_activo?: boolean
+  referencia?: string | null
+  metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutCustomersInput
+  vendedor: Prisma.VendorCreateNestedOneWithoutCustomersInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutClienteInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutClienteInput
+}
+
+export type CustomerUncheckedCreateWithoutFacturasInput = {
+  id_aux?: number
+  des_aux: string
+  tipo_pers?: number | null
+  tdoc_ide?: string | null
+  ruc_aux?: string | null
+  dir_legal?: string | null
+  telefono?: string | null
+  email?: string | null
+  ubigeo: string
+  departamento: string
+  provincia: string
+  distrito: string
+  id_ven: number
+  for_pago?: number | null
+  id_tpoclie: number
+  fec_reg?: Date | string
+  flg_activo?: boolean
+  referencia?: string | null
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutClienteInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutClienteInput
+}
+
+export type CustomerCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutFacturasInput, Prisma.CustomerUncheckedCreateWithoutFacturasInput>
+}
+
+export type CustomerUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.CustomerUpdateWithoutFacturasInput, Prisma.CustomerUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutFacturasInput, Prisma.CustomerUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.CustomerWhereInput
+}
+
+export type CustomerUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.CustomerWhereInput
+  data: Prisma.XOR<Prisma.CustomerUpdateWithoutFacturasInput, Prisma.CustomerUncheckedUpdateWithoutFacturasInput>
+}
+
+export type CustomerUpdateWithoutFacturasInput = {
+  des_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo_pers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
+  departamento?: Prisma.StringFieldUpdateOperationsInput | string
+  provincia?: Prisma.StringFieldUpdateOperationsInput | string
+  distrito?: Prisma.StringFieldUpdateOperationsInput | string
+  id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metodoPago?: Prisma.PaymentMethodUpdateOneWithoutCustomersNestedInput
+  vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutClienteNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutClienteNestedInput
+}
+
+export type CustomerUncheckedUpdateWithoutFacturasInput = {
+  id_aux?: Prisma.IntFieldUpdateOperationsInput | number
+  des_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo_pers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
+  departamento?: Prisma.StringFieldUpdateOperationsInput | string
+  provincia?: Prisma.StringFieldUpdateOperationsInput | string
+  distrito?: Prisma.StringFieldUpdateOperationsInput | string
+  id_ven?: Prisma.IntFieldUpdateOperationsInput | number
+  for_pago?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutClienteNestedInput
 }
 
 export type CustomerCreateManyMetodoPagoInput = {
@@ -1051,7 +1330,6 @@ export type CustomerCreateManyMetodoPagoInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -1062,6 +1340,7 @@ export type CustomerCreateManyMetodoPagoInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
 }
 
 export type CustomerUpdateWithoutMetodoPagoInput = {
@@ -1070,7 +1349,6 @@ export type CustomerUpdateWithoutMetodoPagoInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1080,7 +1358,10 @@ export type CustomerUpdateWithoutMetodoPagoInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vendedor?: Prisma.VendorUpdateOneRequiredWithoutCustomersNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutClienteNestedInput
 }
 
@@ -1091,7 +1372,6 @@ export type CustomerUncheckedUpdateWithoutMetodoPagoInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1102,6 +1382,9 @@ export type CustomerUncheckedUpdateWithoutMetodoPagoInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -1112,7 +1395,6 @@ export type CustomerUncheckedUpdateManyWithoutMetodoPagoInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1123,6 +1405,7 @@ export type CustomerUncheckedUpdateManyWithoutMetodoPagoInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CustomerCreateManyVendedorInput = {
@@ -1132,7 +1415,6 @@ export type CustomerCreateManyVendedorInput = {
   tdoc_ide?: string | null
   ruc_aux?: string | null
   dir_legal?: string | null
-  referencia?: string | null
   telefono?: string | null
   email?: string | null
   ubigeo: string
@@ -1143,6 +1425,7 @@ export type CustomerCreateManyVendedorInput = {
   id_tpoclie: number
   fec_reg?: Date | string
   flg_activo?: boolean
+  referencia?: string | null
 }
 
 export type CustomerUpdateWithoutVendedorInput = {
@@ -1151,7 +1434,6 @@ export type CustomerUpdateWithoutVendedorInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1161,7 +1443,10 @@ export type CustomerUpdateWithoutVendedorInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutCustomersNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutClienteNestedInput
 }
 
@@ -1172,7 +1457,6 @@ export type CustomerUncheckedUpdateWithoutVendedorInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1183,6 +1467,9 @@ export type CustomerUncheckedUpdateWithoutVendedorInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutClienteNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -1193,7 +1480,6 @@ export type CustomerUncheckedUpdateManyWithoutVendedorInput = {
   tdoc_ide?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruc_aux?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dir_legal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ubigeo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1204,6 +1490,7 @@ export type CustomerUncheckedUpdateManyWithoutVendedorInput = {
   id_tpoclie?: Prisma.IntFieldUpdateOperationsInput | number
   fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1212,10 +1499,14 @@ export type CustomerUncheckedUpdateManyWithoutVendedorInput = {
  */
 
 export type CustomerCountOutputType = {
+  facturas: number
+  remisiones: number
   pedidos: number
 }
 
 export type CustomerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  facturas?: boolean | CustomerCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | CustomerCountOutputTypeCountRemisionesArgs
   pedidos?: boolean | CustomerCountOutputTypeCountPedidosArgs
 }
 
@@ -1227,6 +1518,20 @@ export type CustomerCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the CustomerCountOutputType
    */
   select?: Prisma.CustomerCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionCabeceraWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
 }
 
 /**
@@ -1244,7 +1549,6 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   tdoc_ide?: boolean
   ruc_aux?: boolean
   dir_legal?: boolean
-  referencia?: boolean
   telefono?: boolean
   email?: boolean
   ubigeo?: boolean
@@ -1256,8 +1560,11 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id_tpoclie?: boolean
   fec_reg?: boolean
   flg_activo?: boolean
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
+  referencia?: boolean
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
+  facturas?: boolean | Prisma.Customer$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Customer$remisionesArgs<ExtArgs>
   pedidos?: boolean | Prisma.Customer$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
@@ -1269,7 +1576,6 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   tdoc_ide?: boolean
   ruc_aux?: boolean
   dir_legal?: boolean
-  referencia?: boolean
   telefono?: boolean
   email?: boolean
   ubigeo?: boolean
@@ -1281,8 +1587,9 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id_tpoclie?: boolean
   fec_reg?: boolean
   flg_activo?: boolean
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
+  referencia?: boolean
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
 export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1292,7 +1599,6 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   tdoc_ide?: boolean
   ruc_aux?: boolean
   dir_legal?: boolean
-  referencia?: boolean
   telefono?: boolean
   email?: boolean
   ubigeo?: boolean
@@ -1304,8 +1610,9 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id_tpoclie?: boolean
   fec_reg?: boolean
   flg_activo?: boolean
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
+  referencia?: boolean
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
 export type CustomerSelectScalar = {
@@ -1315,7 +1622,6 @@ export type CustomerSelectScalar = {
   tdoc_ide?: boolean
   ruc_aux?: boolean
   dir_legal?: boolean
-  referencia?: boolean
   telefono?: boolean
   email?: boolean
   ubigeo?: boolean
@@ -1327,29 +1633,34 @@ export type CustomerSelectScalar = {
   id_tpoclie?: boolean
   fec_reg?: boolean
   flg_activo?: boolean
+  referencia?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_aux" | "des_aux" | "tipo_pers" | "tdoc_ide" | "ruc_aux" | "dir_legal" | "referencia" | "telefono" | "email" | "ubigeo" | "departamento" | "provincia" | "distrito" | "id_ven" | "for_pago" | "id_tpoclie" | "fec_reg" | "flg_activo", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_aux" | "des_aux" | "tipo_pers" | "tdoc_ide" | "ruc_aux" | "dir_legal" | "telefono" | "email" | "ubigeo" | "departamento" | "provincia" | "distrito" | "id_ven" | "for_pago" | "id_tpoclie" | "fec_reg" | "flg_activo" | "referencia", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
+  facturas?: boolean | Prisma.Customer$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Customer$remisionesArgs<ExtArgs>
   pedidos?: boolean | Prisma.Customer$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CustomerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }
 export type CustomerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   metodoPago?: boolean | Prisma.Customer$metodoPagoArgs<ExtArgs>
+  vendedor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }
 
 export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Customer"
   objects: {
-    vendedor: Prisma.$VendorPayload<ExtArgs>
     metodoPago: Prisma.$PaymentMethodPayload<ExtArgs> | null
+    vendedor: Prisma.$VendorPayload<ExtArgs>
+    facturas: Prisma.$FacturacionCabeceraPayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>[]
     pedidos: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1359,7 +1670,6 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     tdoc_ide: string | null
     ruc_aux: string | null
     dir_legal: string | null
-    referencia: string | null
     telefono: string | null
     email: string | null
     ubigeo: string
@@ -1371,6 +1681,7 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id_tpoclie: number
     fec_reg: Date
     flg_activo: boolean
+    referencia: string | null
   }, ExtArgs["result"]["customer"]>
   composites: {}
 }
@@ -1765,8 +2076,10 @@ readonly fields: CustomerFieldRefs;
  */
 export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  vendedor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   metodoPago<T extends Prisma.Customer$metodoPagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$metodoPagoArgs<ExtArgs>>): Prisma.Prisma__PaymentMethodClient<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  vendedor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  facturas<T extends Prisma.Customer$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.Customer$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pedidos<T extends Prisma.Customer$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1803,7 +2116,6 @@ export interface CustomerFieldRefs {
   readonly tdoc_ide: Prisma.FieldRef<"Customer", 'String'>
   readonly ruc_aux: Prisma.FieldRef<"Customer", 'String'>
   readonly dir_legal: Prisma.FieldRef<"Customer", 'String'>
-  readonly referencia: Prisma.FieldRef<"Customer", 'String'>
   readonly telefono: Prisma.FieldRef<"Customer", 'String'>
   readonly email: Prisma.FieldRef<"Customer", 'String'>
   readonly ubigeo: Prisma.FieldRef<"Customer", 'String'>
@@ -1815,6 +2127,7 @@ export interface CustomerFieldRefs {
   readonly id_tpoclie: Prisma.FieldRef<"Customer", 'Int'>
   readonly fec_reg: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly flg_activo: Prisma.FieldRef<"Customer", 'Boolean'>
+  readonly referencia: Prisma.FieldRef<"Customer", 'String'>
 }
     
 
@@ -2232,6 +2545,54 @@ export type Customer$metodoPagoArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.PaymentMethodInclude<ExtArgs> | null
   where?: Prisma.PaymentMethodWhereInput
+}
+
+/**
+ * Customer.facturas
+ */
+export type Customer$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionCabecera
+   */
+  select?: Prisma.FacturacionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionCabecera
+   */
+  omit?: Prisma.FacturacionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.FacturacionCabeceraWhereInput
+  orderBy?: Prisma.FacturacionCabeceraOrderByWithRelationInput | Prisma.FacturacionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionCabeceraScalarFieldEnum | Prisma.FacturacionCabeceraScalarFieldEnum[]
+}
+
+/**
+ * Customer.remisiones
+ */
+export type Customer$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionCabecera
+   */
+  select?: Prisma.GuiaRemisionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionCabecera
+   */
+  omit?: Prisma.GuiaRemisionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+  orderBy?: Prisma.GuiaRemisionCabeceraOrderByWithRelationInput | Prisma.GuiaRemisionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionCabeceraScalarFieldEnum | Prisma.GuiaRemisionCabeceraScalarFieldEnum[]
 }
 
 /**

@@ -179,3 +179,23 @@ export const getLimaDate = (
     .replace(/mm/g, mm)
     .replace(/ss/g, ss);
 };
+
+export const truncateText = (text: string | null, maxLength: number) => {
+  const cleanText = text ?? "";
+  return cleanText.length > maxLength
+    ? `${cleanText.substring(0, maxLength - 1)}...`
+    : cleanText || "-";
+};
+
+// Da la forma XXX - 00000Y
+export const formatSerieNumero = (value: string | null) => {
+  if (!value) return "";
+
+  const facturas = value.split(",").map((f) => f.trim());
+  const [serie, numero] = facturas[0].split("-");
+
+  if (!serie || !numero) return facturas[0];
+
+  const formatted = `${serie}-${numero.padStart(7, "0")}`;
+  return facturas.length > 1 ? `${formatted} ...` : formatted;
+};

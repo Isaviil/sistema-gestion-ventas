@@ -10,6 +10,8 @@ const errorMessages: Record<string, string> = {
   ARTICULO_NO_EXISTE: "Uno de los artículos no existe o está inactivo",
   UNIDAD_NO_EXISTE: "Una de las unidades de medida no existe",
   NUMERO_DOCUMENTO_AGOTADO: "Se alcanzó el límite de numeración de pedidos",
+  CANTIDAD_INVALIDA: "La cantidad debe ser un número entero mayor que cero",
+  STOCK_INSUFICIENTE: "Stock insuficiente para uno de los artículos",
 };
 
 export async function POST(request: Request) {
@@ -137,6 +139,10 @@ export async function POST(request: Request) {
         );
       }
 
+      if (!Number.isInteger(item.can_art) || item.can_art <= 0) {
+        throw new Error("CANTIDAD_INVALIDA");
+      }
+
       itemNumbers.add(item.nroitm);
 
       if (
@@ -168,7 +174,6 @@ export async function POST(request: Request) {
       }
 
       if (
-        item.can_art <= 0 ||
         item.factor <= 0 ||
         item.pre_art < 0 ||
         item.pdes_art < 0 ||
@@ -244,7 +249,6 @@ export async function POST(request: Request) {
         throw new Error("REFERENCIA_INACTIVA");
       }
 
-      // Validate product and unit references
       for (const item of detalle) {
         const [producto, unidad] = await Promise.all([
           tx.product.findUnique({
@@ -284,6 +288,31 @@ export async function POST(request: Request) {
 
       if (maxNumber >= 9_999_999) {
         throw new Error("NUMERO_DOCUMENTO_AGOTADO");
+      }
+
+      const cantidadesPorArticulo = new Map<number, number>();
+
+      for (const item of detalle) {
+        const cantidadActual = cantidadesPorArticulo.get(item.id_art) ?? 0;
+
+        cantidadesPorArticulo.set(item.id_art, cantidadActual + item.can_art);
+      }
+
+      // Descontar stock disponible
+      for (const [id_art, cantidad] of cantidadesPorArticulo) {
+        const resultado = await tx.product.updateMany({
+          where: {
+            id_art,
+            stkact: { gte: cantidad },
+          },
+          data: {
+            stkact: { decrement: cantidad },
+          },
+        });
+
+        if (resultado.count === 0) {
+          throw new Error("STOCK_INSUFICIENTE");
+        }
       }
 
       const nrodoc = String(maxNumber + 1).padStart(7, "0");
@@ -366,6 +395,13 @@ export async function POST(request: Request) {
           vendedor: true,
           metodoPago: true,
           usuarioReg: true,
+          remisiones: {
+            where: { flg_anu: false },
+            orderBy: { fch_ing: "desc" },
+            select: {
+              numero: true,
+            },
+          },
           detalles: {
             include: {
               unidadMedida: true,
@@ -530,6 +566,20 @@ export async function GET(request: Request) {
         imptot: true,
         glosa: true,
         factura: true,
+        facturas: {
+          where: { flg_anu: false, estado: { not: "ANULADO" } },
+          orderBy: { id_cpc: "asc" },
+          select: {
+            num_doc: true,
+            remisiones: {
+              where: { flg_anu: false, estado: { not: "ANULADO" } },
+              orderBy: { id_remision: "asc" },
+              select: {
+                numero: true,
+              },
+            },
+          },
+        },
         guia_remision: true,
         flg_anu: true,
         flg_aprob: true,
@@ -546,18 +596,62 @@ export async function GET(request: Request) {
         vendedor: {
           select: { nom_aux: true },
         },
+        remisiones: {
+          where: { flg_anu: false, estado: { not: "ANULADO" } },
+          orderBy: { id_remision: "asc" },
+          select: {
+            numero: true,
+          },
+        },
       },
       orderBy: {
         nrodoc: "desc",
       },
     });
 
-    const data = pedidos.map(({ metodoPago, vendedor, moneda, ...pedido }) => ({
-      ...pedido,
-      formapago: metodoPago.forma_pago,
-      vendedor: vendedor.nom_aux,
-      moneda: moneda.descrip,
-    }));
+    const data = pedidos.map(
+      ({ metodoPago, vendedor, moneda, remisiones, facturas, ...pedido }) => {
+        const remisionesDesdeFacturas = facturas.flatMap(
+          (fac) => fac.remisiones ?? [],
+        );
+
+        const numerosGuia = Array.from(
+          new Set(
+            [...remisiones, ...remisionesDesdeFacturas]
+              .map((rem) => rem.numero?.trim())
+              .filter((num): num is string => Boolean(num)),
+          ),
+        );
+
+        const numerosFactura = Array.from(
+          new Set(
+            facturas
+              .map((fac) => fac.num_doc?.trim())
+              .filter((num): num is string => Boolean(num)),
+          ),
+        );
+
+        return {
+          ...pedido,
+          guia_remision:
+            numerosGuia.length > 0
+              ? numerosGuia.join(", ")
+              : (pedido.guia_remision ?? null),
+          formapago: metodoPago.forma_pago,
+          vendedor: vendedor.nom_aux,
+          moneda: moneda.descrip,
+          factura:
+            numerosFactura.length > 0
+              ? numerosFactura.join(", ")
+              : (pedido.factura ?? null),
+          impigv: Number(pedido.impigv),
+          impbto: Number(pedido.impbto),
+          imptot: Number(pedido.imptot),
+          tpocmb: Number(pedido.tpocmb),
+          porigv: Number(pedido.porigv),
+        };
+      },
+    );
 
     return Response.json({ data });
   } catch (error) {

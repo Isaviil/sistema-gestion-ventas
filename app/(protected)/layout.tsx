@@ -51,7 +51,10 @@ export default function ProtectedLayout({
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-        <Header onToggle={() => setSidebarOpen(!sidebarOpen)} />
+        <Header
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen((prev) => !prev)}
+        />
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </div>
     </div>

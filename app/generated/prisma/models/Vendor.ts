@@ -296,8 +296,10 @@ export type VendorWhereInput = {
   flg_tda?: Prisma.BoolFilter<"Vendor"> | boolean
   basico?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFilter<"Vendor"> | number
-  pedidos?: Prisma.PedidoCabeceraListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
+  pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }
 
 export type VendorOrderByWithRelationInput = {
@@ -315,8 +317,10 @@ export type VendorOrderByWithRelationInput = {
   flg_tda?: Prisma.SortOrder
   basico?: Prisma.SortOrder
   id_area?: Prisma.SortOrder
-  pedidos?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
   customers?: Prisma.CustomerOrderByRelationAggregateInput
+  facturas?: Prisma.FacturacionCabeceraOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionCabeceraOrderByRelationAggregateInput
+  pedidos?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
 }
 
 export type VendorWhereUniqueInput = Prisma.AtLeast<{
@@ -337,8 +341,10 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   flg_tda?: Prisma.BoolFilter<"Vendor"> | boolean
   basico?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFilter<"Vendor"> | number
-  pedidos?: Prisma.PedidoCabeceraListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
+  pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }, "id_aux" | "cod_ven">
 
 export type VendorOrderByWithAggregationInput = {
@@ -397,8 +403,10 @@ export type VendorCreateInput = {
   flg_tda?: boolean
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
-  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutVendedorInput
   customers?: Prisma.CustomerCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutVendedorInput
 }
 
 export type VendorUncheckedCreateInput = {
@@ -416,8 +424,10 @@ export type VendorUncheckedCreateInput = {
   flg_tda?: boolean
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
-  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutVendedorInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutVendedorInput
 }
 
 export type VendorUpdateInput = {
@@ -434,8 +444,10 @@ export type VendorUpdateInput = {
   flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
-  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutVendedorNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutVendedorNestedInput
 }
 
 export type VendorUncheckedUpdateInput = {
@@ -453,8 +465,10 @@ export type VendorUncheckedUpdateInput = {
   flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
-  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
 }
 
 export type VendorCreateManyInput = {
@@ -575,6 +589,11 @@ export type VendorSumOrderByAggregateInput = {
   id_area?: Prisma.SortOrder
 }
 
+export type VendorNullableScalarRelationFilter = {
+  is?: Prisma.VendorWhereInput | null
+  isNot?: Prisma.VendorWhereInput | null
+}
+
 export type VendorCreateNestedOneWithoutCustomersInput = {
   create?: Prisma.XOR<Prisma.VendorCreateWithoutCustomersInput, Prisma.VendorUncheckedCreateWithoutCustomersInput>
   connectOrCreate?: Prisma.VendorCreateOrConnectWithoutCustomersInput
@@ -611,6 +630,38 @@ export type VendorUpdateOneRequiredWithoutPedidosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutPedidosInput, Prisma.VendorUpdateWithoutPedidosInput>, Prisma.VendorUncheckedUpdateWithoutPedidosInput>
 }
 
+export type VendorCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutRemisionesInput, Prisma.VendorUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutRemisionesInput, Prisma.VendorUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.VendorUpsertWithoutRemisionesInput
+  disconnect?: Prisma.VendorWhereInput | boolean
+  delete?: Prisma.VendorWhereInput | boolean
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutRemisionesInput, Prisma.VendorUpdateWithoutRemisionesInput>, Prisma.VendorUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type VendorCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutFacturasInput, Prisma.VendorUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.VendorWhereUniqueInput
+}
+
+export type VendorUpdateOneWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutFacturasInput, Prisma.VendorUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.VendorUpsertWithoutFacturasInput
+  disconnect?: Prisma.VendorWhereInput | boolean
+  delete?: Prisma.VendorWhereInput | boolean
+  connect?: Prisma.VendorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutFacturasInput, Prisma.VendorUpdateWithoutFacturasInput>, Prisma.VendorUncheckedUpdateWithoutFacturasInput>
+}
+
 export type VendorCreateWithoutCustomersInput = {
   cod_ven: string
   nom_aux: string
@@ -625,6 +676,8 @@ export type VendorCreateWithoutCustomersInput = {
   flg_tda?: boolean
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutVendedorInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutVendedorInput
 }
 
@@ -643,6 +696,8 @@ export type VendorUncheckedCreateWithoutCustomersInput = {
   flg_tda?: boolean
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutVendedorInput
 }
 
@@ -676,6 +731,8 @@ export type VendorUpdateWithoutCustomersInput = {
   flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutVendedorNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutVendedorNestedInput
 }
 
@@ -694,6 +751,8 @@ export type VendorUncheckedUpdateWithoutCustomersInput = {
   flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
 }
 
@@ -712,6 +771,8 @@ export type VendorCreateWithoutPedidosInput = {
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
   customers?: Prisma.CustomerCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutVendedorInput
 }
 
 export type VendorUncheckedCreateWithoutPedidosInput = {
@@ -730,6 +791,8 @@ export type VendorUncheckedCreateWithoutPedidosInput = {
   basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area: number
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
 }
 
 export type VendorCreateOrConnectWithoutPedidosInput = {
@@ -763,6 +826,8 @@ export type VendorUpdateWithoutPedidosInput = {
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
   customers?: Prisma.CustomerUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutVendedorNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutPedidosInput = {
@@ -781,6 +846,196 @@ export type VendorUncheckedUpdateWithoutPedidosInput = {
   basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   id_area?: Prisma.IntFieldUpdateOperationsInput | number
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+}
+
+export type VendorCreateWithoutRemisionesInput = {
+  cod_ven: string
+  nom_aux: string
+  ape_aux: string
+  ape_mat: string
+  tdoc_ide: string
+  ndoc_ide: string
+  cel_job: string
+  email_job: string
+  fec_reg?: Date | string
+  flg_baja?: boolean
+  flg_tda?: boolean
+  basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area: number
+  customers?: Prisma.CustomerCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutVendedorInput
+}
+
+export type VendorUncheckedCreateWithoutRemisionesInput = {
+  id_aux?: number
+  cod_ven: string
+  nom_aux: string
+  ape_aux: string
+  ape_mat: string
+  tdoc_ide: string
+  ndoc_ide: string
+  cel_job: string
+  email_job: string
+  fec_reg?: Date | string
+  flg_baja?: boolean
+  flg_tda?: boolean
+  basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area: number
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutVendedorInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+}
+
+export type VendorCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutRemisionesInput, Prisma.VendorUncheckedCreateWithoutRemisionesInput>
+}
+
+export type VendorUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutRemisionesInput, Prisma.VendorUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutRemisionesInput, Prisma.VendorUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutRemisionesInput, Prisma.VendorUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type VendorUpdateWithoutRemisionesInput = {
+  cod_ven?: Prisma.StringFieldUpdateOperationsInput | string
+  nom_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_mat?: Prisma.StringFieldUpdateOperationsInput | string
+  tdoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  ndoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  cel_job?: Prisma.StringFieldUpdateOperationsInput | string
+  email_job?: Prisma.StringFieldUpdateOperationsInput | string
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_baja?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  customers?: Prisma.CustomerUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutVendedorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutRemisionesInput = {
+  id_aux?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_ven?: Prisma.StringFieldUpdateOperationsInput | string
+  nom_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_mat?: Prisma.StringFieldUpdateOperationsInput | string
+  tdoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  ndoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  cel_job?: Prisma.StringFieldUpdateOperationsInput | string
+  email_job?: Prisma.StringFieldUpdateOperationsInput | string
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_baja?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutVendedorNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+}
+
+export type VendorCreateWithoutFacturasInput = {
+  cod_ven: string
+  nom_aux: string
+  ape_aux: string
+  ape_mat: string
+  tdoc_ide: string
+  ndoc_ide: string
+  cel_job: string
+  email_job: string
+  fec_reg?: Date | string
+  flg_baja?: boolean
+  flg_tda?: boolean
+  basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area: number
+  customers?: Prisma.CustomerCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutVendedorInput
+}
+
+export type VendorUncheckedCreateWithoutFacturasInput = {
+  id_aux?: number
+  cod_ven: string
+  nom_aux: string
+  ape_aux: string
+  ape_mat: string
+  tdoc_ide: string
+  ndoc_ide: string
+  cel_job: string
+  email_job: string
+  fec_reg?: Date | string
+  flg_baja?: boolean
+  flg_tda?: boolean
+  basico?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area: number
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutVendedorInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutVendedorInput
+}
+
+export type VendorCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutFacturasInput, Prisma.VendorUncheckedCreateWithoutFacturasInput>
+}
+
+export type VendorUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutFacturasInput, Prisma.VendorUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutFacturasInput, Prisma.VendorUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.VendorWhereInput
+}
+
+export type VendorUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.VendorWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutFacturasInput, Prisma.VendorUncheckedUpdateWithoutFacturasInput>
+}
+
+export type VendorUpdateWithoutFacturasInput = {
+  cod_ven?: Prisma.StringFieldUpdateOperationsInput | string
+  nom_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_mat?: Prisma.StringFieldUpdateOperationsInput | string
+  tdoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  ndoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  cel_job?: Prisma.StringFieldUpdateOperationsInput | string
+  email_job?: Prisma.StringFieldUpdateOperationsInput | string
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_baja?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  customers?: Prisma.CustomerUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutVendedorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutFacturasInput = {
+  id_aux?: Prisma.IntFieldUpdateOperationsInput | number
+  cod_ven?: Prisma.StringFieldUpdateOperationsInput | string
+  nom_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_aux?: Prisma.StringFieldUpdateOperationsInput | string
+  ape_mat?: Prisma.StringFieldUpdateOperationsInput | string
+  tdoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  ndoc_ide?: Prisma.StringFieldUpdateOperationsInput | string
+  cel_job?: Prisma.StringFieldUpdateOperationsInput | string
+  email_job?: Prisma.StringFieldUpdateOperationsInput | string
+  fec_reg?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flg_baja?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  flg_tda?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  basico?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  id_area?: Prisma.IntFieldUpdateOperationsInput | number
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutVendedorNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutVendedorNestedInput
 }
 
 
@@ -789,13 +1044,17 @@ export type VendorUncheckedUpdateWithoutPedidosInput = {
  */
 
 export type VendorCountOutputType = {
-  pedidos: number
   customers: number
+  facturas: number
+  remisiones: number
+  pedidos: number
 }
 
 export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  pedidos?: boolean | VendorCountOutputTypeCountPedidosArgs
   customers?: boolean | VendorCountOutputTypeCountCustomersArgs
+  facturas?: boolean | VendorCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | VendorCountOutputTypeCountRemisionesArgs
+  pedidos?: boolean | VendorCountOutputTypeCountPedidosArgs
 }
 
 /**
@@ -811,15 +1070,29 @@ export type VendorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * VendorCountOutputType without action
  */
-export type VendorCountOutputTypeCountPedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PedidoCabeceraWhereInput
+export type VendorCountOutputTypeCountCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CustomerWhereInput
 }
 
 /**
  * VendorCountOutputType without action
  */
-export type VendorCountOutputTypeCountCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CustomerWhereInput
+export type VendorCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionCabeceraWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
+export type VendorCountOutputTypeCountPedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PedidoCabeceraWhereInput
 }
 
 
@@ -838,8 +1111,10 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   flg_tda?: boolean
   basico?: boolean
   id_area?: boolean
-  pedidos?: boolean | Prisma.Vendor$pedidosArgs<ExtArgs>
   customers?: boolean | Prisma.Vendor$customersArgs<ExtArgs>
+  facturas?: boolean | Prisma.Vendor$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Vendor$remisionesArgs<ExtArgs>
+  pedidos?: boolean | Prisma.Vendor$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
@@ -896,8 +1171,10 @@ export type VendorSelectScalar = {
 
 export type VendorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_aux" | "cod_ven" | "nom_aux" | "ape_aux" | "ape_mat" | "tdoc_ide" | "ndoc_ide" | "cel_job" | "email_job" | "fec_reg" | "flg_baja" | "flg_tda" | "basico" | "id_area", ExtArgs["result"]["vendor"]>
 export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  pedidos?: boolean | Prisma.Vendor$pedidosArgs<ExtArgs>
   customers?: boolean | Prisma.Vendor$customersArgs<ExtArgs>
+  facturas?: boolean | Prisma.Vendor$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.Vendor$remisionesArgs<ExtArgs>
+  pedidos?: boolean | Prisma.Vendor$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VendorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -906,8 +1183,10 @@ export type VendorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Vendor"
   objects: {
-    pedidos: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
     customers: Prisma.$CustomerPayload<ExtArgs>[]
+    facturas: Prisma.$FacturacionCabeceraPayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>[]
+    pedidos: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_aux: number
@@ -1318,8 +1597,10 @@ readonly fields: VendorFieldRefs;
  */
 export interface Prisma__VendorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  pedidos<T extends Prisma.Vendor$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customers<T extends Prisma.Vendor$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  facturas<T extends Prisma.Vendor$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.Vendor$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pedidos<T extends Prisma.Vendor$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1756,30 +2037,6 @@ export type VendorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Vendor.pedidos
- */
-export type Vendor$pedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PedidoCabecera
-   */
-  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PedidoCabecera
-   */
-  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
-  where?: Prisma.PedidoCabeceraWhereInput
-  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
-  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
-}
-
-/**
  * Vendor.customers
  */
 export type Vendor$customersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1801,6 +2058,78 @@ export type Vendor$customersArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.CustomerScalarFieldEnum | Prisma.CustomerScalarFieldEnum[]
+}
+
+/**
+ * Vendor.facturas
+ */
+export type Vendor$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionCabecera
+   */
+  select?: Prisma.FacturacionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionCabecera
+   */
+  omit?: Prisma.FacturacionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.FacturacionCabeceraWhereInput
+  orderBy?: Prisma.FacturacionCabeceraOrderByWithRelationInput | Prisma.FacturacionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionCabeceraScalarFieldEnum | Prisma.FacturacionCabeceraScalarFieldEnum[]
+}
+
+/**
+ * Vendor.remisiones
+ */
+export type Vendor$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionCabecera
+   */
+  select?: Prisma.GuiaRemisionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionCabecera
+   */
+  omit?: Prisma.GuiaRemisionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+  orderBy?: Prisma.GuiaRemisionCabeceraOrderByWithRelationInput | Prisma.GuiaRemisionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionCabeceraScalarFieldEnum | Prisma.GuiaRemisionCabeceraScalarFieldEnum[]
+}
+
+/**
+ * Vendor.pedidos
+ */
+export type Vendor$pedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PedidoCabecera
+   */
+  select?: Prisma.PedidoCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PedidoCabecera
+   */
+  omit?: Prisma.PedidoCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoCabeceraInclude<ExtArgs> | null
+  where?: Prisma.PedidoCabeceraWhereInput
+  orderBy?: Prisma.PedidoCabeceraOrderByWithRelationInput | Prisma.PedidoCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.PedidoCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PedidoCabeceraScalarFieldEnum | Prisma.PedidoCabeceraScalarFieldEnum[]
 }
 
 /**

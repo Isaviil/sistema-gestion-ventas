@@ -16,7 +16,7 @@ import {
 } from "@/app/components/ui/select";
 import { useCreateCliente } from "../api/create-cliente";
 import { useUpdateCliente } from "../api/[id]/update-cliente";
-import { useUbigeo } from "@/app/hooks/useUbigeo";
+import { useUbigeos } from "@/app/services/useUbigeo";
 import { usePaymentMethods } from "../../formas-de-pago/api/list-formas-pago";
 import { useVendedores } from "../../vendedores/api/list-vendedores";
 import { toast } from "react-toastify";
@@ -170,7 +170,7 @@ export function DialogAddCliente({
    */
 
   const { consultarDocumento, isLoading: isSearchingDoc } = useConsultaSunat();
-  const { data: ubigeoData, isLoading: isLoadingUbigeos } = useUbigeo();
+  const { data: ubigeoData, isLoading: isLoadingUbigeos } = useUbigeos();
   const { data: formaPagoData, isLoading: isLoadingFormaPagos } =
     usePaymentMethods();
   const { data: vendedoresData, isLoading: isLoadingVendedor } =

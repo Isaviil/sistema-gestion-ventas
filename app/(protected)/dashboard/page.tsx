@@ -1,17 +1,37 @@
-import { Wrench } from "lucide-react";
+"use client";
+
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { AdminDashboard } from "../AdminDashboard";
 
 export default function DashboardPage() {
-  return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center p-6">
-      <Wrench className="h-8 w-8 animate-pulse" />
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-      <h1 className="text-2xl font-bold tracking-tight text-[var(--color-regular-text)]">
-        Módulo en construcción
-      </h1>
+  const isAdmin = session?.user?.rol === "ADMIN";
 
-      <p className="mt-2 text-sm text-[var(--color-dark)] dark:text-[var(--color-details)] max-w-sm">
-        Aún trabajo en esto ☕
-      </p>
-    </div>
-  );
+  useEffect(() => {
+    if (status === "authenticated" && !isAdmin) {
+      router.replace("/movimientos/pedidos");
+    }
+  }, [status, isAdmin, router]);
+
+  if (status === "loading" || (status === "authenticated" && !isAdmin)) {
+    return (
+      <div className="flex min-h-[60vh] w-full items-center justify-center p-6 text-sm">
+        Redirigiendo...
+      </div>
+    );
+  }
+
+  if (!session?.user) {
+    return <div className="p-6 text-sm">No hay sesión activa.</div>;
+  }
+
+  const nombreCompleto =
+    session.user.name?.trim() || session.user.username || "Usuario";
+  const primerNombre = nombreCompleto.split(/\s+/)[0];
+
+  return <AdminDashboard userName={primerNombre} />;
 }

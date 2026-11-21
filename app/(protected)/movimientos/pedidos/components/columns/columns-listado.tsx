@@ -2,7 +2,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { IPedidoListado } from "../../types";
 import { features } from "@/app/components/ui/datatable/virtual-data-table";
 import DataTableRowSelectionCell from "@/app/components/ui/datatable/datatable-row-selection-header-cell";
-import { formatDateString } from "@/app/utils/dateUtils";
+import { formatDateString, truncateText } from "@/app/utils/dateUtils";
+import { EstadoBadge } from "@/app/components/ui/status-en-listado-card";
 
 export const columnsListado: ColumnDef<
   typeof features,
@@ -41,11 +42,29 @@ export const columnsListado: ColumnDef<
     accessorKey: "guia_remision",
     header: "G. Remisión",
     meta: { className: "whitespace-nowrap" },
+    cell: ({ row }) => {
+      const guiaRemision = row.original.guia_remision?.trim();
+
+      if (!guiaRemision) {
+        return "";
+      }
+
+      return truncateText(guiaRemision, 10);
+    },
   },
   {
     accessorKey: "factura",
     header: "Factura",
     meta: { className: "whitespace-nowrap" },
+    cell: ({ row }) => {
+      const factura = row.original.factura?.trim();
+
+      if (!factura) {
+        return "";
+      }
+
+      return truncateText(factura, 10);
+    },
   },
   {
     accessorKey: "ocompra",
@@ -76,5 +95,6 @@ export const columnsListado: ColumnDef<
     accessorKey: "estado",
     header: "Estado",
     meta: { align: "center" },
+    cell: ({ row }) => <EstadoBadge estado={row.original.estado} />,
   },
 ];

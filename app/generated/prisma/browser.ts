@@ -117,3 +117,23 @@ export type PedidoCabecera = Prisma.PedidoCabeceraModel
  * 
  */
 export type PedidoDetalle = Prisma.PedidoDetalleModel
+/**
+ * Model GuiaRemisionCabecera
+ * 
+ */
+export type GuiaRemisionCabecera = Prisma.GuiaRemisionCabeceraModel
+/**
+ * Model GuiaRemisionDetalle
+ * 
+ */
+export type GuiaRemisionDetalle = Prisma.GuiaRemisionDetalleModel
+/**
+ * Model FacturacionCabecera
+ * 
+ */
+export type FacturacionCabecera = Prisma.FacturacionCabeceraModel
+/**
+ * Model FacturacionDetalle
+ * 
+ */
+export type FacturacionDetalle = Prisma.FacturacionDetalleModel

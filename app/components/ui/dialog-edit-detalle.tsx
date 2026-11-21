@@ -11,28 +11,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { IPedidoDetalleFormState } from "@/app/(protected)/movimientos/pedidos/types";
-import { IDetallePrecios } from "@/app/(protected)/maestros/articulos/types";
 import { toast } from "react-toastify";
 
-interface DialogEditDetalleProps {
+type DetallePrecios = {
+  pre_art: number;
+  pdes_art: number;
+  pu_des: number;
+  pu_conigv: number;
+  pu_sinigv: number;
+  tot_art: number;
+  can_art: number;
+  operador: string;
+  subtot_art: number;
+};
+
+interface DialogEditDetalleProps<T extends DetallePrecios> {
   open: boolean;
   setOpen: (open: boolean) => void;
-  data: IPedidoDetalleFormState;
+  data: T;
   igv: number;
   onOpen?: () => void;
   onClose?: () => void;
-  onCommit?: (data: IDetallePrecios) => void;
+  onCommit?: (data: DetallePrecios) => void;
+  isRemision?: boolean;
 }
 
-export default function DialogEditDetalle({
+export default function DialogEditDetalle<T extends DetallePrecios>({
   open,
   setOpen,
   igv,
   onClose,
   onCommit,
   data,
-}: DialogEditDetalleProps) {
+  isRemision,
+}: DialogEditDetalleProps<T>) {
   const [preArt, setPreArt] = useState(data?.pre_art ?? 0);
   const [descuento, setDescuento] = useState(data?.pdes_art ?? 0);
   const [pdesArt, setPdesArt] = useState(data?.pu_des ?? 0);
@@ -40,7 +52,7 @@ export default function DialogEditDetalle({
   const [puSinIgv, setPuSinIgv] = useState(data?.pu_sinigv ?? 0);
   const [totArt, setTotArt] = useState(data?.tot_art ?? 0);
   const [cantidad, setCantidad] = useState(data?.can_art ?? 0);
-  const [operador, setOperador] = useState(data?.operador ?? 0);
+  const [operador, setOperador] = useState(data?.operador ?? "1");
   const [subtotArt, setSubtotArt] = useState(data?.subtot_art ?? 0);
 
   /*
@@ -103,7 +115,7 @@ export default function DialogEditDetalle({
 
   const handleCantidadChange = (value: number) => {
     setCantidad(value);
-    setTotArt(pdesArt * value);
+    calcularPrecios(pdesArt, operador, value);
   };
 
   // Cambio de operador
@@ -149,17 +161,6 @@ export default function DialogEditDetalle({
 
         <div className="grid grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
-            <Label htmlFor="pre_art">Precio</Label>
-            <InputNumber
-              id="pre_art"
-              name="pre_art"
-              value={preArt}
-              onChange={(e) => handlePreArtChange(Number(e.target.value))}
-              className="max-w-32"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
             <Label htmlFor="cantidad">Cantidad</Label>
             <InputNumber
               id="cantidad"
@@ -170,83 +171,102 @@ export default function DialogEditDetalle({
             />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="pdes_art">Descuento %</Label>
-            <InputNumber
-              id="pdes_art"
-              name="pdes_art"
-              value={descuento}
-              onChange={(e) => handleDescuentoChange(Number(e.target.value))}
-              className="max-w-32"
-            />
-          </div>
+          {!isRemision && (
+            <>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="pre_art">Precio</Label>
+                <InputNumber
+                  id="pre_art"
+                  name="pre_art"
+                  value={preArt}
+                  onChange={(e) => handlePreArtChange(Number(e.target.value))}
+                  className="max-w-32"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="pu_des">Nuevo Precio</Label>
-            <InputNumber
-              id="pu_des"
-              name="pu_des"
-              value={pdesArt}
-              onChange={(e) => handleNuevoPrecioChange(Number(e.target.value))}
-              disabled
-              className="max-w-32"
-            />
-          </div>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="pdes_art">Descuento %</Label>
+                <InputNumber
+                  id="pdes_art"
+                  name="pdes_art"
+                  value={descuento}
+                  onChange={(e) =>
+                    handleDescuentoChange(Number(e.target.value))
+                  }
+                  className="max-w-32"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="pu_conigv">Precio con IGV</Label>
-            <InputNumber
-              id="pu_conigv"
-              name="pu_conigv"
-              value={puConIgv}
-              disabled
-              className="max-w-32"
-            />
-          </div>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="pu_des">Nuevo Precio</Label>
+                <InputNumber
+                  id="pu_des"
+                  name="pu_des"
+                  value={pdesArt}
+                  onChange={(e) =>
+                    handleNuevoPrecioChange(Number(e.target.value))
+                  }
+                  disabled
+                  className="max-w-32"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="pu_sinigv">Precio sin IGV</Label>
-            <InputNumber
-              id="pu_sinigv"
-              name="pu_sinigv"
-              value={puSinIgv}
-              disabled
-              className="max-w-32"
-            />
-          </div>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="pu_conigv">Precio con IGV</Label>
+                <InputNumber
+                  id="pu_conigv"
+                  name="pu_conigv"
+                  value={puConIgv}
+                  disabled
+                  className="max-w-32"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="tot_art">Total</Label>
-            <InputNumber
-              id="tot_art"
-              name="tot_art"
-              value={totArt}
-              onChange={(e) => setTotArt(Number(e.target.value))}
-              disabled
-              className="max-w-32"
-            />
-          </div>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="pu_sinigv">Precio sin IGV</Label>
+                <InputNumber
+                  id="pu_sinigv"
+                  name="pu_sinigv"
+                  value={puSinIgv}
+                  disabled
+                  className="max-w-32"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1 col-span-2">
-            <Label htmlFor="operador">Operador</Label>
-            <Select value={operador} onValueChange={handleOperadorChange}>
-              <SelectTrigger
-                id="operador"
-                className="data-[placeholder]:!normal-case"
-              >
-                <SelectValue placeholder="Seleccione" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">GRABADO</SelectItem>
-                <SelectItem value="2" disabled>
-                  INAFECTO
-                </SelectItem>
-                <SelectItem value="3" disabled>
-                  EXONERADO
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <div className="flex flex-col gap-1">
+                <Label htmlFor="tot_art">Total</Label>
+                <InputNumber
+                  id="tot_art"
+                  name="tot_art"
+                  value={totArt}
+                  onChange={(e) => setTotArt(Number(e.target.value))}
+                  disabled
+                  className="max-w-32"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1 col-span-2">
+                <Label htmlFor="operador">Operador</Label>
+                <Select value={operador} onValueChange={handleOperadorChange}>
+                  <SelectTrigger
+                    id="operador"
+                    className="data-[placeholder]:!normal-case"
+                  >
+                    <SelectValue placeholder="Seleccione" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">GRABADO</SelectItem>
+                    <SelectItem value="2" disabled>
+                      INAFECTO
+                    </SelectItem>
+                    <SelectItem value="3" disabled>
+                      EXONERADO
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="flex justify-end gap-2 pt-2">

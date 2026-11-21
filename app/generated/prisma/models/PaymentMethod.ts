@@ -221,6 +221,8 @@ export type PaymentMethodWhereInput = {
   dias?: Prisma.IntFilter<"PaymentMethod"> | number
   flg_activo?: Prisma.BoolFilter<"PaymentMethod"> | boolean
   customers?: Prisma.CustomerListRelationFilter
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
   pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }
 
@@ -231,6 +233,8 @@ export type PaymentMethodOrderByWithRelationInput = {
   dias?: Prisma.SortOrder
   flg_activo?: Prisma.SortOrder
   customers?: Prisma.CustomerOrderByRelationAggregateInput
+  facturas?: Prisma.FacturacionCabeceraOrderByRelationAggregateInput
+  remisiones?: Prisma.GuiaRemisionCabeceraOrderByRelationAggregateInput
   pedidos?: Prisma.PedidoCabeceraOrderByRelationAggregateInput
 }
 
@@ -244,6 +248,8 @@ export type PaymentMethodWhereUniqueInput = Prisma.AtLeast<{
   dias?: Prisma.IntFilter<"PaymentMethod"> | number
   flg_activo?: Prisma.BoolFilter<"PaymentMethod"> | boolean
   customers?: Prisma.CustomerListRelationFilter
+  facturas?: Prisma.FacturacionCabeceraListRelationFilter
+  remisiones?: Prisma.GuiaRemisionCabeceraListRelationFilter
   pedidos?: Prisma.PedidoCabeceraListRelationFilter
 }, "for_pago" | "codigo">
 
@@ -277,6 +283,8 @@ export type PaymentMethodCreateInput = {
   dias?: number
   flg_activo?: boolean
   customers?: Prisma.CustomerCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutMetodoPagoInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutMetodoPagoInput
 }
 
@@ -287,6 +295,8 @@ export type PaymentMethodUncheckedCreateInput = {
   dias?: number
   flg_activo?: boolean
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
 }
 
@@ -296,6 +306,8 @@ export type PaymentMethodUpdateInput = {
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   customers?: Prisma.CustomerUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutMetodoPagoNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutMetodoPagoNestedInput
 }
 
@@ -306,6 +318,8 @@ export type PaymentMethodUncheckedUpdateInput = {
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
 }
 
@@ -406,11 +420,45 @@ export type PaymentMethodUpdateOneRequiredWithoutPedidosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentMethodUpdateToOneWithWhereWithoutPedidosInput, Prisma.PaymentMethodUpdateWithoutPedidosInput>, Prisma.PaymentMethodUncheckedUpdateWithoutPedidosInput>
 }
 
+export type PaymentMethodCreateNestedOneWithoutRemisionesInput = {
+  create?: Prisma.XOR<Prisma.PaymentMethodCreateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PaymentMethodCreateOrConnectWithoutRemisionesInput
+  connect?: Prisma.PaymentMethodWhereUniqueInput
+}
+
+export type PaymentMethodUpdateOneWithoutRemisionesNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentMethodCreateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedCreateWithoutRemisionesInput>
+  connectOrCreate?: Prisma.PaymentMethodCreateOrConnectWithoutRemisionesInput
+  upsert?: Prisma.PaymentMethodUpsertWithoutRemisionesInput
+  disconnect?: Prisma.PaymentMethodWhereInput | boolean
+  delete?: Prisma.PaymentMethodWhereInput | boolean
+  connect?: Prisma.PaymentMethodWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentMethodUpdateToOneWithWhereWithoutRemisionesInput, Prisma.PaymentMethodUpdateWithoutRemisionesInput>, Prisma.PaymentMethodUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type PaymentMethodCreateNestedOneWithoutFacturasInput = {
+  create?: Prisma.XOR<Prisma.PaymentMethodCreateWithoutFacturasInput, Prisma.PaymentMethodUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PaymentMethodCreateOrConnectWithoutFacturasInput
+  connect?: Prisma.PaymentMethodWhereUniqueInput
+}
+
+export type PaymentMethodUpdateOneWithoutFacturasNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentMethodCreateWithoutFacturasInput, Prisma.PaymentMethodUncheckedCreateWithoutFacturasInput>
+  connectOrCreate?: Prisma.PaymentMethodCreateOrConnectWithoutFacturasInput
+  upsert?: Prisma.PaymentMethodUpsertWithoutFacturasInput
+  disconnect?: Prisma.PaymentMethodWhereInput | boolean
+  delete?: Prisma.PaymentMethodWhereInput | boolean
+  connect?: Prisma.PaymentMethodWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentMethodUpdateToOneWithWhereWithoutFacturasInput, Prisma.PaymentMethodUpdateWithoutFacturasInput>, Prisma.PaymentMethodUncheckedUpdateWithoutFacturasInput>
+}
+
 export type PaymentMethodCreateWithoutCustomersInput = {
   forma_pago: string
   codigo?: string | null
   dias?: number
   flg_activo?: boolean
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutMetodoPagoInput
   pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutMetodoPagoInput
 }
 
@@ -420,6 +468,8 @@ export type PaymentMethodUncheckedCreateWithoutCustomersInput = {
   codigo?: string | null
   dias?: number
   flg_activo?: boolean
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
   pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
 }
 
@@ -444,6 +494,8 @@ export type PaymentMethodUpdateWithoutCustomersInput = {
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutMetodoPagoNestedInput
   pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutMetodoPagoNestedInput
 }
 
@@ -453,6 +505,8 @@ export type PaymentMethodUncheckedUpdateWithoutCustomersInput = {
   codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
   pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
 }
 
@@ -462,6 +516,8 @@ export type PaymentMethodCreateWithoutPedidosInput = {
   dias?: number
   flg_activo?: boolean
   customers?: Prisma.CustomerCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutMetodoPagoInput
 }
 
 export type PaymentMethodUncheckedCreateWithoutPedidosInput = {
@@ -471,6 +527,8 @@ export type PaymentMethodUncheckedCreateWithoutPedidosInput = {
   dias?: number
   flg_activo?: boolean
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
 }
 
 export type PaymentMethodCreateOrConnectWithoutPedidosInput = {
@@ -495,6 +553,8 @@ export type PaymentMethodUpdateWithoutPedidosInput = {
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   customers?: Prisma.CustomerUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutMetodoPagoNestedInput
 }
 
 export type PaymentMethodUncheckedUpdateWithoutPedidosInput = {
@@ -504,6 +564,124 @@ export type PaymentMethodUncheckedUpdateWithoutPedidosInput = {
   dias?: Prisma.IntFieldUpdateOperationsInput | number
   flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+}
+
+export type PaymentMethodCreateWithoutRemisionesInput = {
+  forma_pago: string
+  codigo?: string | null
+  dias?: number
+  flg_activo?: boolean
+  customers?: Prisma.CustomerCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraCreateNestedManyWithoutMetodoPagoInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutMetodoPagoInput
+}
+
+export type PaymentMethodUncheckedCreateWithoutRemisionesInput = {
+  for_pago?: number
+  forma_pago: string
+  codigo?: string | null
+  dias?: number
+  flg_activo?: boolean
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutMetodoPagoInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+}
+
+export type PaymentMethodCreateOrConnectWithoutRemisionesInput = {
+  where: Prisma.PaymentMethodWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaymentMethodCreateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedCreateWithoutRemisionesInput>
+}
+
+export type PaymentMethodUpsertWithoutRemisionesInput = {
+  update: Prisma.XOR<Prisma.PaymentMethodUpdateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedUpdateWithoutRemisionesInput>
+  create: Prisma.XOR<Prisma.PaymentMethodCreateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedCreateWithoutRemisionesInput>
+  where?: Prisma.PaymentMethodWhereInput
+}
+
+export type PaymentMethodUpdateToOneWithWhereWithoutRemisionesInput = {
+  where?: Prisma.PaymentMethodWhereInput
+  data: Prisma.XOR<Prisma.PaymentMethodUpdateWithoutRemisionesInput, Prisma.PaymentMethodUncheckedUpdateWithoutRemisionesInput>
+}
+
+export type PaymentMethodUpdateWithoutRemisionesInput = {
+  forma_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dias?: Prisma.IntFieldUpdateOperationsInput | number
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customers?: Prisma.CustomerUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUpdateManyWithoutMetodoPagoNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutMetodoPagoNestedInput
+}
+
+export type PaymentMethodUncheckedUpdateWithoutRemisionesInput = {
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  forma_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dias?: Prisma.IntFieldUpdateOperationsInput | number
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  facturas?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+}
+
+export type PaymentMethodCreateWithoutFacturasInput = {
+  forma_pago: string
+  codigo?: string | null
+  dias?: number
+  flg_activo?: boolean
+  customers?: Prisma.CustomerCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraCreateNestedManyWithoutMetodoPagoInput
+  pedidos?: Prisma.PedidoCabeceraCreateNestedManyWithoutMetodoPagoInput
+}
+
+export type PaymentMethodUncheckedCreateWithoutFacturasInput = {
+  for_pago?: number
+  forma_pago: string
+  codigo?: string | null
+  dias?: number
+  flg_activo?: boolean
+  customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutMetodoPagoInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedCreateNestedManyWithoutMetodoPagoInput
+}
+
+export type PaymentMethodCreateOrConnectWithoutFacturasInput = {
+  where: Prisma.PaymentMethodWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaymentMethodCreateWithoutFacturasInput, Prisma.PaymentMethodUncheckedCreateWithoutFacturasInput>
+}
+
+export type PaymentMethodUpsertWithoutFacturasInput = {
+  update: Prisma.XOR<Prisma.PaymentMethodUpdateWithoutFacturasInput, Prisma.PaymentMethodUncheckedUpdateWithoutFacturasInput>
+  create: Prisma.XOR<Prisma.PaymentMethodCreateWithoutFacturasInput, Prisma.PaymentMethodUncheckedCreateWithoutFacturasInput>
+  where?: Prisma.PaymentMethodWhereInput
+}
+
+export type PaymentMethodUpdateToOneWithWhereWithoutFacturasInput = {
+  where?: Prisma.PaymentMethodWhereInput
+  data: Prisma.XOR<Prisma.PaymentMethodUpdateWithoutFacturasInput, Prisma.PaymentMethodUncheckedUpdateWithoutFacturasInput>
+}
+
+export type PaymentMethodUpdateWithoutFacturasInput = {
+  forma_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dias?: Prisma.IntFieldUpdateOperationsInput | number
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customers?: Prisma.CustomerUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUpdateManyWithoutMetodoPagoNestedInput
+  pedidos?: Prisma.PedidoCabeceraUpdateManyWithoutMetodoPagoNestedInput
+}
+
+export type PaymentMethodUncheckedUpdateWithoutFacturasInput = {
+  for_pago?: Prisma.IntFieldUpdateOperationsInput | number
+  forma_pago?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dias?: Prisma.IntFieldUpdateOperationsInput | number
+  flg_activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  customers?: Prisma.CustomerUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  remisiones?: Prisma.GuiaRemisionCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
+  pedidos?: Prisma.PedidoCabeceraUncheckedUpdateManyWithoutMetodoPagoNestedInput
 }
 
 
@@ -513,11 +691,15 @@ export type PaymentMethodUncheckedUpdateWithoutPedidosInput = {
 
 export type PaymentMethodCountOutputType = {
   customers: number
+  facturas: number
+  remisiones: number
   pedidos: number
 }
 
 export type PaymentMethodCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customers?: boolean | PaymentMethodCountOutputTypeCountCustomersArgs
+  facturas?: boolean | PaymentMethodCountOutputTypeCountFacturasArgs
+  remisiones?: boolean | PaymentMethodCountOutputTypeCountRemisionesArgs
   pedidos?: boolean | PaymentMethodCountOutputTypeCountPedidosArgs
 }
 
@@ -541,6 +723,20 @@ export type PaymentMethodCountOutputTypeCountCustomersArgs<ExtArgs extends runti
 /**
  * PaymentMethodCountOutputType without action
  */
+export type PaymentMethodCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionCabeceraWhereInput
+}
+
+/**
+ * PaymentMethodCountOutputType without action
+ */
+export type PaymentMethodCountOutputTypeCountRemisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+}
+
+/**
+ * PaymentMethodCountOutputType without action
+ */
 export type PaymentMethodCountOutputTypeCountPedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PedidoCabeceraWhereInput
 }
@@ -553,6 +749,8 @@ export type PaymentMethodSelect<ExtArgs extends runtime.Types.Extensions.Interna
   dias?: boolean
   flg_activo?: boolean
   customers?: boolean | Prisma.PaymentMethod$customersArgs<ExtArgs>
+  facturas?: boolean | Prisma.PaymentMethod$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PaymentMethod$remisionesArgs<ExtArgs>
   pedidos?: boolean | Prisma.PaymentMethod$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.PaymentMethodCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentMethod"]>
@@ -584,6 +782,8 @@ export type PaymentMethodSelectScalar = {
 export type PaymentMethodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"for_pago" | "forma_pago" | "codigo" | "dias" | "flg_activo", ExtArgs["result"]["paymentMethod"]>
 export type PaymentMethodInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customers?: boolean | Prisma.PaymentMethod$customersArgs<ExtArgs>
+  facturas?: boolean | Prisma.PaymentMethod$facturasArgs<ExtArgs>
+  remisiones?: boolean | Prisma.PaymentMethod$remisionesArgs<ExtArgs>
   pedidos?: boolean | Prisma.PaymentMethod$pedidosArgs<ExtArgs>
   _count?: boolean | Prisma.PaymentMethodCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -594,6 +794,8 @@ export type $PaymentMethodPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "PaymentMethod"
   objects: {
     customers: Prisma.$CustomerPayload<ExtArgs>[]
+    facturas: Prisma.$FacturacionCabeceraPayload<ExtArgs>[]
+    remisiones: Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>[]
     pedidos: Prisma.$PedidoCabeceraPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -997,6 +1199,8 @@ readonly fields: PaymentMethodFieldRefs;
 export interface Prisma__PaymentMethodClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   customers<T extends Prisma.PaymentMethod$customersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethod$customersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  facturas<T extends Prisma.PaymentMethod$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethod$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  remisiones<T extends Prisma.PaymentMethod$remisionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethod$remisionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuiaRemisionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pedidos<T extends Prisma.PaymentMethod$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentMethod$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PedidoCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1446,6 +1650,54 @@ export type PaymentMethod$customersArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.CustomerScalarFieldEnum | Prisma.CustomerScalarFieldEnum[]
+}
+
+/**
+ * PaymentMethod.facturas
+ */
+export type PaymentMethod$facturasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FacturacionCabecera
+   */
+  select?: Prisma.FacturacionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FacturacionCabecera
+   */
+  omit?: Prisma.FacturacionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FacturacionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.FacturacionCabeceraWhereInput
+  orderBy?: Prisma.FacturacionCabeceraOrderByWithRelationInput | Prisma.FacturacionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionCabeceraScalarFieldEnum | Prisma.FacturacionCabeceraScalarFieldEnum[]
+}
+
+/**
+ * PaymentMethod.remisiones
+ */
+export type PaymentMethod$remisionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuiaRemisionCabecera
+   */
+  select?: Prisma.GuiaRemisionCabeceraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuiaRemisionCabecera
+   */
+  omit?: Prisma.GuiaRemisionCabeceraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuiaRemisionCabeceraInclude<ExtArgs> | null
+  where?: Prisma.GuiaRemisionCabeceraWhereInput
+  orderBy?: Prisma.GuiaRemisionCabeceraOrderByWithRelationInput | Prisma.GuiaRemisionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.GuiaRemisionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuiaRemisionCabeceraScalarFieldEnum | Prisma.GuiaRemisionCabeceraScalarFieldEnum[]
 }
 
 /**
