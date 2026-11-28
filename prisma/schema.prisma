@@ -342,7 +342,7 @@ model GuiaRemisionCabecera {
   usuario_anu  Int?
   estado       String                @default("INGRESADO")
   fch_anu      DateTime?
-  factura      FacturacionCabecera?  @relation("FacturaRemisionOrigen")
+  factura       FacturacionCabecera[] @relation("FacturaRemisionOrigen")
   metodoPago   PaymentMethod?        @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
   cliente      Customer?             @relation(fields: [id_aux], references: [id_aux], onDelete: Restrict)
   facturas     FacturacionCabecera?  @relation("RemisionFacturaOrigen", fields: [id_cpc], references: [id_cpc], onDelete: Restrict)
@@ -433,7 +433,7 @@ model FacturacionCabecera {
   usuario      Int?
   usuario_anu  Int?
   estado       String                 @default("INGRESADO")
-  id_remision  Int?                   @unique
+  id_remision  Int?                  
   metodoPago   PaymentMethod?         @relation(fields: [for_pago], references: [for_pago], onDelete: Restrict)
   cliente      Customer?              @relation(fields: [id_aux], references: [id_aux], onDelete: Restrict)
   pedido       PedidoCabecera?        @relation(fields: [id_ped], references: [id_ped], onDelete: Restrict)

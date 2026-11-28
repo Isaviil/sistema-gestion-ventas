@@ -750,8 +750,9 @@ export default function FormularioGuiaRemision({
                       onValueChange={(value) => {
                         if (!value) return;
                         setValue("codmov", value);
+                        setDetalles([]);
                       }}
-                      disabled={!isAdd}
+                      disabled={!isAdd || codmov !== "01"}
                     >
                       <SelectTrigger id="codmov" className="min-w-0">
                         <SelectValue placeholder="Seleccione" />
@@ -1186,7 +1187,7 @@ export default function FormularioGuiaRemision({
 
           <div className="space-y-1">
             <ArticulosActions
-              disableAdd={!isAdd}
+              disableAdd={!isAdd || !idaux}
               onAdd={() => setOpenArticulos(true)}
               onDelete={handleEliminarArticulo}
               onView={handleVisualizarDetalle}

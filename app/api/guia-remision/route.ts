@@ -405,14 +405,42 @@ export async function GET(request: Request) {
         dirent: true,
         id_cpc: true,
         facturas: {
+          where: {
+            flg_anu: false,
+            estado: { not: "ANULADO" },
+          },
           select: {
             id_cpc: true,
+            id_ped: true,
             num_doc: true,
             flg_anu: true,
             estado: true,
+            pedido: {
+              select: { nrodoc: true },
+            },
+          },
+        },
+        factura: {
+          where: {
+            flg_anu: false,
+            estado: { not: "ANULADO" },
+          },
+          orderBy: {
+            id_cpc: "desc",
+          },
+          select: {
+            id_cpc: true,
+            id_ped: true,
+            num_doc: true,
+            flg_anu: true,
+            estado: true,
+            pedido: {
+              select: { nrodoc: true },
+            },
           },
         },
         fch_ing: true,
+        fch_anu: true,
         fchdoc: true,
         flg_anu: true,
         flg_incigv: true,
@@ -446,22 +474,22 @@ export async function GET(request: Request) {
     });
 
     const data = remisiones.map(
-      ({ metodoPago, pedido, usuarioReg, facturas, ...remision }) => {
-        const facturaActiva =
-          facturas && !facturas.flg_anu && facturas.estado !== "ANULADO"
-            ? facturas
-            : null;
+      ({ metodoPago, pedido, usuarioReg, facturas, factura, ...remision }) => {
+        const facturaActiva = facturas ?? factura[0] ?? null;
+        const nroPedidoBase =
+          pedido?.nrodoc ?? facturaActiva?.pedido?.nrodoc ?? null;
 
         return {
           ...remision,
           porigv: Number(remision.porigv),
           tpocmb: Number(remision.tpocmb),
-          id_cpc: facturaActiva?.id_cpc ?? remision.id_cpc ?? null,
+          id_cpc: facturaActiva?.id_cpc ?? null,
+          id_ped: remision.id_ped ?? facturaActiva?.id_ped ?? null,
           factura: facturaActiva?.num_doc ?? null,
           formapago: metodoPago?.forma_pago ?? null,
-          pedido: pedido?.nrodoc ? `${remision.ano}-${pedido.nrodoc}` : null,
+          pedido: nroPedidoBase ? `${remision.ano}-${nroPedidoBase}` : null,
           usuario_ing: usuarioReg?.username ?? "",
-          fch_anu: null,
+          fch_anu: remision.fch_anu ? remision.fch_anu.toISOString() : null,
         };
       },
     );

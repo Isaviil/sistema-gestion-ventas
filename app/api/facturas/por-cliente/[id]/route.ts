@@ -21,6 +21,12 @@ export async function GET(
         tipo: "3",
         flg_anu: false,
         estado: { not: "ANULADO" },
+        remisiones: {
+          none: {
+            flg_anu: false,
+            estado: { not: "ANULADO" },
+          },
+        },
       },
       select: {
         id_cpc: true,

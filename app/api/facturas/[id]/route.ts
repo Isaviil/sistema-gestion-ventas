@@ -166,7 +166,16 @@ export async function PATCH(request: Request, context: RouteContext) {
         select: {
           id_cpc: true,
           num_doc: true,
+          id_remision: true,
           flg_anu: true,
+          remisiones: {
+            select: {
+              id_remision: true,
+              numero: true,
+              estado: true,
+              flg_anu: true,
+            },
+          },
           detalles: {
             select: {
               id_art: true,
@@ -188,6 +197,14 @@ export async function PATCH(request: Request, context: RouteContext) {
         throw new Error("FACTURA_YA_ANULADA");
       }
 
+      const tieneRemisionActiva = existente.remisiones.some(
+        (rem) => !rem.flg_anu && rem.estado !== "ANULADO",
+      );
+
+      if (tieneRemisionActiva) {
+        throw new Error("FACTURA_TIENE_REMISION_ACTIVA");
+      }
+
       const cantidadesPorPedido = new Map<
         string,
         {
@@ -201,7 +218,10 @@ export async function PATCH(request: Request, context: RouteContext) {
       const pedidosAfectados = new Set<number>();
 
       for (const item of existente.detalles) {
-        if (item.id_ped !== null) {
+        if (item.id_alm !== null) {
+          // Viene de guía de remisión: no toca can_ate ni estado del pedido
+          continue;
+        } else if (item.id_ped !== null) {
           if (item.itmped === null) {
             throw new Error("DETALLE_PEDIDO_NO_ENCONTRADO");
           }
@@ -216,8 +236,6 @@ export async function PATCH(request: Request, context: RouteContext) {
           });
 
           pedidosAfectados.add(item.id_ped);
-        } else if (item.id_alm !== null) {
-          continue;
         } else {
           cantidadesPorArticulo.set(
             item.id_art,
@@ -247,6 +265,18 @@ export async function PATCH(request: Request, context: RouteContext) {
         throw new Error("FACTURA_YA_ANULADA");
       }
 
+      if (existente.id_remision !== null) {
+        await tx.guiaRemisionCabecera.updateMany({
+          where: {
+            id_remision: existente.id_remision,
+            id_cpc: idCpc,
+          },
+          data: {
+            id_cpc: null,
+          },
+        });
+      }
+
       for (const [id_art, cantidad] of cantidadesPorArticulo) {
         await tx.product.update({
           where: { id_art },
@@ -257,7 +287,7 @@ export async function PATCH(request: Request, context: RouteContext) {
       }
 
       for (const item of cantidadesPorPedido.values()) {
-        const actualizado = await tx.pedidoDetalle.updateMany({
+        const actualizadoDetalle = await tx.pedidoDetalle.updateMany({
           where: {
             id_ped: item.id_ped,
             nroitm: item.itmped,
@@ -268,7 +298,7 @@ export async function PATCH(request: Request, context: RouteContext) {
           },
         });
 
-        if (actualizado.count === 0) {
+        if (actualizadoDetalle.count === 0) {
           throw new Error("CANTIDAD_DESPACHADA_INVALIDA");
         }
       }
@@ -327,6 +357,16 @@ export async function PATCH(request: Request, context: RouteContext) {
       if (error.message === "FACTURA_YA_ANULADA") {
         return Response.json(
           { message: "La factura ya se encuentra anulada" },
+          { status: 409 },
+        );
+      }
+
+      if (error.message === "FACTURA_TIENE_REMISION_ACTIVA") {
+        return Response.json(
+          {
+            message:
+              "No se puede anular la factura porque está asociada a una guía de remisión activa. Anule la guía primero.",
+          },
           { status: 409 },
         );
       }

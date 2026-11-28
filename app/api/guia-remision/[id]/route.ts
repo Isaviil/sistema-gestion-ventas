@@ -16,7 +16,6 @@ const obtenerId = async (context: RouteContext) => {
 
   return idRemision;
 };
-
 export async function GET(_request: Request, context: RouteContext) {
   try {
     const idRemision = await obtenerId(context);
@@ -37,7 +36,15 @@ export async function GET(_request: Request, context: RouteContext) {
         usuarioReg: true,
         usuarioAnula: true,
         pedido: true,
-        factura: true, // <-- Incluimos la relación de la factura asociada
+        factura: {
+          where: {
+            flg_anu: false,
+            estado: { not: "ANULADO" },
+          },
+          orderBy: {
+            id_cpc: "desc",
+          },
+        },
         detalles: {
           include: {
             articulo: true,
@@ -57,6 +64,7 @@ export async function GET(_request: Request, context: RouteContext) {
       );
     }
 
+    const facturaActiva = remision.factura[0] ?? null;
     const { detalles } = remision;
 
     return Response.json({
@@ -70,8 +78,8 @@ export async function GET(_request: Request, context: RouteContext) {
         codmon: remision.codmon,
         codmov: remision.codmov,
         dirent: remision.dirent,
-        factura: remision.factura
-          ? `${remision.factura.ser_doc}-${remision.factura.num_doc}`
+        factura: facturaActiva
+          ? `${facturaActiva.ser_doc}-${facturaActiva.num_doc}`
           : null,
         fchdoc: remision.fchdoc.toISOString().slice(0, 10),
         fchtras: remision.fchtras.toISOString().slice(0, 10),
@@ -82,7 +90,7 @@ export async function GET(_request: Request, context: RouteContext) {
         id_aux: remision.id_aux,
         id_chof: remision.id_chof,
         id_ped: remision.id_ped,
-        id_cpc: remision.factura?.id_cpc ?? remision.id_cpc,
+        id_cpc: facturaActiva?.id_cpc ?? remision.id_cpc,
         id_transp: remision.id_transp,
         id_vehi: remision.id_vehi,
         id_ven: remision.id_ven,
@@ -179,6 +187,13 @@ export async function PATCH(request: Request, context: RouteContext) {
               flg_anu: true,
             },
           },
+          facturas: {
+            select: {
+              id_cpc: true,
+              estado: true,
+              flg_anu: true,
+            },
+          },
           detalles: {
             select: {
               id_art: true,
@@ -197,11 +212,16 @@ export async function PATCH(request: Request, context: RouteContext) {
         throw new Error("REMISION_YA_ANULADA");
       }
 
-      if (
-        existente.factura &&
-        !existente.factura.flg_anu &&
-        existente.factura.estado !== "ANULADO"
-      ) {
+      const facturaOrigenActiva = existente.factura.some(
+        (fac) => !fac.flg_anu && fac.estado !== "ANULADO",
+      );
+
+      const facturaVinculadaActiva =
+        existente.facturas &&
+        !existente.facturas.flg_anu &&
+        existente.facturas.estado !== "ANULADO";
+
+      if (facturaOrigenActiva || facturaVinculadaActiva) {
         throw new Error("REMISION_TIENE_FACTURA_ACTIVA");
       }
 

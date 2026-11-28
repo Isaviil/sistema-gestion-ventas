@@ -21,6 +21,12 @@ export async function GET(
         flg_anu: false,
         codmov: "01",
         estado: "INGRESADO",
+        factura: {
+          none: {
+            flg_anu: false,
+            estado: { not: "ANULADO" },
+          },
+        },
       },
       select: {
         id_remision: true,

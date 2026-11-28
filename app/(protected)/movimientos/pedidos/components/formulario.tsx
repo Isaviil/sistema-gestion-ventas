@@ -234,6 +234,11 @@ export default function FormularioPedido({
     name: "guia_remision",
   });
 
+  const idaux = useWatch({
+    control,
+    name: "id_clie",
+  });
+
   const { agregarProducto } = useAgregarProducto(porigv);
 
   /*
@@ -563,7 +568,7 @@ export default function FormularioPedido({
                 <Button
                   type="button"
                   className="absolute right-0 top-0 h-full px-2.5 flex items-center justify-center text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white bg-transparent hover:bg-gray-200 dark:hover:bg-gray-800 rounded-r-md transition-colors cursor-pointer"
-                  disabled={!isEnableEdit}
+                  disabled={!isAdd}
                   onClick={() => {
                     setOpenClientes(true);
                   }}
@@ -790,7 +795,7 @@ export default function FormularioPedido({
 
           <div className="space-y-1">
             <ArticulosActions
-              disableAdd={!isEnableEdit}
+              disableAdd={!isEnableEdit || !idaux}
               onAdd={() => setOpenArticulos(true)}
               onDelete={handleEliminarArticulo}
               onView={handleVisualizarDetalle}

@@ -481,10 +481,14 @@ export async function GET(request: Request) {
         remision: {
           select: {
             id_remision: true,
+            id_ped: true,
             serie: true,
             numero: true,
             flg_anu: true,
             estado: true,
+            pedido: {
+              select: { nrodoc: true },
+            },
           },
         },
         remisiones: {
@@ -497,8 +501,12 @@ export async function GET(request: Request) {
           },
           select: {
             id_remision: true,
+            id_ped: true,
             serie: true,
             numero: true,
+            pedido: {
+              select: { nrodoc: true },
+            },
           },
         },
         usuarioReg: {
@@ -530,6 +538,7 @@ export async function GET(request: Request) {
 
         return {
           ...factura,
+          id_ped: factura.id_ped ?? remisionVinculada?.id_ped ?? null,
           id_remision:
             remisionVinculada?.id_remision ?? factura.id_remision ?? null,
           impadel: Number(factura.impadel),
@@ -543,7 +552,7 @@ export async function GET(request: Request) {
           tpocmb: Number(factura.tpocmb),
           formapago: metodoPago?.forma_pago ?? null,
           guia_remision: remisionVinculada ? remisionVinculada.numero : null,
-          pedido: pedido?.nrodoc ?? null,
+          pedido: pedido?.nrodoc ?? remisionVinculada?.pedido?.nrodoc ?? null,
           usuario_ing: usuarioReg?.username ?? "",
         };
       },

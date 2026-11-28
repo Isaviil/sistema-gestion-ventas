@@ -536,7 +536,7 @@ export type GuiaRemisionCabeceraWhereInput = {
   usuario_anu?: Prisma.IntNullableFilter<"GuiaRemisionCabecera"> | number | null
   estado?: Prisma.StringFilter<"GuiaRemisionCabecera"> | string
   fch_anu?: Prisma.DateTimeNullableFilter<"GuiaRemisionCabecera"> | Date | string | null
-  factura?: Prisma.XOR<Prisma.FacturacionCabeceraNullableScalarRelationFilter, Prisma.FacturacionCabeceraWhereInput> | null
+  factura?: Prisma.FacturacionCabeceraListRelationFilter
   metodoPago?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
   cliente?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   facturas?: Prisma.XOR<Prisma.FacturacionCabeceraNullableScalarRelationFilter, Prisma.FacturacionCabeceraWhereInput> | null
@@ -586,7 +586,7 @@ export type GuiaRemisionCabeceraOrderByWithRelationInput = {
   usuario_anu?: Prisma.SortOrderInput | Prisma.SortOrder
   estado?: Prisma.SortOrder
   fch_anu?: Prisma.SortOrderInput | Prisma.SortOrder
-  factura?: Prisma.FacturacionCabeceraOrderByWithRelationInput
+  factura?: Prisma.FacturacionCabeceraOrderByRelationAggregateInput
   metodoPago?: Prisma.PaymentMethodOrderByWithRelationInput
   cliente?: Prisma.CustomerOrderByWithRelationInput
   facturas?: Prisma.FacturacionCabeceraOrderByWithRelationInput
@@ -639,7 +639,7 @@ export type GuiaRemisionCabeceraWhereUniqueInput = Prisma.AtLeast<{
   usuario_anu?: Prisma.IntNullableFilter<"GuiaRemisionCabecera"> | number | null
   estado?: Prisma.StringFilter<"GuiaRemisionCabecera"> | string
   fch_anu?: Prisma.DateTimeNullableFilter<"GuiaRemisionCabecera"> | Date | string | null
-  factura?: Prisma.XOR<Prisma.FacturacionCabeceraNullableScalarRelationFilter, Prisma.FacturacionCabeceraWhereInput> | null
+  factura?: Prisma.FacturacionCabeceraListRelationFilter
   metodoPago?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
   cliente?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   facturas?: Prisma.XOR<Prisma.FacturacionCabeceraNullableScalarRelationFilter, Prisma.FacturacionCabeceraWhereInput> | null
@@ -771,7 +771,7 @@ export type GuiaRemisionCabeceraCreateInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -821,7 +821,7 @@ export type GuiaRemisionCabeceraUncheckedCreateInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -856,7 +856,7 @@ export type GuiaRemisionCabeceraUpdateInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -906,7 +906,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -1559,7 +1559,7 @@ export type GuiaRemisionCabeceraCreateWithoutUsuarioAnulaInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -1607,7 +1607,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutUsuarioAnulaInput = {
   usuario?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -1652,7 +1652,7 @@ export type GuiaRemisionCabeceraCreateWithoutUsuarioRegInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -1700,7 +1700,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutUsuarioRegInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -1821,7 +1821,7 @@ export type GuiaRemisionCabeceraCreateWithoutMetodoPagoInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
   pedido?: Prisma.PedidoCabeceraCreateNestedOneWithoutRemisionesInput
@@ -1869,7 +1869,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutMetodoPagoInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -1930,7 +1930,7 @@ export type GuiaRemisionCabeceraCreateWithoutClienteInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
   pedido?: Prisma.PedidoCabeceraCreateNestedOneWithoutRemisionesInput
@@ -1978,7 +1978,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutClienteInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -2039,7 +2039,7 @@ export type GuiaRemisionCabeceraCreateWithoutVendedorInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -2087,7 +2087,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutVendedorInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -2148,7 +2148,7 @@ export type GuiaRemisionCabeceraCreateWithoutPedidoInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -2196,7 +2196,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutPedidoInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -2257,7 +2257,7 @@ export type GuiaRemisionCabeceraCreateWithoutDetallesInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   facturas?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionesInput
@@ -2306,7 +2306,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutDetallesInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
 }
 
 export type GuiaRemisionCabeceraCreateOrConnectWithoutDetallesInput = {
@@ -2356,7 +2356,7 @@ export type GuiaRemisionCabeceraUpdateWithoutDetallesInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -2405,7 +2405,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutDetallesInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
 export type GuiaRemisionCabeceraCreateWithoutFacturaInput = {
@@ -2527,7 +2527,7 @@ export type GuiaRemisionCabeceraCreateWithoutFacturasInput = {
   ubigeo2: string
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraCreateNestedManyWithoutRemisionInput
   metodoPago?: Prisma.PaymentMethodCreateNestedOneWithoutRemisionesInput
   cliente?: Prisma.CustomerCreateNestedOneWithoutRemisionesInput
   pedido?: Prisma.PedidoCabeceraCreateNestedOneWithoutRemisionesInput
@@ -2575,7 +2575,7 @@ export type GuiaRemisionCabeceraUncheckedCreateWithoutFacturasInput = {
   usuario_anu?: number | null
   estado?: string
   fch_anu?: Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedOneWithoutRemisionInput
+  factura?: Prisma.FacturacionCabeceraUncheckedCreateNestedManyWithoutRemisionInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedCreateNestedManyWithoutRemisionInput
 }
 
@@ -2810,7 +2810,7 @@ export type GuiaRemisionCabeceraUpdateWithoutUsuarioAnulaInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -2858,7 +2858,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutUsuarioAnulaInput = {
   usuario?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -2933,7 +2933,7 @@ export type GuiaRemisionCabeceraUpdateWithoutUsuarioRegInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -2981,7 +2981,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutUsuarioRegInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3096,7 +3096,7 @@ export type GuiaRemisionCabeceraUpdateWithoutMetodoPagoInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
   pedido?: Prisma.PedidoCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -3144,7 +3144,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutMetodoPagoInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3259,7 +3259,7 @@ export type GuiaRemisionCabeceraUpdateWithoutClienteInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
   pedido?: Prisma.PedidoCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -3307,7 +3307,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutClienteInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3422,7 +3422,7 @@ export type GuiaRemisionCabeceraUpdateWithoutVendedorInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -3470,7 +3470,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutVendedorInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3585,7 +3585,7 @@ export type GuiaRemisionCabeceraUpdateWithoutPedidoInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   facturas?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -3633,7 +3633,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutPedidoInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3748,7 +3748,7 @@ export type GuiaRemisionCabeceraUpdateWithoutFacturasInput = {
   ubigeo2?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUpdateManyWithoutRemisionNestedInput
   metodoPago?: Prisma.PaymentMethodUpdateOneWithoutRemisionesNestedInput
   cliente?: Prisma.CustomerUpdateOneWithoutRemisionesNestedInput
   pedido?: Prisma.PedidoCabeceraUpdateOneWithoutRemisionesNestedInput
@@ -3796,7 +3796,7 @@ export type GuiaRemisionCabeceraUncheckedUpdateWithoutFacturasInput = {
   usuario_anu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   fch_anu?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  factura?: Prisma.FacturacionCabeceraUncheckedUpdateOneWithoutRemisionNestedInput
+  factura?: Prisma.FacturacionCabeceraUncheckedUpdateManyWithoutRemisionNestedInput
   detalles?: Prisma.GuiaRemisionDetalleUncheckedUpdateManyWithoutRemisionNestedInput
 }
 
@@ -3846,10 +3846,12 @@ export type GuiaRemisionCabeceraUncheckedUpdateManyWithoutFacturasInput = {
  */
 
 export type GuiaRemisionCabeceraCountOutputType = {
+  factura: number
   detalles: number
 }
 
 export type GuiaRemisionCabeceraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  factura?: boolean | GuiaRemisionCabeceraCountOutputTypeCountFacturaArgs
   detalles?: boolean | GuiaRemisionCabeceraCountOutputTypeCountDetallesArgs
 }
 
@@ -3861,6 +3863,13 @@ export type GuiaRemisionCabeceraCountOutputTypeDefaultArgs<ExtArgs extends runti
    * Select specific fields to fetch from the GuiaRemisionCabeceraCountOutputType
    */
   select?: Prisma.GuiaRemisionCabeceraCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * GuiaRemisionCabeceraCountOutputType without action
+ */
+export type GuiaRemisionCabeceraCountOutputTypeCountFacturaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FacturacionCabeceraWhereInput
 }
 
 /**
@@ -4094,7 +4103,7 @@ export type GuiaRemisionCabeceraIncludeUpdateManyAndReturn<ExtArgs extends runti
 export type $GuiaRemisionCabeceraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "GuiaRemisionCabecera"
   objects: {
-    factura: Prisma.$FacturacionCabeceraPayload<ExtArgs> | null
+    factura: Prisma.$FacturacionCabeceraPayload<ExtArgs>[]
     metodoPago: Prisma.$PaymentMethodPayload<ExtArgs> | null
     cliente: Prisma.$CustomerPayload<ExtArgs> | null
     facturas: Prisma.$FacturacionCabeceraPayload<ExtArgs> | null
@@ -4537,7 +4546,7 @@ readonly fields: GuiaRemisionCabeceraFieldRefs;
  */
 export interface Prisma__GuiaRemisionCabeceraClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  factura<T extends Prisma.GuiaRemisionCabecera$facturaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuiaRemisionCabecera$facturaArgs<ExtArgs>>): Prisma.Prisma__FacturacionCabeceraClient<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  factura<T extends Prisma.GuiaRemisionCabecera$facturaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuiaRemisionCabecera$facturaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   metodoPago<T extends Prisma.GuiaRemisionCabecera$metodoPagoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuiaRemisionCabecera$metodoPagoArgs<ExtArgs>>): Prisma.Prisma__PaymentMethodClient<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cliente<T extends Prisma.GuiaRemisionCabecera$clienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuiaRemisionCabecera$clienteArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   facturas<T extends Prisma.GuiaRemisionCabecera$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GuiaRemisionCabecera$facturasArgs<ExtArgs>>): Prisma.Prisma__FacturacionCabeceraClient<runtime.Types.Result.GetResult<Prisma.$FacturacionCabeceraPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -5030,6 +5039,11 @@ export type GuiaRemisionCabecera$facturaArgs<ExtArgs extends runtime.Types.Exten
    */
   include?: Prisma.FacturacionCabeceraInclude<ExtArgs> | null
   where?: Prisma.FacturacionCabeceraWhereInput
+  orderBy?: Prisma.FacturacionCabeceraOrderByWithRelationInput | Prisma.FacturacionCabeceraOrderByWithRelationInput[]
+  cursor?: Prisma.FacturacionCabeceraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FacturacionCabeceraScalarFieldEnum | Prisma.FacturacionCabeceraScalarFieldEnum[]
 }
 
 /**

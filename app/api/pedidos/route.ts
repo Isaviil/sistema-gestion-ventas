@@ -571,6 +571,12 @@ export async function GET(request: Request) {
           orderBy: { id_cpc: "asc" },
           select: {
             num_doc: true,
+            remision: {
+              where: { flg_anu: false, estado: { not: "ANULADO" } },
+              select: {
+                numero: true,
+              },
+            },
             remisiones: {
               where: { flg_anu: false, estado: { not: "ANULADO" } },
               orderBy: { id_remision: "asc" },
@@ -601,6 +607,19 @@ export async function GET(request: Request) {
           orderBy: { id_remision: "asc" },
           select: {
             numero: true,
+            factura: {
+              where: { flg_anu: false, estado: { not: "ANULADO" } },
+              orderBy: { id_cpc: "asc" },
+              select: {
+                num_doc: true,
+              },
+            },
+            facturas: {
+              where: { flg_anu: false, estado: { not: "ANULADO" } },
+              select: {
+                num_doc: true,
+              },
+            },
           },
         },
       },
@@ -611,9 +630,10 @@ export async function GET(request: Request) {
 
     const data = pedidos.map(
       ({ metodoPago, vendedor, moneda, remisiones, facturas, ...pedido }) => {
-        const remisionesDesdeFacturas = facturas.flatMap(
-          (fac) => fac.remisiones ?? [],
-        );
+        const remisionesDesdeFacturas = facturas.flatMap((fac) => [
+          ...(fac.remisiones ?? []),
+          ...(fac.remision ? [fac.remision] : []),
+        ]);
 
         const numerosGuia = Array.from(
           new Set(
@@ -623,9 +643,14 @@ export async function GET(request: Request) {
           ),
         );
 
+        const facturasDesdeRemisiones = remisiones.flatMap((rem) => [
+          ...(rem.factura ?? []),
+          ...(rem.facturas ? [rem.facturas] : []),
+        ]);
+
         const numerosFactura = Array.from(
           new Set(
-            facturas
+            [...facturas, ...facturasDesdeRemisiones]
               .map((fac) => fac.num_doc?.trim())
               .filter((num): num is string => Boolean(num)),
           ),

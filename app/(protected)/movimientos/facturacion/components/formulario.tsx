@@ -738,7 +738,7 @@ export default function FormularioFactura({
 
       <FormProvider {...methods}>
         <Formulario
-          title={isAdd ? "Nueva factura" : "Consultar factura"}
+          title={isAdd ? "Nueva Factura" : "Consultar Factura"}
           showAnular={showAnular}
           showSubmit={isAdd}
           showPrint={showPrint}
@@ -818,13 +818,14 @@ export default function FormularioFactura({
                   render={({ field }) => (
                     <Select
                       name={field.name}
-                      disabled={!isAdd}
+                      disabled={!isAdd || tipo !== "3"}
                       value={field.value ?? ""}
                       onValueChange={(value) => {
                         const str = value?.trim();
                         if (!str) return;
 
                         field.onChange(str);
+                        setDetalles([]);
                       }}
                     >
                       <SelectTrigger id="tipo">
@@ -1103,7 +1104,7 @@ export default function FormularioFactura({
 
           <div className="space-y-1">
             <ArticulosActions
-              disableAdd={!isAdd}
+              disableAdd={!isAdd || !idaux}
               onAdd={() => setOpenArticulos(true)}
               onDelete={handleEliminarArticulo}
               onView={handleVisualizarDetalle}
