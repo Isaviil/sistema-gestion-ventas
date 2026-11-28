@@ -26,7 +26,7 @@ export default function LoginPage() {
   const { status } = useSession(); // Verifica la sesión
 
   const [showPassword, setShowPassword] = useState(false);
-  const [usuario, setUsuario] = useState("ADMIN");
+  const [usuario, setUsuario] = useState("TestUser");
   const [password, setPassword] = useState("123");
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
